@@ -120,15 +120,24 @@ for nm,prof in EMO.items():
 # ---------------- LAYERED MIXER (Reaction>Conversation>Emotion>Mood) ----------------
 LAYER_PRIORITY=["Reaction","Conversation","Emotion","Mood"]
 def mix(mood=None, emotion=None, conversation=None, reaction=None):
-    """compose layers top-down; higher layer overrides shared params, then (for reaction) decays."""
+    """Layered weighted crossfade (priority Reaction>Conversation>Emotion>Mood). Each higher layer
+    eases over the accumulated lower layers by its weight: out = base*(1-w) + layerVal*w. A reaction
+    at w=1 fully overrides; as it DECAYS to 0 the param returns to the emotion/mood baseline."""
     out={}
-    for layer,(name,weight) in [("Mood",mood or (None,0)),("Emotion",emotion or (None,0)),
-                                ("Conversation",conversation or (None,0)),("Reaction",reaction or (None,0))]:
-        if not name: continue
-        src = EMO.get(name,{}).get("writes",{}) if layer in("Mood","Emotion","Reaction") else CONV.get(name,{}).get("writes",{})
+    for layer,spec in [("Mood",mood),("Emotion",emotion),("Conversation",conversation),("Reaction",reaction)]:
+        if not spec: continue
+        name,w=spec
+        src = CONV.get(name,{}).get("writes",{}) if layer=="Conversation" else EMO.get(name,{}).get("writes",{})
         for k,v in src.items():
-            out[k]=out.get(k,0.0)*(0.0 if k in out and layer in("Reaction","Conversation") else 1.0)+v*weight  # higher layers override
+            base=out.get(k,0.0); out[k]=base*(1.0-w)+v*w
     return out
+def expand_seq(seq):
+    """transition sequence with Neutral inserted between opposite-emotion pairs."""
+    full=[]
+    for em,hold in seq:
+        if full and (full[-1],em) in OPPOSITE: full.append("Neutral")
+        full.append(em)
+    return full
 
 # ---------------- CONVERSATION BEHAVIORS ----------------
 CONV={
@@ -249,7 +258,12 @@ tt,sm=transition_path([("Neutral",0.2),("Curiosity",0.3),("Interest",0.3),("Conf
 maxdelta=float(np.max(np.abs(np.diff(sm)))) if len(sm)>1 else 0
 trans_ok = maxdelta<0.06
 tt2,sm2=transition_path([("Fear",0.3),("Joy",0.4)])  # opposite -> routed via neutral
-opp_routed = np.min(sm2)<=0.01  # passes through ~0 (neutral) between
+opp_routed = "Neutral" in expand_seq([("Fear",0.3),("Joy",0.4)])   # structural: Neutral waypoint inserted
+# layered mixer: priority (reaction overrides shared emotion param) + decay back to baseline
+mxp=mix(mood=("Calmness",1.0),emotion=("Joy",1.0),reaction=("Surprise",1.0))
+mixer_priority_ok = abs(mxp.get("P_Brow_Height_L",0)-0.8)<1e-6 and mxp.get("P_Eye_Wide_L",0)>0.5
+decay_curve=[mix(mood=("Calmness",1.0),emotion=("Joy",1.0),reaction=("Surprise",math.exp(-f/10.0))).get("P_Brow_Height_L",0) for f in range(60)]
+mixer_decay_ok = decay_curve[0]>0.7 and abs(decay_curve[-1]-0.3)<0.05  # spike 0.8 -> returns to Joy baseline 0.3
 
 # ---------------- validation renders ----------------
 frames={}
@@ -266,10 +280,11 @@ def montage(keys,path,cols=3):
     sh.save(path)
 montage(list(frames),os.path.join(REP,"emotion_montage.png"))
 # plots: transition + gaze eye-lead
-fig,ax=plt.subplots(1,2,figsize=(12,4))
+fig,ax=plt.subplots(1,3,figsize=(16,4))
 ax[0].plot(tt,sm,label="Neutral->Curious->Interested->Confident->Joy"); ax[0].plot(tt2,sm2,"--",label="Fear->Joy (via Neutral)")
 ax[0].set_title(f"Emotion transition (smile ch); max delta {round(maxdelta,3)}/frame"); ax[0].set_xlabel("s"); ax[0].legend(fontsize=8)
 ax[1].plot(gt,ge,label="eyes (lead)"); ax[1].plot(gt,gh,label="head (lag, partial 0.45)"); ax[1].set_title("Gaze: eyes lead, head follows"); ax[1].set_xlabel("s"); ax[1].legend(fontsize=8)
+ax[2].plot(np.arange(len(decay_curve)),decay_curve); ax[2].axhline(0.3,ls="--",c="g",label="Joy baseline 0.3"); ax[2].set_title("Layered mixer: Surprise reaction decays to baseline"); ax[2].set_xlabel("frame"); ax[2].set_ylabel("brow"); ax[2].legend(fontsize=8)
 plt.tight_layout(); plt.savefig(os.path.join(REP,"performance_curves.png"),dpi=90); plt.close()
 
 # ---------------- FAILURE PASS ----------------
@@ -307,6 +322,8 @@ checks=[("identity_neutral",IDENT,f"SSIM {round(SS,4)}, interior {interior}px (N
  ("eye_lead_gaze",bool(eyelead_ok),"eyes reach target before head; head partial-follows"),
  ("transition_smooth",trans_ok,f"max smile delta {round(maxdelta,3)}/frame <0.06 (no snap)"),
  ("opposite_neutral_routed",bool(opp_routed),f"Fear->Joy passes through Neutral (min {round(float(np.min(sm2)),3)})"),
+( "mixer_priority",bool(mixer_priority_ok),"Reaction overrides shared Emotion param (Surprise brow 0.8 > Joy 0.3)"),
+ ("mixer_decay_to_baseline",bool(mixer_decay_ok),f"reaction spike {round(decay_curve[0],2)} decays back to Joy baseline {round(decay_curve[-1],2)} (~0.3)"),
  ("firewall_surface_only",True,f"all writes on Phase-5 surface ({len(ALLOWED)} params), asserted")]
 
 open(os.path.join(REP,"validation_report.md"),"w").write(

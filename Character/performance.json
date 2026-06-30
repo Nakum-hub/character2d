@@ -4,9 +4,9 @@
   "allowedSurface": 173,
   "firewall": "Phase-5 params only (asserted)",
   "identityLock": {
-   "SSIM": 0.9996,
-   "interiorResidual": 42,
-   "verdict": "PASS"
+   "SSIM": 0.86401,
+   "interiorResidual": 922612,
+   "verdict": "CHECK"
   }
  },
  "layerStack": [
@@ -601,12 +601,12 @@
   "easing": "cosine",
   "asymmetric": "recovery slower than onset",
   "neutralRouting": [
-   "Joy->Fear",
-   "Disappointment->Excitement",
-   "Excitement->Disappointment",
-   "Surprise->Calmness",
    "Anger->Joy",
-   "Fear->Joy"
+   "Excitement->Disappointment",
+   "Joy->Fear",
+   "Fear->Joy",
+   "Surprise->Calmness",
+   "Disappointment->Excitement"
   ],
   "maxPerFrameDelta": 0.06
  },
