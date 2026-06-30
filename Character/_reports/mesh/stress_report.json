@@ -1,0 +1,2562 @@
+[
+ {
+  "layer": "CHR_LEG_LEG_Upper_L",
+  "test": "LEG_Upper",
+  "design_range": 90,
+  "clamp": 30,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 15,
+    "inverted": 0,
+    "tex_stretch_pct": 11.1,
+    "tri_stress_pct": 2.4,
+    "volume_pct": 99.7,
+    "ok": true
+   },
+   {
+    "angle": 30,
+    "inverted": 1,
+    "tex_stretch_pct": 20.6,
+    "tri_stress_pct": 5.7,
+    "volume_pct": 98.2,
+    "ok": false
+   },
+   {
+    "angle": 45,
+    "inverted": 1,
+    "tex_stretch_pct": 28.5,
+    "tri_stress_pct": 9.4,
+    "volume_pct": 96.0,
+    "ok": false
+   },
+   {
+    "angle": 60,
+    "inverted": 1,
+    "tex_stretch_pct": 34.5,
+    "tri_stress_pct": 14.5,
+    "volume_pct": 92.7,
+    "ok": false
+   },
+   {
+    "angle": 75,
+    "inverted": 2,
+    "tex_stretch_pct": 38.6,
+    "tri_stress_pct": 20.8,
+    "volume_pct": 88.7,
+    "ok": false
+   },
+   {
+    "angle": 90,
+    "inverted": 2,
+    "tex_stretch_pct": 40.7,
+    "tri_stress_pct": 27.4,
+    "volume_pct": 84.2,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_LEG_LEG_Upper_R",
+  "test": "LEG_Upper",
+  "design_range": 90,
+  "clamp": 45,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 15,
+    "inverted": 0,
+    "tex_stretch_pct": 10.4,
+    "tri_stress_pct": 1.3,
+    "volume_pct": 99.4,
+    "ok": true
+   },
+   {
+    "angle": 30,
+    "inverted": 0,
+    "tex_stretch_pct": 19.3,
+    "tri_stress_pct": 3.5,
+    "volume_pct": 97.7,
+    "ok": true
+   },
+   {
+    "angle": 45,
+    "inverted": 1,
+    "tex_stretch_pct": 26.8,
+    "tri_stress_pct": 6.5,
+    "volume_pct": 94.9,
+    "ok": false
+   },
+   {
+    "angle": 60,
+    "inverted": 1,
+    "tex_stretch_pct": 32.6,
+    "tri_stress_pct": 9.8,
+    "volume_pct": 91.9,
+    "ok": false
+   },
+   {
+    "angle": 75,
+    "inverted": 2,
+    "tex_stretch_pct": 36.7,
+    "tri_stress_pct": 13.4,
+    "volume_pct": 88.4,
+    "ok": false
+   },
+   {
+    "angle": 90,
+    "inverted": 3,
+    "tex_stretch_pct": 39.0,
+    "tri_stress_pct": 17.5,
+    "volume_pct": 84.6,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_MID_NECK_Skin",
+  "test": "NECK",
+  "design_range": 30,
+  "clamp": 30,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 10,
+    "inverted": 0,
+    "tex_stretch_pct": 7.2,
+    "tri_stress_pct": 0.6,
+    "volume_pct": 99.5,
+    "ok": true
+   },
+   {
+    "angle": 20,
+    "inverted": 0,
+    "tex_stretch_pct": 13.9,
+    "tri_stress_pct": 1.7,
+    "volume_pct": 98.5,
+    "ok": true
+   },
+   {
+    "angle": 30,
+    "inverted": 0,
+    "tex_stretch_pct": 19.8,
+    "tri_stress_pct": 3.3,
+    "volume_pct": 97.0,
+    "ok": true
+   }
+  ]
+ },
+ {
+  "layer": "CHR_HEAD_FACE_Cheek_R",
+  "test": "FACE_Cheek",
+  "design_range": 30,
+  "clamp": 30,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 10,
+    "inverted": 0,
+    "tex_stretch_pct": 7.8,
+    "tri_stress_pct": 0.9,
+    "volume_pct": 99.6,
+    "ok": true
+   },
+   {
+    "angle": 20,
+    "inverted": 0,
+    "tex_stretch_pct": 15.0,
+    "tri_stress_pct": 2.7,
+    "volume_pct": 98.1,
+    "ok": true
+   },
+   {
+    "angle": 30,
+    "inverted": 0,
+    "tex_stretch_pct": 21.3,
+    "tri_stress_pct": 5.6,
+    "volume_pct": 95.6,
+    "ok": true
+   }
+  ]
+ },
+ {
+  "layer": "CHR_HEAD_FACE_Cheek_L",
+  "test": "FACE_Cheek",
+  "design_range": 30,
+  "clamp": 30,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 10,
+    "inverted": 0,
+    "tex_stretch_pct": 7.7,
+    "tri_stress_pct": 1.0,
+    "volume_pct": 99.5,
+    "ok": true
+   },
+   {
+    "angle": 20,
+    "inverted": 0,
+    "tex_stretch_pct": 14.8,
+    "tri_stress_pct": 2.8,
+    "volume_pct": 98.1,
+    "ok": true
+   },
+   {
+    "angle": 30,
+    "inverted": 1,
+    "tex_stretch_pct": 21.0,
+    "tri_stress_pct": 5.4,
+    "volume_pct": 95.9,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_LEG_LEG_Lower_L",
+  "test": "LEG_Lower",
+  "design_range": 120,
+  "clamp": 40,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 20,
+    "inverted": 0,
+    "tex_stretch_pct": 12.8,
+    "tri_stress_pct": 1.7,
+    "volume_pct": 99.1,
+    "ok": true
+   },
+   {
+    "angle": 40,
+    "inverted": 1,
+    "tex_stretch_pct": 23.3,
+    "tri_stress_pct": 4.8,
+    "volume_pct": 96.7,
+    "ok": false
+   },
+   {
+    "angle": 60,
+    "inverted": 2,
+    "tex_stretch_pct": 31.4,
+    "tri_stress_pct": 8.8,
+    "volume_pct": 93.2,
+    "ok": false
+   },
+   {
+    "angle": 80,
+    "inverted": 3,
+    "tex_stretch_pct": 37.1,
+    "tri_stress_pct": 14.3,
+    "volume_pct": 88.6,
+    "ok": false
+   },
+   {
+    "angle": 100,
+    "inverted": 8,
+    "tex_stretch_pct": 40.2,
+    "tri_stress_pct": 20.4,
+    "volume_pct": 83.5,
+    "ok": false
+   },
+   {
+    "angle": 120,
+    "inverted": 21,
+    "tex_stretch_pct": 40.7,
+    "tri_stress_pct": 25.2,
+    "volume_pct": 79.5,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_ARM_SLEEVE_Upper_L",
+  "test": "SLEEVE_Upper",
+  "design_range": 130,
+  "clamp": 60,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 15,
+    "inverted": 0,
+    "tex_stretch_pct": 10.1,
+    "tri_stress_pct": 1.5,
+    "volume_pct": 99.4,
+    "ok": true
+   },
+   {
+    "angle": 30,
+    "inverted": 0,
+    "tex_stretch_pct": 18.9,
+    "tri_stress_pct": 4.0,
+    "volume_pct": 97.7,
+    "ok": true
+   },
+   {
+    "angle": 45,
+    "inverted": 0,
+    "tex_stretch_pct": 26.2,
+    "tri_stress_pct": 7.5,
+    "volume_pct": 95.0,
+    "ok": true
+   },
+   {
+    "angle": 60,
+    "inverted": 1,
+    "tex_stretch_pct": 32.1,
+    "tri_stress_pct": 11.6,
+    "volume_pct": 91.7,
+    "ok": false
+   },
+   {
+    "angle": 75,
+    "inverted": 2,
+    "tex_stretch_pct": 36.5,
+    "tri_stress_pct": 16.1,
+    "volume_pct": 88.0,
+    "ok": false
+   },
+   {
+    "angle": 90,
+    "inverted": 2,
+    "tex_stretch_pct": 39.1,
+    "tri_stress_pct": 20.9,
+    "volume_pct": 84.2,
+    "ok": false
+   },
+   {
+    "angle": 105,
+    "inverted": 6,
+    "tex_stretch_pct": 40.2,
+    "tri_stress_pct": 25.3,
+    "volume_pct": 80.8,
+    "ok": false
+   },
+   {
+    "angle": 120,
+    "inverted": 12,
+    "tex_stretch_pct": 40.6,
+    "tri_stress_pct": 28.4,
+    "volume_pct": 78.8,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_ARM_SLEEVE_Lower_L",
+  "test": "SLEEVE_Lower",
+  "design_range": 130,
+  "clamp": 60,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 15,
+    "inverted": 0,
+    "tex_stretch_pct": 9.6,
+    "tri_stress_pct": 1.3,
+    "volume_pct": 99.4,
+    "ok": true
+   },
+   {
+    "angle": 30,
+    "inverted": 0,
+    "tex_stretch_pct": 18.0,
+    "tri_stress_pct": 3.7,
+    "volume_pct": 97.7,
+    "ok": true
+   },
+   {
+    "angle": 45,
+    "inverted": 0,
+    "tex_stretch_pct": 25.2,
+    "tri_stress_pct": 7.2,
+    "volume_pct": 95.0,
+    "ok": true
+   },
+   {
+    "angle": 60,
+    "inverted": 1,
+    "tex_stretch_pct": 30.9,
+    "tri_stress_pct": 11.4,
+    "volume_pct": 91.6,
+    "ok": false
+   },
+   {
+    "angle": 75,
+    "inverted": 3,
+    "tex_stretch_pct": 35.2,
+    "tri_stress_pct": 16.2,
+    "volume_pct": 87.8,
+    "ok": false
+   },
+   {
+    "angle": 90,
+    "inverted": 5,
+    "tex_stretch_pct": 37.9,
+    "tri_stress_pct": 21.3,
+    "volume_pct": 83.6,
+    "ok": false
+   },
+   {
+    "angle": 105,
+    "inverted": 12,
+    "tex_stretch_pct": 39.3,
+    "tri_stress_pct": 26.0,
+    "volume_pct": 79.4,
+    "ok": false
+   },
+   {
+    "angle": 120,
+    "inverted": 28,
+    "tex_stretch_pct": 40.6,
+    "tri_stress_pct": 29.4,
+    "volume_pct": 76.4,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_ARM_FOREARM_L",
+  "test": "FOREARM",
+  "design_range": 90,
+  "clamp": 30,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 15,
+    "inverted": 0,
+    "tex_stretch_pct": 11.3,
+    "tri_stress_pct": 1.4,
+    "volume_pct": 99.6,
+    "ok": true
+   },
+   {
+    "angle": 30,
+    "inverted": 1,
+    "tex_stretch_pct": 21.0,
+    "tri_stress_pct": 3.2,
+    "volume_pct": 98.4,
+    "ok": false
+   },
+   {
+    "angle": 45,
+    "inverted": 2,
+    "tex_stretch_pct": 28.8,
+    "tri_stress_pct": 5.3,
+    "volume_pct": 96.5,
+    "ok": false
+   },
+   {
+    "angle": 60,
+    "inverted": 3,
+    "tex_stretch_pct": 34.6,
+    "tri_stress_pct": 8.5,
+    "volume_pct": 93.9,
+    "ok": false
+   },
+   {
+    "angle": 75,
+    "inverted": 3,
+    "tex_stretch_pct": 38.3,
+    "tri_stress_pct": 12.3,
+    "volume_pct": 90.8,
+    "ok": false
+   },
+   {
+    "angle": 90,
+    "inverted": 5,
+    "tex_stretch_pct": 40.7,
+    "tri_stress_pct": 16.5,
+    "volume_pct": 87.3,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_LEG_LEG_Lower_R",
+  "test": "LEG_Lower",
+  "design_range": 120,
+  "clamp": 40,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 20,
+    "inverted": 0,
+    "tex_stretch_pct": 10.5,
+    "tri_stress_pct": 1.7,
+    "volume_pct": 99.1,
+    "ok": true
+   },
+   {
+    "angle": 40,
+    "inverted": 1,
+    "tex_stretch_pct": 19.4,
+    "tri_stress_pct": 4.7,
+    "volume_pct": 96.8,
+    "ok": false
+   },
+   {
+    "angle": 60,
+    "inverted": 1,
+    "tex_stretch_pct": 26.9,
+    "tri_stress_pct": 8.7,
+    "volume_pct": 93.4,
+    "ok": false
+   },
+   {
+    "angle": 80,
+    "inverted": 2,
+    "tex_stretch_pct": 32.8,
+    "tri_stress_pct": 14.4,
+    "volume_pct": 88.9,
+    "ok": false
+   },
+   {
+    "angle": 100,
+    "inverted": 6,
+    "tex_stretch_pct": 37.1,
+    "tri_stress_pct": 20.5,
+    "volume_pct": 84.1,
+    "ok": false
+   },
+   {
+    "angle": 120,
+    "inverted": 13,
+    "tex_stretch_pct": 39.5,
+    "tri_stress_pct": 25.8,
+    "volume_pct": 80.3,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_ARM_SLEEVE_Upper_R",
+  "test": "SLEEVE_Upper",
+  "design_range": 130,
+  "clamp": 15,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 15,
+    "inverted": 3,
+    "tex_stretch_pct": 10.3,
+    "tri_stress_pct": 7.0,
+    "volume_pct": 100.5,
+    "ok": false
+   },
+   {
+    "angle": 30,
+    "inverted": 4,
+    "tex_stretch_pct": 19.2,
+    "tri_stress_pct": 18.3,
+    "volume_pct": 100.1,
+    "ok": false
+   },
+   {
+    "angle": 45,
+    "inverted": 4,
+    "tex_stretch_pct": 26.6,
+    "tri_stress_pct": 30.5,
+    "volume_pct": 98.5,
+    "ok": false
+   },
+   {
+    "angle": 60,
+    "inverted": 4,
+    "tex_stretch_pct": 32.3,
+    "tri_stress_pct": 43.7,
+    "volume_pct": 95.8,
+    "ok": false
+   },
+   {
+    "angle": 75,
+    "inverted": 4,
+    "tex_stretch_pct": 36.7,
+    "tri_stress_pct": 57.1,
+    "volume_pct": 92.1,
+    "ok": false
+   },
+   {
+    "angle": 90,
+    "inverted": 7,
+    "tex_stretch_pct": 39.3,
+    "tri_stress_pct": 70.3,
+    "volume_pct": 87.6,
+    "ok": false
+   },
+   {
+    "angle": 105,
+    "inverted": 13,
+    "tex_stretch_pct": 40.3,
+    "tri_stress_pct": 81.5,
+    "volume_pct": 82.8,
+    "ok": false
+   },
+   {
+    "angle": 120,
+    "inverted": 24,
+    "tex_stretch_pct": 40.2,
+    "tri_stress_pct": 88.3,
+    "volume_pct": 81.1,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_ARM_SLEEVE_Lower_R",
+  "test": "SLEEVE_Lower",
+  "design_range": 130,
+  "clamp": 90,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 15,
+    "inverted": 0,
+    "tex_stretch_pct": 10.5,
+    "tri_stress_pct": 0.9,
+    "volume_pct": 99.8,
+    "ok": true
+   },
+   {
+    "angle": 30,
+    "inverted": 0,
+    "tex_stretch_pct": 19.5,
+    "tri_stress_pct": 2.8,
+    "volume_pct": 98.7,
+    "ok": true
+   },
+   {
+    "angle": 45,
+    "inverted": 0,
+    "tex_stretch_pct": 27.0,
+    "tri_stress_pct": 5.5,
+    "volume_pct": 96.7,
+    "ok": true
+   },
+   {
+    "angle": 60,
+    "inverted": 0,
+    "tex_stretch_pct": 32.8,
+    "tri_stress_pct": 9.0,
+    "volume_pct": 93.8,
+    "ok": true
+   },
+   {
+    "angle": 75,
+    "inverted": 0,
+    "tex_stretch_pct": 36.8,
+    "tri_stress_pct": 13.2,
+    "volume_pct": 90.2,
+    "ok": true
+   },
+   {
+    "angle": 90,
+    "inverted": 2,
+    "tex_stretch_pct": 39.0,
+    "tri_stress_pct": 17.8,
+    "volume_pct": 86.0,
+    "ok": false
+   },
+   {
+    "angle": 105,
+    "inverted": 2,
+    "tex_stretch_pct": 39.7,
+    "tri_stress_pct": 22.5,
+    "volume_pct": 81.5,
+    "ok": false
+   },
+   {
+    "angle": 120,
+    "inverted": 18,
+    "tex_stretch_pct": 39.7,
+    "tri_stress_pct": 25.9,
+    "volume_pct": 78.2,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_ARM_FOREARM_R",
+  "test": "FOREARM",
+  "design_range": 90,
+  "clamp": 90,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 15,
+    "inverted": 0,
+    "tex_stretch_pct": 11.7,
+    "tri_stress_pct": 0.8,
+    "volume_pct": 99.7,
+    "ok": true
+   },
+   {
+    "angle": 30,
+    "inverted": 0,
+    "tex_stretch_pct": 21.6,
+    "tri_stress_pct": 2.5,
+    "volume_pct": 98.4,
+    "ok": true
+   },
+   {
+    "angle": 45,
+    "inverted": 0,
+    "tex_stretch_pct": 29.6,
+    "tri_stress_pct": 5.0,
+    "volume_pct": 96.2,
+    "ok": true
+   },
+   {
+    "angle": 60,
+    "inverted": 0,
+    "tex_stretch_pct": 35.6,
+    "tri_stress_pct": 8.4,
+    "volume_pct": 93.2,
+    "ok": true
+   },
+   {
+    "angle": 75,
+    "inverted": 0,
+    "tex_stretch_pct": 39.5,
+    "tri_stress_pct": 12.5,
+    "volume_pct": 89.6,
+    "ok": true
+   },
+   {
+    "angle": 90,
+    "inverted": 0,
+    "tex_stretch_pct": 41.3,
+    "tri_stress_pct": 17.0,
+    "volume_pct": 85.4,
+    "ok": true
+   }
+  ]
+ },
+ {
+  "layer": "CHR_MID_NECK_Hidden_Column_hidden",
+  "test": "NECK",
+  "design_range": 30,
+  "clamp": 20,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 10,
+    "inverted": 0,
+    "tex_stretch_pct": 7.5,
+    "tri_stress_pct": 1.6,
+    "volume_pct": 99.8,
+    "ok": true
+   },
+   {
+    "angle": 20,
+    "inverted": 1,
+    "tex_stretch_pct": 14.4,
+    "tri_stress_pct": 3.5,
+    "volume_pct": 99.2,
+    "ok": false
+   },
+   {
+    "angle": 30,
+    "inverted": 1,
+    "tex_stretch_pct": 20.6,
+    "tri_stress_pct": 4.9,
+    "volume_pct": 98.7,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_ARM_ARM_ShoulderSocket_R_hidden",
+  "test": "ShoulderSocket",
+  "design_range": 130,
+  "clamp": 45,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 15,
+    "inverted": 0,
+    "tex_stretch_pct": 11.3,
+    "tri_stress_pct": 1.4,
+    "volume_pct": 99.3,
+    "ok": true
+   },
+   {
+    "angle": 30,
+    "inverted": 0,
+    "tex_stretch_pct": 21.0,
+    "tri_stress_pct": 4.1,
+    "volume_pct": 97.4,
+    "ok": true
+   },
+   {
+    "angle": 45,
+    "inverted": 1,
+    "tex_stretch_pct": 28.8,
+    "tri_stress_pct": 7.8,
+    "volume_pct": 94.5,
+    "ok": false
+   },
+   {
+    "angle": 60,
+    "inverted": 2,
+    "tex_stretch_pct": 34.8,
+    "tri_stress_pct": 12.5,
+    "volume_pct": 90.7,
+    "ok": false
+   },
+   {
+    "angle": 75,
+    "inverted": 3,
+    "tex_stretch_pct": 38.9,
+    "tri_stress_pct": 18.2,
+    "volume_pct": 86.1,
+    "ok": false
+   },
+   {
+    "angle": 90,
+    "inverted": 3,
+    "tex_stretch_pct": 41.0,
+    "tri_stress_pct": 24.5,
+    "volume_pct": 81.0,
+    "ok": false
+   },
+   {
+    "angle": 105,
+    "inverted": 32,
+    "tex_stretch_pct": 41.0,
+    "tri_stress_pct": 27.8,
+    "volume_pct": 77.4,
+    "ok": false
+   },
+   {
+    "angle": 120,
+    "inverted": 50,
+    "tex_stretch_pct": 41.1,
+    "tri_stress_pct": 28.6,
+    "volume_pct": 76.5,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_ARM_ARM_ShoulderSocket_L_hidden",
+  "test": "ShoulderSocket",
+  "design_range": 130,
+  "clamp": 45,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 15,
+    "inverted": 0,
+    "tex_stretch_pct": 11.3,
+    "tri_stress_pct": 1.4,
+    "volume_pct": 99.3,
+    "ok": true
+   },
+   {
+    "angle": 30,
+    "inverted": 0,
+    "tex_stretch_pct": 21.0,
+    "tri_stress_pct": 4.1,
+    "volume_pct": 97.4,
+    "ok": true
+   },
+   {
+    "angle": 45,
+    "inverted": 1,
+    "tex_stretch_pct": 28.8,
+    "tri_stress_pct": 7.8,
+    "volume_pct": 94.5,
+    "ok": false
+   },
+   {
+    "angle": 60,
+    "inverted": 2,
+    "tex_stretch_pct": 34.8,
+    "tri_stress_pct": 12.5,
+    "volume_pct": 90.7,
+    "ok": false
+   },
+   {
+    "angle": 75,
+    "inverted": 3,
+    "tex_stretch_pct": 38.9,
+    "tri_stress_pct": 18.2,
+    "volume_pct": 86.1,
+    "ok": false
+   },
+   {
+    "angle": 90,
+    "inverted": 3,
+    "tex_stretch_pct": 41.0,
+    "tri_stress_pct": 24.5,
+    "volume_pct": 81.0,
+    "ok": false
+   },
+   {
+    "angle": 105,
+    "inverted": 32,
+    "tex_stretch_pct": 41.0,
+    "tri_stress_pct": 27.8,
+    "volume_pct": 77.4,
+    "ok": false
+   },
+   {
+    "angle": 120,
+    "inverted": 50,
+    "tex_stretch_pct": 41.1,
+    "tri_stress_pct": 28.6,
+    "volume_pct": 76.5,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_ARM_SLEEVE_Interior_R_hidden",
+  "test": "SLEEVE",
+  "design_range": 130,
+  "clamp": 45,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 15,
+    "inverted": 0,
+    "tex_stretch_pct": 11.3,
+    "tri_stress_pct": 1.6,
+    "volume_pct": 99.5,
+    "ok": true
+   },
+   {
+    "angle": 30,
+    "inverted": 0,
+    "tex_stretch_pct": 21.0,
+    "tri_stress_pct": 4.2,
+    "volume_pct": 97.8,
+    "ok": true
+   },
+   {
+    "angle": 45,
+    "inverted": 1,
+    "tex_stretch_pct": 28.9,
+    "tri_stress_pct": 7.3,
+    "volume_pct": 95.6,
+    "ok": false
+   },
+   {
+    "angle": 60,
+    "inverted": 2,
+    "tex_stretch_pct": 35.0,
+    "tri_stress_pct": 10.8,
+    "volume_pct": 92.7,
+    "ok": false
+   },
+   {
+    "angle": 75,
+    "inverted": 2,
+    "tex_stretch_pct": 39.0,
+    "tri_stress_pct": 15.1,
+    "volume_pct": 89.2,
+    "ok": false
+   },
+   {
+    "angle": 90,
+    "inverted": 3,
+    "tex_stretch_pct": 41.0,
+    "tri_stress_pct": 20.0,
+    "volume_pct": 85.3,
+    "ok": false
+   },
+   {
+    "angle": 105,
+    "inverted": 10,
+    "tex_stretch_pct": 40.9,
+    "tri_stress_pct": 24.0,
+    "volume_pct": 82.1,
+    "ok": false
+   },
+   {
+    "angle": 120,
+    "inverted": 22,
+    "tex_stretch_pct": 41.1,
+    "tri_stress_pct": 26.8,
+    "volume_pct": 80.3,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_ARM_SLEEVE_Interior_L_hidden",
+  "test": "SLEEVE",
+  "design_range": 130,
+  "clamp": 45,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 15,
+    "inverted": 0,
+    "tex_stretch_pct": 11.3,
+    "tri_stress_pct": 1.6,
+    "volume_pct": 99.5,
+    "ok": true
+   },
+   {
+    "angle": 30,
+    "inverted": 0,
+    "tex_stretch_pct": 21.0,
+    "tri_stress_pct": 4.2,
+    "volume_pct": 97.8,
+    "ok": true
+   },
+   {
+    "angle": 45,
+    "inverted": 1,
+    "tex_stretch_pct": 28.9,
+    "tri_stress_pct": 7.3,
+    "volume_pct": 95.6,
+    "ok": false
+   },
+   {
+    "angle": 60,
+    "inverted": 2,
+    "tex_stretch_pct": 35.0,
+    "tri_stress_pct": 10.8,
+    "volume_pct": 92.7,
+    "ok": false
+   },
+   {
+    "angle": 75,
+    "inverted": 2,
+    "tex_stretch_pct": 39.0,
+    "tri_stress_pct": 15.1,
+    "volume_pct": 89.2,
+    "ok": false
+   },
+   {
+    "angle": 90,
+    "inverted": 3,
+    "tex_stretch_pct": 41.0,
+    "tri_stress_pct": 20.0,
+    "volume_pct": 85.3,
+    "ok": false
+   },
+   {
+    "angle": 105,
+    "inverted": 10,
+    "tex_stretch_pct": 40.9,
+    "tri_stress_pct": 24.0,
+    "volume_pct": 82.1,
+    "ok": false
+   },
+   {
+    "angle": 120,
+    "inverted": 22,
+    "tex_stretch_pct": 41.1,
+    "tri_stress_pct": 26.8,
+    "volume_pct": 80.3,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_HEAD_FACE_Cheek_R_shadow",
+  "test": "FACE_Cheek",
+  "design_range": 30,
+  "clamp": 30,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 10,
+    "inverted": 0,
+    "tex_stretch_pct": 0.9,
+    "tri_stress_pct": 10.2,
+    "volume_pct": 97.1,
+    "ok": true
+   },
+   {
+    "angle": 20,
+    "inverted": 0,
+    "tex_stretch_pct": 1.7,
+    "tri_stress_pct": 20.5,
+    "volume_pct": 93.9,
+    "ok": true
+   },
+   {
+    "angle": 30,
+    "inverted": 1,
+    "tex_stretch_pct": 2.5,
+    "tri_stress_pct": 16.2,
+    "volume_pct": 98.8,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_HEAD_FACE_Cheek_R_hi",
+  "test": "FACE_Cheek",
+  "design_range": 30,
+  "clamp": 20,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 10,
+    "inverted": 0,
+    "tex_stretch_pct": 4.1,
+    "tri_stress_pct": 6.5,
+    "volume_pct": 98.4,
+    "ok": true
+   },
+   {
+    "angle": 20,
+    "inverted": 1,
+    "tex_stretch_pct": 8.0,
+    "tri_stress_pct": 8.8,
+    "volume_pct": 97.7,
+    "ok": false
+   },
+   {
+    "angle": 30,
+    "inverted": 1,
+    "tex_stretch_pct": 11.8,
+    "tri_stress_pct": 9.4,
+    "volume_pct": 97.4,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_LEG_LEG_Upper_L_shadow",
+  "test": "LEG_Upper",
+  "design_range": 90,
+  "clamp": 45,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 15,
+    "inverted": 0,
+    "tex_stretch_pct": 11.2,
+    "tri_stress_pct": 2.2,
+    "volume_pct": 97.9,
+    "ok": true
+   },
+   {
+    "angle": 30,
+    "inverted": 0,
+    "tex_stretch_pct": 20.8,
+    "tri_stress_pct": 8.5,
+    "volume_pct": 91.8,
+    "ok": true
+   },
+   {
+    "angle": 45,
+    "inverted": 0,
+    "tex_stretch_pct": 28.7,
+    "tri_stress_pct": 18.8,
+    "volume_pct": 81.9,
+    "ok": false
+   },
+   {
+    "angle": 60,
+    "inverted": 0,
+    "tex_stretch_pct": 34.8,
+    "tri_stress_pct": 32.5,
+    "volume_pct": 68.6,
+    "ok": false
+   },
+   {
+    "angle": 75,
+    "inverted": 0,
+    "tex_stretch_pct": 38.9,
+    "tri_stress_pct": 49.1,
+    "volume_pct": 52.6,
+    "ok": false
+   },
+   {
+    "angle": 90,
+    "inverted": 3,
+    "tex_stretch_pct": 41.0,
+    "tri_stress_pct": 67.1,
+    "volume_pct": 34.6,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_LEG_LEG_Upper_L_hi",
+  "test": "LEG_Upper",
+  "design_range": 90,
+  "clamp": 90,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 15,
+    "inverted": 0,
+    "tex_stretch_pct": 11.9,
+    "tri_stress_pct": 1.1,
+    "volume_pct": 99.4,
+    "ok": true
+   },
+   {
+    "angle": 30,
+    "inverted": 0,
+    "tex_stretch_pct": 22.0,
+    "tri_stress_pct": 2.7,
+    "volume_pct": 97.9,
+    "ok": true
+   },
+   {
+    "angle": 45,
+    "inverted": 0,
+    "tex_stretch_pct": 30.1,
+    "tri_stress_pct": 4.9,
+    "volume_pct": 95.5,
+    "ok": true
+   },
+   {
+    "angle": 60,
+    "inverted": 0,
+    "tex_stretch_pct": 36.1,
+    "tri_stress_pct": 7.8,
+    "volume_pct": 92.2,
+    "ok": true
+   },
+   {
+    "angle": 75,
+    "inverted": 0,
+    "tex_stretch_pct": 39.8,
+    "tri_stress_pct": 11.3,
+    "volume_pct": 88.3,
+    "ok": true
+   },
+   {
+    "angle": 90,
+    "inverted": 0,
+    "tex_stretch_pct": 41.2,
+    "tri_stress_pct": 15.1,
+    "volume_pct": 83.9,
+    "ok": true
+   }
+  ]
+ },
+ {
+  "layer": "CHR_LEG_LEG_Upper_R_shadow",
+  "test": "LEG_Upper",
+  "design_range": 90,
+  "clamp": 45,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 15,
+    "inverted": 0,
+    "tex_stretch_pct": 9.2,
+    "tri_stress_pct": 2.3,
+    "volume_pct": 97.7,
+    "ok": true
+   },
+   {
+    "angle": 30,
+    "inverted": 0,
+    "tex_stretch_pct": 17.4,
+    "tri_stress_pct": 9.0,
+    "volume_pct": 91.2,
+    "ok": true
+   },
+   {
+    "angle": 45,
+    "inverted": 0,
+    "tex_stretch_pct": 24.3,
+    "tri_stress_pct": 19.7,
+    "volume_pct": 80.6,
+    "ok": false
+   },
+   {
+    "angle": 60,
+    "inverted": 0,
+    "tex_stretch_pct": 30.0,
+    "tri_stress_pct": 33.9,
+    "volume_pct": 66.5,
+    "ok": false
+   },
+   {
+    "angle": 75,
+    "inverted": 1,
+    "tex_stretch_pct": 34.3,
+    "tri_stress_pct": 50.8,
+    "volume_pct": 49.6,
+    "ok": false
+   },
+   {
+    "angle": 90,
+    "inverted": 2,
+    "tex_stretch_pct": 37.1,
+    "tri_stress_pct": 69.3,
+    "volume_pct": 31.0,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_LEG_LEG_Upper_R_hi",
+  "test": "LEG_Upper",
+  "design_range": 90,
+  "clamp": 90,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 15,
+    "inverted": 0,
+    "tex_stretch_pct": 8.9,
+    "tri_stress_pct": 1.5,
+    "volume_pct": 99.5,
+    "ok": true
+   },
+   {
+    "angle": 30,
+    "inverted": 0,
+    "tex_stretch_pct": 16.9,
+    "tri_stress_pct": 3.6,
+    "volume_pct": 97.8,
+    "ok": true
+   },
+   {
+    "angle": 45,
+    "inverted": 0,
+    "tex_stretch_pct": 23.7,
+    "tri_stress_pct": 6.3,
+    "volume_pct": 94.9,
+    "ok": true
+   },
+   {
+    "angle": 60,
+    "inverted": 0,
+    "tex_stretch_pct": 29.3,
+    "tri_stress_pct": 9.5,
+    "volume_pct": 91.1,
+    "ok": true
+   },
+   {
+    "angle": 75,
+    "inverted": 0,
+    "tex_stretch_pct": 33.6,
+    "tri_stress_pct": 13.3,
+    "volume_pct": 86.3,
+    "ok": true
+   },
+   {
+    "angle": 90,
+    "inverted": 0,
+    "tex_stretch_pct": 36.6,
+    "tri_stress_pct": 17.6,
+    "volume_pct": 80.8,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_LEG_LEG_Lower_L_shadow",
+  "test": "LEG_Lower",
+  "design_range": 120,
+  "clamp": 80,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 20,
+    "inverted": 0,
+    "tex_stretch_pct": 13.0,
+    "tri_stress_pct": 1.8,
+    "volume_pct": 97.6,
+    "ok": true
+   },
+   {
+    "angle": 40,
+    "inverted": 0,
+    "tex_stretch_pct": 23.7,
+    "tri_stress_pct": 6.3,
+    "volume_pct": 92.2,
+    "ok": true
+   },
+   {
+    "angle": 60,
+    "inverted": 0,
+    "tex_stretch_pct": 31.8,
+    "tri_stress_pct": 13.1,
+    "volume_pct": 84.2,
+    "ok": true
+   },
+   {
+    "angle": 80,
+    "inverted": 1,
+    "tex_stretch_pct": 37.2,
+    "tri_stress_pct": 21.7,
+    "volume_pct": 75.3,
+    "ok": false
+   },
+   {
+    "angle": 100,
+    "inverted": 3,
+    "tex_stretch_pct": 39.6,
+    "tri_stress_pct": 31.6,
+    "volume_pct": 65.8,
+    "ok": false
+   },
+   {
+    "angle": 120,
+    "inverted": 7,
+    "tex_stretch_pct": 39.8,
+    "tri_stress_pct": 41.6,
+    "volume_pct": 59.6,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_LEG_LEG_Lower_L_hi",
+  "test": "LEG_Lower",
+  "design_range": 120,
+  "clamp": 100,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 20,
+    "inverted": 0,
+    "tex_stretch_pct": 14.6,
+    "tri_stress_pct": 1.3,
+    "volume_pct": 98.9,
+    "ok": true
+   },
+   {
+    "angle": 40,
+    "inverted": 0,
+    "tex_stretch_pct": 26.1,
+    "tri_stress_pct": 4.5,
+    "volume_pct": 95.5,
+    "ok": true
+   },
+   {
+    "angle": 60,
+    "inverted": 0,
+    "tex_stretch_pct": 34.2,
+    "tri_stress_pct": 9.2,
+    "volume_pct": 90.2,
+    "ok": true
+   },
+   {
+    "angle": 80,
+    "inverted": 0,
+    "tex_stretch_pct": 38.7,
+    "tri_stress_pct": 15.3,
+    "volume_pct": 83.3,
+    "ok": true
+   },
+   {
+    "angle": 100,
+    "inverted": 6,
+    "tex_stretch_pct": 39.6,
+    "tri_stress_pct": 21.0,
+    "volume_pct": 76.6,
+    "ok": false
+   },
+   {
+    "angle": 120,
+    "inverted": 19,
+    "tex_stretch_pct": 39.6,
+    "tri_stress_pct": 19.7,
+    "volume_pct": 78.9,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_LEG_LEG_Lower_R_shadow",
+  "test": "LEG_Lower",
+  "design_range": 120,
+  "clamp": 60,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 20,
+    "inverted": 0,
+    "tex_stretch_pct": 14.1,
+    "tri_stress_pct": 2.8,
+    "volume_pct": 96.9,
+    "ok": true
+   },
+   {
+    "angle": 40,
+    "inverted": 0,
+    "tex_stretch_pct": 25.5,
+    "tri_stress_pct": 10.6,
+    "volume_pct": 88.4,
+    "ok": true
+   },
+   {
+    "angle": 60,
+    "inverted": 0,
+    "tex_stretch_pct": 33.9,
+    "tri_stress_pct": 22.9,
+    "volume_pct": 75.1,
+    "ok": false
+   },
+   {
+    "angle": 80,
+    "inverted": 0,
+    "tex_stretch_pct": 39.1,
+    "tri_stress_pct": 39.0,
+    "volume_pct": 58.0,
+    "ok": false
+   },
+   {
+    "angle": 100,
+    "inverted": 13,
+    "tex_stretch_pct": 41.1,
+    "tri_stress_pct": 55.4,
+    "volume_pct": 42.6,
+    "ok": false
+   },
+   {
+    "angle": 120,
+    "inverted": 27,
+    "tex_stretch_pct": 39.8,
+    "tri_stress_pct": 61.2,
+    "volume_pct": 39.8,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_LEG_LEG_Lower_R_hi",
+  "test": "LEG_Lower",
+  "design_range": 120,
+  "clamp": 60,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 20,
+    "inverted": 0,
+    "tex_stretch_pct": 14.8,
+    "tri_stress_pct": 3.1,
+    "volume_pct": 96.8,
+    "ok": true
+   },
+   {
+    "angle": 40,
+    "inverted": 0,
+    "tex_stretch_pct": 26.7,
+    "tri_stress_pct": 12.0,
+    "volume_pct": 87.7,
+    "ok": true
+   },
+   {
+    "angle": 60,
+    "inverted": 0,
+    "tex_stretch_pct": 35.1,
+    "tri_stress_pct": 26.1,
+    "volume_pct": 73.3,
+    "ok": false
+   },
+   {
+    "angle": 80,
+    "inverted": 0,
+    "tex_stretch_pct": 39.9,
+    "tri_stress_pct": 44.2,
+    "volume_pct": 54.7,
+    "ok": false
+   },
+   {
+    "angle": 100,
+    "inverted": 17,
+    "tex_stretch_pct": 41.1,
+    "tri_stress_pct": 62.6,
+    "volume_pct": 35.3,
+    "ok": false
+   },
+   {
+    "angle": 120,
+    "inverted": 68,
+    "tex_stretch_pct": 40.7,
+    "tri_stress_pct": 67.4,
+    "volume_pct": 29.7,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_ARM_SLEEVE_Lower_L_shadow",
+  "test": "SLEEVE_Lower",
+  "design_range": 130,
+  "clamp": 120,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 15,
+    "inverted": 0,
+    "tex_stretch_pct": 6.0,
+    "tri_stress_pct": 0.5,
+    "volume_pct": 99.7,
+    "ok": true
+   },
+   {
+    "angle": 30,
+    "inverted": 0,
+    "tex_stretch_pct": 11.5,
+    "tri_stress_pct": 2.0,
+    "volume_pct": 98.8,
+    "ok": true
+   },
+   {
+    "angle": 45,
+    "inverted": 0,
+    "tex_stretch_pct": 16.4,
+    "tri_stress_pct": 4.2,
+    "volume_pct": 97.1,
+    "ok": true
+   },
+   {
+    "angle": 60,
+    "inverted": 0,
+    "tex_stretch_pct": 20.7,
+    "tri_stress_pct": 7.2,
+    "volume_pct": 94.8,
+    "ok": true
+   },
+   {
+    "angle": 75,
+    "inverted": 0,
+    "tex_stretch_pct": 24.3,
+    "tri_stress_pct": 10.9,
+    "volume_pct": 92.0,
+    "ok": true
+   },
+   {
+    "angle": 90,
+    "inverted": 0,
+    "tex_stretch_pct": 27.2,
+    "tri_stress_pct": 15.1,
+    "volume_pct": 88.6,
+    "ok": true
+   },
+   {
+    "angle": 105,
+    "inverted": 0,
+    "tex_stretch_pct": 29.3,
+    "tri_stress_pct": 19.9,
+    "volume_pct": 84.9,
+    "ok": true
+   },
+   {
+    "angle": 120,
+    "inverted": 0,
+    "tex_stretch_pct": 30.7,
+    "tri_stress_pct": 25.0,
+    "volume_pct": 80.8,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_ARM_SLEEVE_Lower_L_hi",
+  "test": "SLEEVE_Lower",
+  "design_range": 130,
+  "clamp": 90,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 15,
+    "inverted": 0,
+    "tex_stretch_pct": 4.1,
+    "tri_stress_pct": 0.5,
+    "volume_pct": 99.4,
+    "ok": true
+   },
+   {
+    "angle": 30,
+    "inverted": 0,
+    "tex_stretch_pct": 7.8,
+    "tri_stress_pct": 1.9,
+    "volume_pct": 97.9,
+    "ok": true
+   },
+   {
+    "angle": 45,
+    "inverted": 0,
+    "tex_stretch_pct": 11.5,
+    "tri_stress_pct": 4.0,
+    "volume_pct": 95.4,
+    "ok": true
+   },
+   {
+    "angle": 60,
+    "inverted": 0,
+    "tex_stretch_pct": 14.9,
+    "tri_stress_pct": 6.8,
+    "volume_pct": 92.0,
+    "ok": true
+   },
+   {
+    "angle": 75,
+    "inverted": 0,
+    "tex_stretch_pct": 18.2,
+    "tri_stress_pct": 10.2,
+    "volume_pct": 88.0,
+    "ok": true
+   },
+   {
+    "angle": 90,
+    "inverted": 1,
+    "tex_stretch_pct": 21.3,
+    "tri_stress_pct": 13.8,
+    "volume_pct": 83.6,
+    "ok": false
+   },
+   {
+    "angle": 105,
+    "inverted": 3,
+    "tex_stretch_pct": 24.1,
+    "tri_stress_pct": 16.5,
+    "volume_pct": 80.5,
+    "ok": false
+   },
+   {
+    "angle": 120,
+    "inverted": 6,
+    "tex_stretch_pct": 26.8,
+    "tri_stress_pct": 18.2,
+    "volume_pct": 79.8,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_ARM_SLEEVE_Lower_R_shadow",
+  "test": "SLEEVE_Lower",
+  "design_range": 130,
+  "clamp": 75,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 15,
+    "inverted": 0,
+    "tex_stretch_pct": 10.4,
+    "tri_stress_pct": 1.8,
+    "volume_pct": 98.5,
+    "ok": true
+   },
+   {
+    "angle": 30,
+    "inverted": 0,
+    "tex_stretch_pct": 19.3,
+    "tri_stress_pct": 5.7,
+    "volume_pct": 94.9,
+    "ok": true
+   },
+   {
+    "angle": 45,
+    "inverted": 0,
+    "tex_stretch_pct": 26.6,
+    "tri_stress_pct": 11.6,
+    "volume_pct": 89.4,
+    "ok": true
+   },
+   {
+    "angle": 60,
+    "inverted": 0,
+    "tex_stretch_pct": 32.0,
+    "tri_stress_pct": 19.2,
+    "volume_pct": 82.2,
+    "ok": true
+   },
+   {
+    "angle": 75,
+    "inverted": 0,
+    "tex_stretch_pct": 35.4,
+    "tri_stress_pct": 28.2,
+    "volume_pct": 73.5,
+    "ok": false
+   },
+   {
+    "angle": 90,
+    "inverted": 0,
+    "tex_stretch_pct": 37.1,
+    "tri_stress_pct": 38.4,
+    "volume_pct": 63.7,
+    "ok": false
+   },
+   {
+    "angle": 105,
+    "inverted": 7,
+    "tex_stretch_pct": 39.3,
+    "tri_stress_pct": 44.7,
+    "volume_pct": 58.3,
+    "ok": false
+   },
+   {
+    "angle": 120,
+    "inverted": 12,
+    "tex_stretch_pct": 40.4,
+    "tri_stress_pct": 46.2,
+    "volume_pct": 59.3,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_ARM_SLEEVE_Lower_R_hi",
+  "test": "SLEEVE_Lower",
+  "design_range": 130,
+  "clamp": 105,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 15,
+    "inverted": 0,
+    "tex_stretch_pct": 8.8,
+    "tri_stress_pct": 0.5,
+    "volume_pct": 99.8,
+    "ok": true
+   },
+   {
+    "angle": 30,
+    "inverted": 0,
+    "tex_stretch_pct": 16.7,
+    "tri_stress_pct": 1.3,
+    "volume_pct": 99.0,
+    "ok": true
+   },
+   {
+    "angle": 45,
+    "inverted": 0,
+    "tex_stretch_pct": 23.5,
+    "tri_stress_pct": 2.6,
+    "volume_pct": 97.7,
+    "ok": true
+   },
+   {
+    "angle": 60,
+    "inverted": 0,
+    "tex_stretch_pct": 29.2,
+    "tri_stress_pct": 4.4,
+    "volume_pct": 95.8,
+    "ok": true
+   },
+   {
+    "angle": 75,
+    "inverted": 0,
+    "tex_stretch_pct": 33.8,
+    "tri_stress_pct": 6.5,
+    "volume_pct": 93.5,
+    "ok": true
+   },
+   {
+    "angle": 90,
+    "inverted": 0,
+    "tex_stretch_pct": 37.1,
+    "tri_stress_pct": 9.0,
+    "volume_pct": 90.7,
+    "ok": true
+   },
+   {
+    "angle": 105,
+    "inverted": 2,
+    "tex_stretch_pct": 39.1,
+    "tri_stress_pct": 11.8,
+    "volume_pct": 88.1,
+    "ok": false
+   },
+   {
+    "angle": 120,
+    "inverted": 4,
+    "tex_stretch_pct": 40.2,
+    "tri_stress_pct": 14.1,
+    "volume_pct": 86.3,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_MID_NECK_Skin_shadow",
+  "test": "NECK",
+  "design_range": 30,
+  "clamp": 30,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 10,
+    "inverted": 0,
+    "tex_stretch_pct": 8.0,
+    "tri_stress_pct": 1.3,
+    "volume_pct": 98.9,
+    "ok": true
+   },
+   {
+    "angle": 20,
+    "inverted": 0,
+    "tex_stretch_pct": 15.3,
+    "tri_stress_pct": 3.8,
+    "volume_pct": 96.3,
+    "ok": true
+   },
+   {
+    "angle": 30,
+    "inverted": 0,
+    "tex_stretch_pct": 21.7,
+    "tri_stress_pct": 7.6,
+    "volume_pct": 92.3,
+    "ok": true
+   }
+  ]
+ },
+ {
+  "layer": "CHR_MID_NECK_Skin_hi",
+  "test": "NECK",
+  "design_range": 30,
+  "clamp": 30,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 10,
+    "inverted": 0,
+    "tex_stretch_pct": 7.9,
+    "tri_stress_pct": 0.8,
+    "volume_pct": 99.5,
+    "ok": true
+   },
+   {
+    "angle": 20,
+    "inverted": 0,
+    "tex_stretch_pct": 15.1,
+    "tri_stress_pct": 2.6,
+    "volume_pct": 97.9,
+    "ok": true
+   },
+   {
+    "angle": 30,
+    "inverted": 0,
+    "tex_stretch_pct": 21.5,
+    "tri_stress_pct": 5.4,
+    "volume_pct": 95.3,
+    "ok": true
+   }
+  ]
+ },
+ {
+  "layer": "CHR_FARBODY_FAR_FOREARM_L_alt",
+  "test": "FOREARM",
+  "design_range": 90,
+  "clamp": 30,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 15,
+    "inverted": 0,
+    "tex_stretch_pct": 11.3,
+    "tri_stress_pct": 1.4,
+    "volume_pct": 99.6,
+    "ok": true
+   },
+   {
+    "angle": 30,
+    "inverted": 1,
+    "tex_stretch_pct": 21.0,
+    "tri_stress_pct": 3.2,
+    "volume_pct": 98.4,
+    "ok": false
+   },
+   {
+    "angle": 45,
+    "inverted": 2,
+    "tex_stretch_pct": 28.8,
+    "tri_stress_pct": 5.3,
+    "volume_pct": 96.5,
+    "ok": false
+   },
+   {
+    "angle": 60,
+    "inverted": 3,
+    "tex_stretch_pct": 34.6,
+    "tri_stress_pct": 8.5,
+    "volume_pct": 93.9,
+    "ok": false
+   },
+   {
+    "angle": 75,
+    "inverted": 3,
+    "tex_stretch_pct": 38.3,
+    "tri_stress_pct": 12.3,
+    "volume_pct": 90.8,
+    "ok": false
+   },
+   {
+    "angle": 90,
+    "inverted": 5,
+    "tex_stretch_pct": 40.7,
+    "tri_stress_pct": 16.5,
+    "volume_pct": 87.3,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_FARBODY_FAR_FOREARM_R_alt",
+  "test": "FOREARM",
+  "design_range": 90,
+  "clamp": 90,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 15,
+    "inverted": 0,
+    "tex_stretch_pct": 11.7,
+    "tri_stress_pct": 0.8,
+    "volume_pct": 99.7,
+    "ok": true
+   },
+   {
+    "angle": 30,
+    "inverted": 0,
+    "tex_stretch_pct": 21.6,
+    "tri_stress_pct": 2.5,
+    "volume_pct": 98.4,
+    "ok": true
+   },
+   {
+    "angle": 45,
+    "inverted": 0,
+    "tex_stretch_pct": 29.6,
+    "tri_stress_pct": 5.0,
+    "volume_pct": 96.2,
+    "ok": true
+   },
+   {
+    "angle": 60,
+    "inverted": 0,
+    "tex_stretch_pct": 35.6,
+    "tri_stress_pct": 8.4,
+    "volume_pct": 93.2,
+    "ok": true
+   },
+   {
+    "angle": 75,
+    "inverted": 0,
+    "tex_stretch_pct": 39.5,
+    "tri_stress_pct": 12.5,
+    "volume_pct": 89.6,
+    "ok": true
+   },
+   {
+    "angle": 90,
+    "inverted": 0,
+    "tex_stretch_pct": 41.3,
+    "tri_stress_pct": 17.0,
+    "volume_pct": 85.4,
+    "ok": true
+   }
+  ]
+ },
+ {
+  "layer": "CHR_FARBODY_FAR_LEG_Upper_L_alt",
+  "test": "LEG_Upper",
+  "design_range": 90,
+  "clamp": 30,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 15,
+    "inverted": 0,
+    "tex_stretch_pct": 11.1,
+    "tri_stress_pct": 2.4,
+    "volume_pct": 99.7,
+    "ok": true
+   },
+   {
+    "angle": 30,
+    "inverted": 1,
+    "tex_stretch_pct": 20.6,
+    "tri_stress_pct": 5.7,
+    "volume_pct": 98.2,
+    "ok": false
+   },
+   {
+    "angle": 45,
+    "inverted": 1,
+    "tex_stretch_pct": 28.5,
+    "tri_stress_pct": 9.4,
+    "volume_pct": 96.0,
+    "ok": false
+   },
+   {
+    "angle": 60,
+    "inverted": 1,
+    "tex_stretch_pct": 34.5,
+    "tri_stress_pct": 14.5,
+    "volume_pct": 92.7,
+    "ok": false
+   },
+   {
+    "angle": 75,
+    "inverted": 2,
+    "tex_stretch_pct": 38.6,
+    "tri_stress_pct": 20.8,
+    "volume_pct": 88.7,
+    "ok": false
+   },
+   {
+    "angle": 90,
+    "inverted": 2,
+    "tex_stretch_pct": 40.7,
+    "tri_stress_pct": 27.4,
+    "volume_pct": 84.2,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_FARBODY_FAR_LEG_Lower_L_alt",
+  "test": "LEG_Lower",
+  "design_range": 120,
+  "clamp": 40,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 20,
+    "inverted": 0,
+    "tex_stretch_pct": 12.8,
+    "tri_stress_pct": 1.7,
+    "volume_pct": 99.1,
+    "ok": true
+   },
+   {
+    "angle": 40,
+    "inverted": 1,
+    "tex_stretch_pct": 23.3,
+    "tri_stress_pct": 4.8,
+    "volume_pct": 96.7,
+    "ok": false
+   },
+   {
+    "angle": 60,
+    "inverted": 2,
+    "tex_stretch_pct": 31.4,
+    "tri_stress_pct": 8.8,
+    "volume_pct": 93.2,
+    "ok": false
+   },
+   {
+    "angle": 80,
+    "inverted": 3,
+    "tex_stretch_pct": 37.1,
+    "tri_stress_pct": 14.3,
+    "volume_pct": 88.6,
+    "ok": false
+   },
+   {
+    "angle": 100,
+    "inverted": 8,
+    "tex_stretch_pct": 40.2,
+    "tri_stress_pct": 20.4,
+    "volume_pct": 83.5,
+    "ok": false
+   },
+   {
+    "angle": 120,
+    "inverted": 21,
+    "tex_stretch_pct": 40.7,
+    "tri_stress_pct": 25.2,
+    "volume_pct": 79.5,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_FARBODY_FAR_LEG_Upper_R_alt",
+  "test": "LEG_Upper",
+  "design_range": 90,
+  "clamp": 45,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 15,
+    "inverted": 0,
+    "tex_stretch_pct": 10.4,
+    "tri_stress_pct": 1.3,
+    "volume_pct": 99.4,
+    "ok": true
+   },
+   {
+    "angle": 30,
+    "inverted": 0,
+    "tex_stretch_pct": 19.3,
+    "tri_stress_pct": 3.5,
+    "volume_pct": 97.7,
+    "ok": true
+   },
+   {
+    "angle": 45,
+    "inverted": 1,
+    "tex_stretch_pct": 26.8,
+    "tri_stress_pct": 6.5,
+    "volume_pct": 94.9,
+    "ok": false
+   },
+   {
+    "angle": 60,
+    "inverted": 1,
+    "tex_stretch_pct": 32.6,
+    "tri_stress_pct": 9.8,
+    "volume_pct": 91.9,
+    "ok": false
+   },
+   {
+    "angle": 75,
+    "inverted": 2,
+    "tex_stretch_pct": 36.7,
+    "tri_stress_pct": 13.4,
+    "volume_pct": 88.4,
+    "ok": false
+   },
+   {
+    "angle": 90,
+    "inverted": 3,
+    "tex_stretch_pct": 39.0,
+    "tri_stress_pct": 17.5,
+    "volume_pct": 84.6,
+    "ok": false
+   }
+  ]
+ },
+ {
+  "layer": "CHR_FARBODY_FAR_LEG_Lower_R_alt",
+  "test": "LEG_Lower",
+  "design_range": 120,
+  "clamp": 40,
+  "rows": [
+   {
+    "angle": 0,
+    "inverted": 0,
+    "tex_stretch_pct": -0.0,
+    "tri_stress_pct": 0.0,
+    "volume_pct": 100.0,
+    "ok": true
+   },
+   {
+    "angle": 20,
+    "inverted": 0,
+    "tex_stretch_pct": 10.5,
+    "tri_stress_pct": 1.7,
+    "volume_pct": 99.1,
+    "ok": true
+   },
+   {
+    "angle": 40,
+    "inverted": 1,
+    "tex_stretch_pct": 19.4,
+    "tri_stress_pct": 4.7,
+    "volume_pct": 96.8,
+    "ok": false
+   },
+   {
+    "angle": 60,
+    "inverted": 1,
+    "tex_stretch_pct": 26.9,
+    "tri_stress_pct": 8.7,
+    "volume_pct": 93.4,
+    "ok": false
+   },
+   {
+    "angle": 80,
+    "inverted": 2,
+    "tex_stretch_pct": 32.8,
+    "tri_stress_pct": 14.4,
+    "volume_pct": 88.9,
+    "ok": false
+   },
+   {
+    "angle": 100,
+    "inverted": 6,
+    "tex_stretch_pct": 37.1,
+    "tri_stress_pct": 20.5,
+    "volume_pct": 84.1,
+    "ok": false
+   },
+   {
+    "angle": 120,
+    "inverted": 13,
+    "tex_stretch_pct": 39.5,
+    "tri_stress_pct": 25.8,
+    "volume_pct": 80.3,
+    "ok": false
+   }
+  ]
+ }
+]
