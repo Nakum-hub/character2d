@@ -1,0 +1,82 @@
+{
+  "layers_total": 137,
+  "visible_leaves": 79,
+  "hidden": 22,
+  "overlays": 24,
+  "alt_far": 6,
+  "acceptance": {
+    "SSIM_over_white": 0.999756,
+    "figure_pixel_diff": 0,
+    "verdict": "PASS"
+  },
+  "palette": {
+    "skin": [
+      203,
+      157,
+      132
+    ],
+    "shirt": [
+      64,
+      55,
+      50
+    ],
+    "chino": [
+      21,
+      15,
+      12
+    ],
+    "hair": [
+      70,
+      51,
+      42
+    ],
+    "shoe": [
+      249,
+      239,
+      226
+    ],
+    "belt": [
+      41,
+      34,
+      30
+    ]
+  },
+  "hole_check": [
+    {
+      "motion": "arm_raise_R",
+      "verdict": "pass",
+      "revealed_px": 20259,
+      "gap_px": 0
+    },
+    {
+      "motion": "head_turn",
+      "verdict": "pass",
+      "revealed_px": 5647,
+      "gap_px": 0
+    },
+    {
+      "motion": "leg_lift_R",
+      "verdict": "pass",
+      "revealed_px": 18519,
+      "gap_px": 0
+    },
+    {
+      "motion": "neck_tilt",
+      "verdict": "pass",
+      "revealed_px": 6711,
+      "gap_px": 0
+    },
+    {
+      "motion": "cuff_expose",
+      "verdict": "pass",
+      "revealed_px": 3186,
+      "gap_px": 0
+    },
+    {
+      "motion": "sleeve_twist_L",
+      "verdict": "pass",
+      "revealed_px": 1152,
+      "gap_px": 0
+    }
+  ]
+}

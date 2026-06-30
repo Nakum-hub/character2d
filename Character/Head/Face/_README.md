@@ -1,0 +1,42 @@
+# Character/Head/Face
+
+Face skin sub-zones, eye 9-stack per side, brows, nose accent, mouth. Future: eyes look-shift + blink; mouth lip-sync (interior reserved).
+
+**Layers (37):**
+- CHR_HEAD_BROW_L
+- CHR_HEAD_BROW_R
+- CHR_HEAD_EYE_Highlight_Catchlight_L
+- CHR_HEAD_EYE_Highlight_Catchlight_R
+- CHR_HEAD_EYE_Iris_L
+- CHR_HEAD_EYE_Iris_R
+- CHR_HEAD_EYE_Lashes_L
+- CHR_HEAD_EYE_Lashes_R
+- CHR_HEAD_EYE_LowerLid_L
+- CHR_HEAD_EYE_LowerLid_R
+- CHR_HEAD_EYE_Pupil_L
+- CHR_HEAD_EYE_Pupil_R
+- CHR_HEAD_EYE_Shadow_Upper_L
+- CHR_HEAD_EYE_Shadow_Upper_R
+- CHR_HEAD_EYE_Socket_Shadow_L
+- CHR_HEAD_EYE_Socket_Shadow_R
+- CHR_HEAD_EYE_UpperLid_L
+- CHR_HEAD_EYE_UpperLid_R
+- CHR_HEAD_EYE_White_L
+- CHR_HEAD_EYE_White_R
+- CHR_HEAD_FACE_Cheek_L
+- CHR_HEAD_FACE_Cheek_L_shadow
+- CHR_HEAD_FACE_Cheek_R
+- CHR_HEAD_FACE_Cheek_R_hi
+- CHR_HEAD_FACE_Cheek_R_shadow
+- CHR_HEAD_FACE_Chin
+- CHR_HEAD_FACE_Forehead
+- CHR_HEAD_FACE_Forehead_shadow
+- CHR_HEAD_FACE_Jaw
+- CHR_HEAD_FACE_Temple_L
+- CHR_HEAD_FACE_Temple_R
+- CHR_HEAD_MOUTH_Interior_hidden
+- CHR_HEAD_MOUTH_LowerLip
+- CHR_HEAD_MOUTH_Teeth_hidden
+- CHR_HEAD_MOUTH_Tongue_hidden
+- CHR_HEAD_MOUTH_UpperLip
+- CHR_HEAD_NOSE_Shadow_Accent
