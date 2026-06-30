@@ -1,0 +1,17 @@
+{
+ "physicsOwnsDynamics": true,
+ "expressionsOwnTargets": true,
+ "emotionAmplitudeHooks": "Section-12 arousal budget (calm/excited) ready",
+ "idleBaselineModulation": "Section-11 baseline biasable by Phase-7 emotion",
+ "facialMicroPhysicsExposed": [
+  "cheek_softness",
+  "jaw_relax",
+  "eyelid_follow",
+  "lash_delay<=1frame",
+  "lip_settle"
+ ],
+ "openDeps": [
+  "A2 height for amplitude scaling",
+  "A1 right plate"
+ ]
+}
