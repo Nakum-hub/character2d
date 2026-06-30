@@ -6,13 +6,13 @@
 ## Scenario sweeps (Volume/Silhouette + frames)
 | Scenario | Volume % | Verdict |
 |---|---|---|
-| look_R | 99.9 | PASS |
-| blink | 99.8 | PASS |
-| head_tilt | 98.7 | PASS |
-| head_turn | 98.1 | PASS |
-| smile | 99.9 | PASS |
-| breathe | 97.7 | PASS |
-| body_turn | 93.1 | PASS |
+| look_R | 100.0 | PASS |
+| blink | 100.0 | PASS |
+| head_tilt | 99.8 | PASS |
+| head_turn | 99.9 | PASS |
+| smile | 100.0 | PASS |
+| breathe | 98.9 | PASS |
+| body_turn | 94.1 | PASS |
 | arm_raise_R | 92.5 | PASS |
 
 Frames: `valid_*.png`, `validation_montage.png`. Volume within 80-130% = no collapse/blowout under the tested travel.

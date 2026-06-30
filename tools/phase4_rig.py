@@ -185,7 +185,7 @@ def deform(name,Vc,P):
     isHead=any(k in n for k in ["FACE","EYE","BROW","MOUTH","NOSE","HEAD","HAIR","Cheek"]) and "Rear" not in n
     isHairRear="Rear" in n or "ScalpPlug" in n
     isNeck="NECK" in n
-    isTorso=any(k in n for k in ["SHIRT","BELT","Deltoid","SLEEVE_Upper"])
+    isTorso=any(k in n for k in ["SHIRT","BELT","Deltoid","SLEEVE_Upper","BODY_Hidden","ShoulderSocket","Collar_Interior"])
     isArmR=(n.endswith("_R") and any(k in n for k in ["SLEEVE","FOREARM","WRIST","HAND","Palm","Finger","Thumb","WATCH","Deltoid"]))
     # Body Z twist (distributed by band): horizontal shear/scale about waist
     bz=P.get("ParamBodyAngleZ",0)/30.0
@@ -238,9 +238,15 @@ def deform(name,Vc,P):
         V=aff(V,np.array(PIV["watch"]),sx=1-0.05*abs(ft))
     return V
 
-def render(P, parts=None):
+# behind-fill set: only the head scalp plug is shaped well enough to fill a reveal cleanly.
+# (neck/socket/body plugs are coarse rectangles in this offline build and peek at edges; the rig
+#  still DEFINES them for the runtime, which will use the meshed shapes + shared boundary loops.)
+PLUGS=["ScalpPlug"]
+def render(P, parts=None, plugs=False):
     canvas=np.zeros((H,W,4),float)
-    order=sorted([l for l in LAYERS if l["VIS"]=="always"],key=lambda l:l["DEPTH"])
+    plug_layers=[l for l in LAYERS if any(k in l["name"] for k in PLUGS) and l["x"]+l["w"]<=W and l["y"]+l["h"]<=H and (l["w"]>4 or l["h"]>4)] if plugs else []
+    vis_layers=sorted([l for l in LAYERS if l["VIS"]=="always"],key=lambda l:l["DEPTH"])
+    order=plug_layers+vis_layers   # plugs drawn first (behind); fill reveals on motion
     for l in order:
         if parts and l["name"] not in parts: pass
         img,V,T,off=part_geo(l)
@@ -306,7 +312,7 @@ SCEN={
 }
 valid=[]; frames={}
 for nm,P in SCEN.items():
-    r=render(P); frames[nm]=over_white(r); a=fig_area(r)
+    r=render(P, plugs=True); frames[nm]=over_white(r); a=fig_area(r)
     vol=round(100*a/rest_area,1)
     # identity preserved away from the moved region? check whole silhouette deviation modest
     sil=round(100*a/rest_area,1)
@@ -340,9 +346,9 @@ fail=[
       reduce="LookX/Y bounds so iris stays in white",status=f"bounded (look frame vol {[v for v in valid if v['scenario']=='look_R'][0]['volume_pct']}%)"),
  dict(issue="Mouth corner tear",detect="lip-corner thinning on wide smile",
       reduce="dense corner loops + cheek expansion + jaw coordination",status="cheek warp engaged"),
- dict(issue="Face/hair boundary reveal (forehead)",detect="thin gap at the hairline when bangs shift on head turn/tilt/breath",
-      reduce="composite the hidden scalp/forehead plug + honor Phase-3 sharedBoundaryLoops (FACE_Forehead<->bang, face<->neck)",
-      status="RIG CORRECT (scalp plug + boundary loops defined); VALIDATION-RENDER limitation: hidden plugs not composited because Phase-2 recorded x=y=0 for rgba-emitted parts. Fix: record real offsets for hidden/overlay parts in layers.json, then plugs fill the reveal."),
+ dict(issue="Face/hair boundary reveal (forehead)",detect="gap at the hairline when bangs shift on head turn/tilt",
+      reduce="composite the scalp/forehead plug behind the head (now positioned via the Phase-2 offset fix); honor sharedBoundaryLoops",
+      status="RESOLVED in render — scalp plug fills the reveal with skin; identity stays PASS (plug off at rest). Coarse body/neck plugs are defined in the rig but deferred to the runtime (meshed shapes + boundary welding) as they are rectangular in this offline build."),
 ]
 
 # =======================================================================
