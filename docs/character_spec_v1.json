@@ -1,0 +1,192 @@
+{
+  "$schema_note": "CHARACTER SPEC v1 — Phase 0 output. Source of truth for the character2d build. Each later phase APPENDS, never silently mutates earlier canon. Confidence tags: O=Observed(canon), H=High inference, M=Medium inference, L=Low inference.",
+  "meta": {
+    "name": "character2d protagonist (working name TBD)",
+    "spec_version": "1.0",
+    "phase": "0 - validate & lock",
+    "generated_by": "Claude (Lead Character TD harness)",
+    "source_plates": {
+      "front": "assets/reference/front.png",
+      "back": "assets/reference/back.png",
+      "side_left": "assets/reference/side_left.png  (character faces image-LEFT; near arm has NO watch)",
+      "side_right": "assets/reference/side_right.png (character faces image-RIGHT, 3/4; near arm HAS watch; frontal belt buckle + fly visible)"
+    },
+    "plate_dimensions_px": [1536, 2730],
+    "units": {
+      "HH": "head height = crown->chin on Front plate",
+      "HW": "head width at cheekbones (bony, hair excluded)",
+      "side_convention": "character-left / character-right = the character's OWN anatomical side, never the viewer's"
+    }
+  },
+
+  "evidence_gaps_and_corrections": {
+    "WATCH_SIDE_CORRECTION": {
+      "blueprint_claimed": "Watch on character-RIGHT wrist (Identity-Lock #25/#26, A3).",
+      "verified_canon": "Watch is on the character-LEFT wrist.",
+      "confidence": "O",
+      "proof": "Front plate: watch on viewer-RIGHT. Back plate: watch on viewer-LEFT. An item that is viewer-right in front AND viewer-left in back is, by mirror/non-mirror geometry, a LEFT-side item. Cross-checked with crops of all four wrist regions. side_right (left side toward camera) shows the watch on the near arm; side_left (right side toward camera) shows NO watch on the near arm. Four-view consistent.",
+      "impact": "Overrides locked attributes #25, #26 and assumption A3, and the §9 counter-rotation note. The watch rides the LEFT dorsal wrist and must counter-rotate with LEFT-forearm pronation."
+    },
+    "ORTHOGRAPHIC_INCONSISTENCY": {
+      "finding": "The four plates are stylized / AI-generated and are NOT rigorously orthographic or cross-view rigid.",
+      "confidence": "O",
+      "proof": "side_right.png simultaneously shows a FRONTAL lower torso (centered belt buckle + chino fly) AND a profile head pointing image-right AND the left-wrist watch on the near arm — a combination a rigid 90 deg turn cannot produce.",
+      "impact": "Pixel-exact bilateral correspondence between plates cannot be assumed. Cutout/rig must reconcile minor per-plate inconsistencies. Supersedes/expands risk R1: there is no clean orthographic RIGHT-profile plate; side_left is a left-facing profile, side_right is a right-facing 3/4 hybrid."
+    },
+    "SLEEVE_STATE_CONFIRMED": {
+      "finding": "Sleeves are pushed up to just below the elbow with BARE forearms in ALL FOUR plates (front, back, side_left, side_right). Verified via wrist-band crops.",
+      "confidence": "O",
+      "impact": "Blueprint claim 'sleeves pushed up the forearm' is CONFIRMED and consistent across all views (not only front+3/4). The watch sits on bare skin below the pushed sleeve."
+    }
+  },
+
+  "measurements_front_plate_px": {
+    "figure_bbox": {"top": 284, "bottom": 2682, "left": 436, "right": 1130, "height": 2398, "width": 694},
+    "head": {"crown_y": 284, "chin_y_est": 595, "head_height_px": 311, "face_max_width_incl_hair_px": 326, "neck_min_width_px": 126},
+    "derived": {
+      "total_height_HH": 7.71,
+      "note_height": "Measured ~7.7 HH SUPPORTS the 7.75 default; weakens the 8.0 alternative. Cuff read keeps it [H] not [O].",
+      "shoulder_span_px_est": 530,
+      "shoulder_span_HH": 1.70,
+      "widest_span_hands_px": 690,
+      "neck_width_HW_est": "~0.45-0.55 (slightly thinner than blueprint's 0.62)"
+    }
+  },
+
+  "identity": {
+    "one_line": "Slim athletic young-adult male anime protagonist in relaxed-casual dress: messy warm-brown swept hair, dark olive-charcoal long-sleeve crew tee with sleeves pushed up the forearm, tan cuffed chinos, thin dark belt, black analog wristwatch on the LEFT wrist, cream low-top sneakers; calm neutral level gaze.",
+    "apparent_age": {"value": "late-teens to early 20s", "confidence": "H"},
+    "build": {"value": "ectomorph-leaning mesomorph (slim, lightly toned)", "confidence": "O"},
+    "posture": {"value": "neutral relaxed A-stance, arms hanging slightly off thighs, level eyeline, even weight; head set slightly forward of shoulders (cervical-forward, clear in profile)", "confidence": "O"},
+    "render_register": {"value": "realistic-anime, soft cel shading, low contrast, clean medium warm-brown linework", "confidence": "O"}
+  },
+
+  "identity_lock_26": {
+    "1_face_width": {"value": "narrow-medium, ~0.66 HH at cheekbone (bony; silhouette incl. hair ~1.0 HH)", "confidence": "H"},
+    "2_jaw": {"value": "soft-tapered V, rounded chin, obtuse gonial angle", "confidence": "O"},
+    "3_hair_silhouette": {"value": "spiky-layered, crown loft, longest bangs to brow; outline sacred", "confidence": "O"},
+    "4_hair_volume": {"value": "medium-high, ~0.18 HH loft above scalp at crown", "confidence": "O"},
+    "5_hair_direction": {"value": "radial sweep from rear-crown whorl; bangs forward+outward", "confidence": "O"},
+    "6_eye_size": {"value": "medium anime, ~0.20 HH tall", "confidence": "O"},
+    "7_eye_spacing": {"value": "~one eye-width gap", "confidence": "O"},
+    "8_nose": {"value": "minimal shadow accent + small tip, no full bridge", "confidence": "O"},
+    "9_mouth": {"value": "small, neutral, relaxed closure", "confidence": "O"},
+    "10_neck_thickness": {"value": "medium; measured ~0.45-0.55 HW (blueprint said 0.62 — revise toward measured)", "confidence": "H"},
+    "11_shoulder_width": {"value": "~2.3 HW / measured ~1.70 HH acromion-to-acromion", "confidence": "H", "note": "HW-ratio sensitive to cheekbone-width definition; HH-ratio is the firmer figure."},
+    "12_torso_ratio": {"value": "shoulder:waist ~1.0:0.78, mild taper (inverted-trapezoid)", "confidence": "H"},
+    "13_arm_thickness": {"value": "slim, even taper", "confidence": "O"},
+    "14_hand_size": {"value": "~0.85 HH length", "confidence": "H"},
+    "15_leg_proportions": {"value": "long; legs ~50% of total height from hip", "confidence": "H"},
+    "16_foot_shoe": {"value": "sneaker ~1.05 HH long", "confidence": "H"},
+    "17_shirt_fit": {"value": "relaxed crew tee, skims torso, slight hem blouse over belt", "confidence": "O"},
+    "18_pant_fit": {"value": "slim-straight chino, single ankle cuff", "confidence": "O"},
+    "19_color_palette": {"value": "see palette block", "confidence": "O"},
+    "20_lighting_logic": {"value": "soft top-front key, low contrast, white bg", "confidence": "O"},
+    "21_line_style": {"value": "clean medium weight, dark warm-brown (NOT pure black)", "confidence": "O"},
+    "22_anime_rendering": {"value": "cel + soft 2-step shadow, minimal specular", "confidence": "O"},
+    "23_material_response": {"value": "matte fabric, semi-matte sneaker, low-gloss watch", "confidence": "O"},
+    "24_wrinkle_placement": {"value": "elbow, sleeve-push band, waist blouse, knee, ankle cuff", "confidence": "O"},
+    "25_accessory_placement": {"value": "WATCH ON CHARACTER-LEFT WRIST (corrected); belt at natural waist", "confidence": "O", "corrected_from": "character-right"},
+    "26_watch_position": {"value": "LEFT dorsal wrist, ~1 hand-width above wrist crease", "confidence": "O", "corrected_from": "right dorsal wrist"}
+  },
+
+  "palette_locked": {
+    "hair": {"desc": "warm brown / auburn, mid value, darker roots, lighter spike tips", "confidence": "O"},
+    "skin": {"desc": "light warm beige, high value, soft warm shadow", "confidence": "O"},
+    "top": {"desc": "dark olive-charcoal brown, low value, warm-dark, NOT pure black", "confidence": "O"},
+    "chino": {"desc": "tan / khaki, mid-high warm neutral", "confidence": "O"},
+    "belt": {"desc": "dark brown / near-black, matte", "confidence": "O"},
+    "sneakers": {"desc": "cream / off-white, subtle warm shadow", "confidence": "O"},
+    "watch": {"desc": "black face + dark strap, low-gloss", "confidence": "O"},
+    "linework": {"desc": "dark warm brown, NOT pure black", "confidence": "O/H"}
+  },
+
+  "layer_list_and_z_order": {
+    "note": "Live2D cutout / draw order back(low)->front(high). Numbers are nominal 0-1000 starting points for Phase 4 dynamic draw-order.",
+    "order": [
+      {"part": "back_hair (canopy R3/R4)", "z": 100},
+      {"part": "far_arm_upperarm_L_or_R", "z": 150},
+      {"part": "far_forearm + far_hand", "z": 170},
+      {"part": "body_skin_torso (overdraw incl. chest behind arms)", "z": 200},
+      {"part": "chino_legs_L_R (with seat/inseam overdraw)", "z": 250},
+      {"part": "shirt_torso", "z": 300},
+      {"part": "belt", "z": 320},
+      {"part": "near_upper_arm", "z": 360},
+      {"part": "near_forearm_skin (sleeve pushed up)", "z": 380},
+      {"part": "watch (LEFT wrist)", "z": 390},
+      {"part": "near_hand", "z": 400},
+      {"part": "neck", "z": 420},
+      {"part": "face_skin", "z": 500},
+      {"part": "facial_features (brows, eyes[white,iris,highlight,lids], nose accent, mouth[line,fill,spare-teeth])", "z": 560},
+      {"part": "side_hair (R2 temporal locks)", "z": 600},
+      {"part": "front_fringe / bangs (R1)", "z": 650}
+    ],
+    "independent_artmesh_parts": [
+      "L/R eye (white, iris, highlight, upper lid, lower lid)", "L/R brow",
+      "mouth (line, fill, spare teeth layer)", "nose accent",
+      "hair regions R1 fringe / R2 sides / R3 crown spikes / R4 nape",
+      "neck", "face skin", "cranium/scalp shell (behind hair)",
+      "torso shirt", "torso body-skin overdraw", "belt",
+      "L upper-arm / L forearm / L hand", "R upper-arm / R forearm / R hand",
+      "watch (left wrist)", "chino L leg / R leg", "L shoe / R shoe"
+    ]
+  },
+
+  "pivots": {
+    "note": "Phase-3 rotation-deformer centers. Coordinates to be filled with px on first artmesh pass.",
+    "centers": ["neck_base_C7", "shoulder_socket_L", "shoulder_socket_R", "elbow_L", "elbow_R", "wrist_L", "wrist_R", "hip_socket_L", "hip_socket_R", "knee_L", "knee_R", "ankle_L", "ankle_R", "jaw_hinge", "eye_look_L", "eye_look_R", "hair_root_R1", "hair_root_R2", "hair_root_R3", "hair_root_R4"],
+    "hierarchy": "Torso(root) -> Shoulder Warp -> Shoulder Rotation -> Upper Arm -> Elbow Rotation -> Forearm -> Wrist Rotation -> Hand (mirror L/R); Neck -> Head; Hips -> Thigh -> Knee -> Shin -> Ankle -> Foot (mirror L/R)."
+  },
+
+  "volume_preserve_zones": ["deltoid_caps", "calf_bellies", "hair_crown_loft", "chest_convexity"],
+
+  "hair_physics_groups": {
+    "R1_front_fringe": {"motion": "highest", "stiffness": "low-medium"},
+    "R2_side_locks": {"motion": "medium", "stiffness": "medium"},
+    "R3_crown_spikes": {"motion": "low", "stiffness": "high (product-held; KEEP LOFT, never flatten to skull)"},
+    "R4_nape": {"motion": "low", "stiffness": "medium"}
+  },
+
+  "cloth_deform_rules": {
+    "shirt": "knit jersey: soft jiggle + fold-bunch at elbow/waist; hem blouses over belt",
+    "chino": "woven twill: stiffer, hinge-folds behind knee, fixed ankle cuff; folding-dominant (low stretch)",
+    "sneaker": "near-rigid; defines ground-contact plane + foot pivot",
+    "watch": "rigid; rides LEFT wrist; counter-rotate with left-forearm pronation",
+    "belt": "buckle stays centered on waist turns"
+  },
+
+  "hidden_geometry_overdraw_reserves": [
+    "behind_neck (nape hair sliver)", "behind_hair (full scalp shell at cranial radius)",
+    "behind_arm (lateral ribcage + lat taper + side seam)", "behind_shirt (chest/abdomen surface)",
+    "behind_waist (lumbar + belt under hem blouse)", "behind_belt (strap through loops, tail)",
+    "behind_pants (seat, inner thighs, rear rise)", "behind_shoe (heel counter, tread, tongue)",
+    "inside_sleeve (bore + inner forearm at roll)", "inside_collar (rib interior + neck skin)",
+    "inside_armpit (gusset folds + skin hollow)", "shoulder_socket (glenohumeral pivot)",
+    "hip_socket (acetabular pivot)"
+  ],
+
+  "assumptions": {
+    "A1_bilateral_symmetry": {"value": "right ~ mirror of left", "confidence": "M", "note": "No clean right-ortho; plus plates are not rigidly consistent (see ORTHOGRAPHIC_INCONSISTENCY)."},
+    "A2_total_height": {"value": "7.75 HH default", "confidence": "H", "note": "Measured ~7.71 HH supports default; 8.0 alt weakened."},
+    "A3_watch_side": {"value": "CHARACTER-LEFT wrist", "confidence": "O", "corrected_from": "character-right [H]"},
+    "A4_top_fabric": {"value": "cotton/modal jersey knit", "confidence": "H"},
+    "A5_bottom_fabric": {"value": "cotton twill chino", "confidence": "H"},
+    "A6_crown_spikes_stiff": {"value": "product-held / coarse, gravity-defiant across all plates", "confidence": "H"},
+    "A7_male_pelvis_slim_build": {"confidence": "H"},
+    "A8_foot_pronation_neutral": {"confidence": "M"},
+    "A9_lighting": {"value": "soft top-front key, no rim", "confidence": "H"},
+    "A10_linework_warm_brown": {"confidence": "O/H"},
+    "A11_hair_clump_count": {"value": "9-14 primary wedge clumps", "confidence": "M"},
+    "A12_belt_tail_short_tuck": {"confidence": "L"}
+  },
+
+  "open_art_direction_questions": [
+    {"id": "Q1_watch_side", "q": "CONFIRM the watch is on the CHARACTER-LEFT wrist (evidence is conclusive; blueprint said right). Approve this canon correction?", "priority": "high"},
+    {"id": "R1_right_plate", "q": "No clean orthographic RIGHT-profile plate exists, and side_right is a non-rigid 3/4 hybrid. Approve building the right side by bilateral mirror of the left until a true right plate is supplied?", "priority": "high"},
+    {"id": "R6_eye_hue", "q": "Confirm exact iris hue (reads warm amber/brown at this resolution) and whether a catchlight/spec spot is canon.", "priority": "medium"},
+    {"id": "R7_height", "q": "Measured ~7.71 HH supports 7.75 HH default over 8.0. Lock 7.75 HH?", "priority": "medium"},
+    {"id": "Q_name", "q": "Character working name for file/asset naming?", "priority": "low"},
+    {"id": "R3_belt_tail", "q": "Belt tail length/keeper unseen — default short tuck OK?", "priority": "low"},
+    {"id": "R9_inner_mouth", "q": "Reserve spare teeth/tongue layers for future lip-sync (no inner-mouth reference)?", "priority": "low"}
+  ]
+}
