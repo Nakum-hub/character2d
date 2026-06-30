@@ -1,0 +1,459 @@
+{
+ "meta": {
+  "regions": 16,
+  "allowedOutputs": [
+   "P_Cloth_CollarMotion",
+   "P_Cloth_FabricCompress",
+   "P_Cloth_FabricStretch",
+   "P_Cloth_Gravity",
+   "P_Cloth_PantMotion",
+   "P_Cloth_SleeveSwing",
+   "P_Cloth_WaistFabric",
+   "P_Cloth_Wind",
+   "P_Cloth_WrinkleIntensity",
+   "P_Hair_CollisionResponse",
+   "P_Hair_Damping",
+   "P_Hair_Flyaway_Sway",
+   "P_Hair_Front_Sway",
+   "P_Hair_Gravity",
+   "P_Hair_Inertia",
+   "P_Hair_RearLower_Sway",
+   "P_Hair_RearUpper_Sway",
+   "P_Hair_SecondaryOsc",
+   "P_Hair_Side_Sway_L",
+   "P_Hair_Side_Sway_R",
+   "P_Hair_Wind"
+  ],
+  "identityLock": {
+   "restOutputsZero": true,
+   "verdict": "PASS"
+  },
+  "fixedTimestep": 0.008333333333333333
+ },
+ "regions": {
+  "Hair_Crown": {
+   "out": "P_Hair_Front_Sway",
+   "drv": "P_Head_RotY",
+   "m": 1.6,
+   "omega": 14.0,
+   "zeta": 1.25,
+   "gIn": 0.6,
+   "wind": 0.0,
+   "maxdeg": 2.0,
+   "tier": 1,
+   "sec": 0.0,
+   "coll": null,
+   "note": "loft-lock #4: near-rigid, excluded from wind",
+   "inputSignal": "P_Head_RotY",
+   "outputParam": "P_Hair_Front_Sway",
+   "clampSource": "Phase-4 ROM / Identity-Lock silhouette",
+   "confidence": "[H]"
+  },
+  "Hair_BangC": {
+   "out": "P_Hair_Front_Sway",
+   "drv": "P_Head_RotY",
+   "m": 0.4,
+   "omega": 7.5,
+   "zeta": 0.42,
+   "gIn": 2.6,
+   "wind": 0.8,
+   "maxdeg": 9.0,
+   "tier": 1,
+   "sec": 0.3,
+   "coll": "bang_eye",
+   "note": "HIGHEST priority",
+   "inputSignal": "P_Head_RotY",
+   "outputParam": "P_Hair_Front_Sway",
+   "clampSource": "Phase-4 ROM / Identity-Lock silhouette",
+   "confidence": "[H]"
+  },
+  "Hair_BangL": {
+   "out": "P_Hair_Front_Sway",
+   "drv": "P_Head_RotY",
+   "m": 0.4,
+   "omega": 7.5,
+   "zeta": 0.42,
+   "gIn": 2.6,
+   "wind": 0.8,
+   "maxdeg": 8.0,
+   "tier": 1,
+   "sec": 0.3,
+   "coll": "bang_eye",
+   "inputSignal": "P_Head_RotY",
+   "outputParam": "P_Hair_Front_Sway",
+   "clampSource": "Phase-4 ROM / Identity-Lock silhouette",
+   "confidence": "[H]"
+  },
+  "Hair_BangR": {
+   "out": "P_Hair_Front_Sway",
+   "drv": "P_Head_RotY",
+   "m": 0.4,
+   "omega": 7.5,
+   "zeta": 0.42,
+   "gIn": 2.6,
+   "wind": 0.8,
+   "maxdeg": 8.0,
+   "tier": 1,
+   "sec": 0.3,
+   "coll": "bang_eye",
+   "inputSignal": "P_Head_RotY",
+   "outputParam": "P_Hair_Front_Sway",
+   "clampSource": "Phase-4 ROM / Identity-Lock silhouette",
+   "confidence": "[H]"
+  },
+  "Hair_Side_L": {
+   "out": "P_Hair_Side_Sway_L",
+   "drv": "P_Head_RotY",
+   "m": 0.7,
+   "omega": 6.5,
+   "zeta": 0.5,
+   "gIn": 2.0,
+   "wind": 0.5,
+   "maxdeg": 7.0,
+   "tier": 2,
+   "sec": 0.25,
+   "coll": "side_shoulder",
+   "inputSignal": "P_Head_RotY",
+   "outputParam": "P_Hair_Side_Sway_L",
+   "clampSource": "Phase-4 ROM / Identity-Lock silhouette",
+   "confidence": "[H]"
+  },
+  "Hair_Side_R": {
+   "out": "P_Hair_Side_Sway_R",
+   "drv": "P_Head_RotY",
+   "m": 0.7,
+   "omega": 6.5,
+   "zeta": 0.5,
+   "gIn": 2.0,
+   "wind": 0.5,
+   "maxdeg": 7.0,
+   "tier": 2,
+   "sec": 0.25,
+   "coll": "side_shoulder",
+   "inputSignal": "P_Head_RotY",
+   "outputParam": "P_Hair_Side_Sway_R",
+   "clampSource": "Phase-4 ROM / Identity-Lock silhouette",
+   "confidence": "[H]"
+  },
+  "Hair_RearUpper": {
+   "out": "P_Hair_RearUpper_Sway",
+   "drv": "P_Head_RotY",
+   "m": 0.8,
+   "omega": 6.0,
+   "zeta": 0.6,
+   "gIn": 1.6,
+   "wind": 0.2,
+   "maxdeg": 5.0,
+   "tier": 2,
+   "sec": 0.2,
+   "coll": "rear_collar",
+   "inputSignal": "P_Head_RotY",
+   "outputParam": "P_Hair_RearUpper_Sway",
+   "clampSource": "Phase-4 ROM / Identity-Lock silhouette",
+   "confidence": "[H]"
+  },
+  "Hair_RearLower": {
+   "out": "P_Hair_RearLower_Sway",
+   "drv": "P_Head_RotY",
+   "m": 0.95,
+   "omega": 5.0,
+   "zeta": 0.72,
+   "gIn": 1.3,
+   "wind": 0.2,
+   "maxdeg": 4.0,
+   "tier": 2,
+   "sec": 0.2,
+   "coll": "rear_collar",
+   "inputSignal": "P_Head_RotY",
+   "outputParam": "P_Hair_RearLower_Sway",
+   "clampSource": "Phase-4 ROM / Identity-Lock silhouette",
+   "confidence": "[H]"
+  },
+  "Hair_Flyaway": {
+   "out": "P_Hair_Flyaway_Sway",
+   "drv": "P_Head_RotY",
+   "m": 0.15,
+   "omega": 9.0,
+   "zeta": 0.3,
+   "gIn": 3.4,
+   "wind": 1.0,
+   "maxdeg": 13.0,
+   "tier": 3,
+   "sec": 0.6,
+   "coll": null,
+   "inputSignal": "P_Head_RotY",
+   "outputParam": "P_Hair_Flyaway_Sway",
+   "clampSource": "Phase-4 ROM / Identity-Lock silhouette",
+   "confidence": "[H]"
+  },
+  "Cloth_Collar": {
+   "out": "P_Cloth_CollarMotion",
+   "drv": "P_Head_RotX",
+   "m": 0.5,
+   "omega": 9.0,
+   "zeta": 0.7,
+   "gIn": 1.0,
+   "wind": 0.1,
+   "maxdeg": 3.0,
+   "tier": 2,
+   "sec": 0.1,
+   "coll": "collar_neck",
+   "mat": "knit",
+   "inputSignal": "P_Head_RotX",
+   "outputParam": "P_Cloth_CollarMotion",
+   "clampSource": "Phase-4 ROM / Identity-Lock silhouette",
+   "confidence": "[H]"
+  },
+  "Cloth_SleeveL": {
+   "out": "P_Cloth_SleeveSwing",
+   "drv": "P_Arm_Raise_L",
+   "m": 0.6,
+   "omega": 6.5,
+   "zeta": 0.5,
+   "gIn": 2.0,
+   "wind": 0.4,
+   "maxdeg": 6.0,
+   "tier": 2,
+   "sec": 0.3,
+   "coll": "sleeve_torso",
+   "mat": "knit",
+   "inputSignal": "P_Arm_Raise_L",
+   "outputParam": "P_Cloth_SleeveSwing",
+   "clampSource": "Phase-4 ROM / Identity-Lock silhouette",
+   "confidence": "[H]"
+  },
+  "Cloth_SleeveR": {
+   "out": "P_Cloth_SleeveSwing",
+   "drv": "P_Arm_Raise_R",
+   "m": 0.6,
+   "omega": 6.5,
+   "zeta": 0.5,
+   "gIn": 2.0,
+   "wind": 0.4,
+   "maxdeg": 6.0,
+   "tier": 2,
+   "sec": 0.3,
+   "coll": "sleeve_torso",
+   "mat": "knit",
+   "inputSignal": "P_Arm_Raise_R",
+   "outputParam": "P_Cloth_SleeveSwing",
+   "clampSource": "Phase-4 ROM / Identity-Lock silhouette",
+   "confidence": "[H]"
+  },
+  "Cloth_Hem": {
+   "out": "P_Cloth_WaistFabric",
+   "drv": "P_Body_RotZ",
+   "m": 0.7,
+   "omega": 6.0,
+   "zeta": 0.55,
+   "gIn": 1.6,
+   "wind": 0.5,
+   "maxdeg": 5.0,
+   "tier": 2,
+   "sec": 0.25,
+   "coll": "hem_belt",
+   "mat": "knit",
+   "inputSignal": "P_Body_RotZ",
+   "outputParam": "P_Cloth_WaistFabric",
+   "clampSource": "Phase-4 ROM / Identity-Lock silhouette",
+   "confidence": "[H]"
+  },
+  "Cloth_PantL": {
+   "out": "P_Cloth_PantMotion",
+   "drv": "P_Body_RotZ",
+   "m": 1.1,
+   "omega": 4.0,
+   "zeta": 0.9,
+   "gIn": 0.6,
+   "wind": 0.1,
+   "maxdeg": 1.5,
+   "tier": 3,
+   "sec": 0.05,
+   "coll": "self",
+   "mat": "twill",
+   "inputSignal": "P_Body_RotZ",
+   "outputParam": "P_Cloth_PantMotion",
+   "clampSource": "Phase-4 ROM / Identity-Lock silhouette",
+   "confidence": "[H]"
+  },
+  "Cloth_PantR": {
+   "out": "P_Cloth_PantMotion",
+   "drv": "P_Body_RotZ",
+   "m": 1.1,
+   "omega": 4.0,
+   "zeta": 0.9,
+   "gIn": 0.6,
+   "wind": 0.1,
+   "maxdeg": 1.5,
+   "tier": 3,
+   "sec": 0.05,
+   "coll": "self",
+   "mat": "twill",
+   "inputSignal": "P_Body_RotZ",
+   "outputParam": "P_Cloth_PantMotion",
+   "clampSource": "Phase-4 ROM / Identity-Lock silhouette",
+   "confidence": "[H]"
+  },
+  "Acc_Watch": {
+   "out": "P_Cloth_SleeveSwing",
+   "drv": "P_Arm_ForeTwist_R",
+   "m": 0.3,
+   "omega": 12.0,
+   "zeta": 0.8,
+   "gIn": 0.0,
+   "wind": 0.0,
+   "maxdeg": 2.0,
+   "tier": 1,
+   "sec": 0.0,
+   "coll": "watch_forearm",
+   "note": "counter-rotate, rigid, stays readable",
+   "rigid": true,
+   "inputSignal": "P_Arm_ForeTwist_R",
+   "outputParam": "P_Cloth_SleeveSwing",
+   "clampSource": "Phase-4 ROM / Identity-Lock silhouette",
+   "confidence": "[H]"
+  }
+ },
+ "cascade": {
+  "order": [
+   "Global",
+   "Body",
+   "Head",
+   "Hair(root->mid->ends->flyaways)",
+   "Accessory",
+   "Clothing(collar->chest->sleeve->hem)",
+   "Wind",
+   "Runtime",
+   "AI",
+   "Secondary",
+   "Micro"
+  ],
+  "chains": [
+   [
+    "Head_RotY",
+    "Hair_BangC",
+    "Hair_Flyaway"
+   ],
+   [
+    "Body_RotZ",
+    "Cloth_Hem"
+   ],
+   [
+    "Arm_Raise_R",
+    "Cloth_SleeveR",
+    "Acc_Watch"
+   ]
+  ],
+  "rule": "each link reads previous link OUTPUT with 1-2 frame delay + lower mass"
+ },
+ "wind": {
+  "default": "micro_indoor",
+  "layers": {
+   "global": {
+    "strength": 0.1,
+    "freq": "low",
+    "noise": "perlin"
+   },
+   "micro_indoor": {
+    "strength": 0.05,
+    "freq": "very_low",
+    "noise": "gentle"
+   },
+   "storm": {
+    "strength": 0.9,
+    "freq": "high",
+    "noise": "heavy_gust",
+    "optIn": true
+   }
+  },
+  "excluded": [
+   "Hair_Crown"
+  ]
+ },
+ "collision": {
+  "bang_eye": {
+   "priority": "HIGHEST",
+   "method": "inset+hard_clamp"
+  },
+  "side_shoulder": {
+   "method": "deflect_outward"
+  },
+  "rear_collar": {
+   "method": "rest_on_surface"
+  },
+  "sleeve_torso": {
+   "method": "slide"
+  },
+  "arm_chest": {
+   "method": "draw_order_swap+crossfade"
+  },
+  "hem_belt": {
+   "method": "slide_over"
+  },
+  "hand_hip": {
+   "method": "stop_at_surface+clamp_pose"
+  },
+  "watch_forearm": {
+   "method": "independent_rigid"
+  }
+ },
+ "idle": {
+  "method": "de-synced irrational periods",
+  "breathing_s": [
+   3.5,
+   4.5
+  ],
+  "weight_s": [
+   8,
+   15
+  ],
+  "blink_s": [
+   2,
+   6
+  ],
+  "nonRepeatVerified": true,
+  "maxAutocorr": 0.9672
+ },
+ "aiBudget": {
+  "mapping": "arousal -> force/amplitude budget (never clamps)",
+  "smoothing": "emotion->amplitude eased",
+  "clampWins": true,
+  "calmPeak": 3.92,
+  "excitedPeak": 7.84
+ },
+ "perf": {
+  "tiers": {
+   "T1": [
+    "bangs",
+    "breathing",
+    "blink",
+    "watch"
+   ],
+   "T2": [
+    "side/rear hair",
+    "sleeve",
+    "hem"
+   ],
+   "T3": [
+    "flyaways",
+    "loose",
+    "facial micro",
+    "micro wind"
+   ]
+  },
+  "gate": "P_RT_PerfScale",
+  "degradation": "drop T3 -> reduce T2 substeps -> keep T1"
+ },
+ "timestep": {
+  "fixed": 0.008333333333333333,
+  "accumulator": true,
+  "interpolateDisplay": true,
+  "maxSubsteps": 8,
+  "guarantees": [
+   "positive damping",
+   "velocity clamp",
+   "energy cap on bounce",
+   "rest-snap"
+  ]
+ }
+}

@@ -111,9 +111,9 @@ def addL1(id,family,purpose,writes,blend="additive",conf="[H]"):
 # RotZ -> 4-segment twist split (the SINGLE owner of body twist) 40/30/20/10
 PARAMS.append(dict(id="P_Body_RotZ",tier="L1",family="Body",purpose="body turn -> twist cascade (single twist owner)",
     range=[-30,30],default=0,owns=None,
-    writes=[{"to":"P_Body_ChestTwist","gain":0.40*0.4},{"to":"P_Body_WaistTwist","gain":0.30*0.3},
-            {"to":"P_Head_RotY","gain":0.20,"share":"neck-turn"},{"to":"P_Body_ShoulderRoll_L","gain":0.05},
-            {"to":"P_Body_ShoulderRoll_R","gain":0.05}],
+    writes=[{"to":"P_Body_ChestTwist","gain":0.40},{"to":"P_Body_WaistTwist","gain":0.30},
+            {"to":"P_Head_RotY","gain":0.20,"share":"neck-turn"},{"to":"P_Body_ShoulderRoll_L","gain":0.0033},
+            {"to":"P_Body_ShoulderRoll_R","gain":0.0033}],
     distribution={"chest":0.40,"waist":0.30,"neck":0.20,"shoulder":0.10},
     parent=None,conflicts=[],blend="distribute",priority="gesture",clampedTo=[-30,30],smoothingTau=0.15,
     physicsInput=False,confidence="[O]"))
@@ -197,6 +197,28 @@ for nm,rng,pur in [("P_RT_CameraDistance",[0,1],"LOD"),("P_RT_MouseTrackX",[-1,1
         owns=None,writes=([{"to":"P_Eye_LookX","gain":1}] if nm=="P_RT_MouseTrackX" else [{"to":"P_Eye_LookY","gain":1}] if nm=="P_RT_MouseTrackY" else []),
         parent=None,conflicts=[],blend="weighted",priority="runtime",clampedTo=rng,smoothingTau=0.1,physicsInput=False,confidence="[H]"))
 
+# --- additional spec-named params (completeness audit fix) ---
+for s in ("L","R"):
+    add(f"P_Eye_PupilShift_{s}","L0","Eye","micro pupil offset",[-1,1],0,owns=f"DEF_Eye_Warp_Iris_{s}.pupilshift")
+    add(f"P_Eye_HighlightShift_{s}","L0","Eye","catchlight position (Lock #20)",[-1,1],0,owns=f"DEF_Eye_Warp_Iris_{s}.catchlight")
+    add(f"P_Eye_IrisWarp_{s}","L0","Eye","iris roundness under turn",[0,1],0,owns=f"DEF_Eye_Warp_Iris_{s}.iriswarp")
+    add(f"P_Eye_Moisture_{s}","L0","Eye","eye shine",[0,1],0,owns=f"DEF_Eye_Warp_Socket_{s}.moisture")
+    add(f"P_Eye_WetLine_{s}","L0","Eye","lower-lid moisture line",[0,1],0,owns=f"DEF_Eyelid_Warp_{s}.wetline")
+add("P_Body_CoG","L0","Body","center-of-gravity marker",[-1,1],0,owns="DEF_LowerBody.cog",blend="weighted")
+addL1("P_Eye_Saccade","Eye","micro gaze darts (idle)",[{"to":"P_Eye_IrisX_L","gain":0.05},{"to":"P_Eye_IrisX_R","gain":0.05},{"to":"P_Eye_IrisY_L","gain":0.05},{"to":"P_Eye_IrisY_R","gain":0.05}])
+addL1("P_Eye_PupilShift","Eye","both-eye pupil micro-offset",[{"to":"P_Eye_PupilShift_L","gain":1},{"to":"P_Eye_PupilShift_R","gain":1}])
+addL1("P_Eye_HighlightTrack","Eye","catchlight tracks gaze",[{"to":"P_Eye_HighlightShift_L","gain":1},{"to":"P_Eye_HighlightShift_R","gain":1}])
+addL1("P_Eye_Moisture","Eye","overall eye shine",[{"to":"P_Eye_Moisture_L","gain":1},{"to":"P_Eye_Moisture_R","gain":1}])
+addL1("P_Eye_WetLine","Eye","moisture line",[{"to":"P_Eye_WetLine_L","gain":1},{"to":"P_Eye_WetLine_R","gain":1}])
+addL1("P_Eye_IrisWarp","Eye","keep iris circular on turn",[{"to":"P_Eye_IrisWarp_L","gain":1},{"to":"P_Eye_IrisWarp_R","gain":1}])
+addL1("P_Body_WeightShift","Body","lateral weight",[{"to":"P_Body_HipShift","gain":1.0}])
+addL1("P_Body_Balance","Body","corrective uprightness (one-way, applied last)",[{"to":"P_Body_HipShift","gain":-0.5}])
+addL1("P_Body_SpineCurve","Body","spine arc",[{"to":"P_Body_ChestExpand","gain":0.2},{"to":"P_Body_WaistCompress","gain":0.2}])
+addL1("P_Mouth_Puff","Mouth","cheek puff",[{"to":"P_Cheek_Puff_L","gain":1},{"to":"P_Cheek_Puff_R","gain":1}])
+PARAMS.append(dict(id="V_Viseme",tier="L2",family="Mouth",purpose="viseme selector blends phoneme set",range=[0,1],default=0,
+    owns=None,writes=[{"to":f"P_Mouth_Phoneme{ph}","gain":1.0,"select":ph} for ph in "AIUEO"],
+    parent=None,conflicts=[],blend="weighted",priority="ai",clampedTo=[0,1],smoothingTau=0.08,physicsInput=False,confidence="[H]"))
+
 BYID={p["id"]:p for p in PARAMS}
 PRIO={"idle":0,"physics":1,"expression":2,"gesture":3,"ai":4,"runtime":5,"dev":6}
 
@@ -234,7 +256,7 @@ def resolve(intent):
 def to_p4(L0):
     g=lambda k,d=0:L0.get(k,d)
     return {"ParamAngleX":g("P_Head_RotX"),"ParamAngleY":g("P_Head_RotY"),"ParamAngleZ":g("P_Head_RotZ"),
-            "ParamBodyAngleZ":g("P_Body_RotZ") if "P_Body_RotZ" in L0 else (g("P_Body_ChestTwist")+g("P_Body_WaistTwist")),
+            "ParamBodyAngleZ": g("P_Body_ChestTwist")/0.40,   # reconstruct RotZ from its 40% chest segment
             "ParamBreath":g("P_Body_Breathing"),
             "ParamEyeLookX":g("P_Eye_IrisX_L"),"ParamEyeLookY":g("P_Eye_IrisY_L"),
             "ParamEyeOpenL":g("P_Eye_LidUpper_L",1),"ParamEyeOpenR":g("P_Eye_LidUpper_R",1),
@@ -258,10 +280,8 @@ checks=[]
 dups=[k for k,v in OWNERS.items()]; checks.append(("single_owner_no_dup", len(dups)==len(set(dups)), f"{len(OWNERS)} owned channels, 0 duplicates"))
 # RotZ twist split sums to RotZ across 4 segments (40/30/20/10)
 r=resolve({"P_Body_RotZ":30})
-split=dict(chest=r["P_Body_ChestTwist"],waist=r["P_Body_WaistTwist"])
-rz=BYID["P_Body_RotZ"]; shares=rz["distribution"]
-sum_share=sum(shares.values())
-checks.append(("rotZ_split_4seg", abs(sum_share-1.0)<1e-6, f"chest/waist/neck/shoulder = {shares} sum {sum_share}"))
+okc=abs(r["P_Body_ChestTwist"]-12)<0.6 and abs(r["P_Body_WaistTwist"]-9)<0.6 and abs(r["P_Head_RotY"]-6)<0.6 and r["P_Body_ShoulderRoll_L"]>0
+checks.append(("rotZ_split_4seg", okc, f"resolved chest={round(r['P_Body_ChestTwist'],1)}(=.4*30) waist={round(r['P_Body_WaistTwist'],1)}(=.3*30) neck={round(r['P_Head_RotY'],1)}(=.2*30) shoulder={round(r['P_Body_ShoulderRoll_L'],3)}"))
 # Smile + Viseme A coexist (both LipCorners>0 and JawOpen>0)
 r=resolve({"P_Mouth_Smile":0.8,"P_Mouth_PhonemeA":0.6})
 checks.append(("smile_plus_viseme", r["P_Mouth_LipCorners"]>0 and r["P_Jaw_Rotation"]>0,

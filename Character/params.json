@@ -1,14 +1,14 @@
 {
  "meta": {
-  "total": 151,
+  "total": 173,
   "counts": {
-   "L0": 95,
-   "L1": 27,
-   "L2": 15,
+   "L0": 106,
+   "L1": 37,
+   "L2": 16,
    "L3": 4,
    "RT": 10
   },
-  "ownedChannels": 74,
+  "ownedChannels": 85,
   "identityLock": {
    "SSIM": 0.9996,
    "interiorResidual": 42,
@@ -2404,11 +2404,11 @@
    "writes": [
     {
      "to": "P_Body_ChestTwist",
-     "gain": 0.16000000000000003
+     "gain": 0.4
     },
     {
      "to": "P_Body_WaistTwist",
-     "gain": 0.09
+     "gain": 0.3
     },
     {
      "to": "P_Head_RotY",
@@ -2417,11 +2417,11 @@
     },
     {
      "to": "P_Body_ShoulderRoll_L",
-     "gain": 0.05
+     "gain": 0.0033
     },
     {
      "to": "P_Body_ShoulderRoll_R",
-     "gain": 0.05
+     "gain": 0.0033
     }
    ],
    "distribution": {
@@ -4437,6 +4437,650 @@
     1
    ],
    "smoothingTau": 0.1,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_PupilShift_L",
+   "tier": "L0",
+   "family": "Eye",
+   "purpose": "micro pupil offset",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Eye_Warp_Iris_L.pupilshift",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_HighlightShift_L",
+   "tier": "L0",
+   "family": "Eye",
+   "purpose": "catchlight position (Lock #20)",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Eye_Warp_Iris_L.catchlight",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_IrisWarp_L",
+   "tier": "L0",
+   "family": "Eye",
+   "purpose": "iris roundness under turn",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Eye_Warp_Iris_L.iriswarp",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_Moisture_L",
+   "tier": "L0",
+   "family": "Eye",
+   "purpose": "eye shine",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Eye_Warp_Socket_L.moisture",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_WetLine_L",
+   "tier": "L0",
+   "family": "Eye",
+   "purpose": "lower-lid moisture line",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Eyelid_Warp_L.wetline",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_PupilShift_R",
+   "tier": "L0",
+   "family": "Eye",
+   "purpose": "micro pupil offset",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Eye_Warp_Iris_R.pupilshift",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_HighlightShift_R",
+   "tier": "L0",
+   "family": "Eye",
+   "purpose": "catchlight position (Lock #20)",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Eye_Warp_Iris_R.catchlight",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_IrisWarp_R",
+   "tier": "L0",
+   "family": "Eye",
+   "purpose": "iris roundness under turn",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Eye_Warp_Iris_R.iriswarp",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_Moisture_R",
+   "tier": "L0",
+   "family": "Eye",
+   "purpose": "eye shine",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Eye_Warp_Socket_R.moisture",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_WetLine_R",
+   "tier": "L0",
+   "family": "Eye",
+   "purpose": "lower-lid moisture line",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Eyelid_Warp_R.wetline",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Body_CoG",
+   "tier": "L0",
+   "family": "Body",
+   "purpose": "center-of-gravity marker",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_LowerBody.cog",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "expression",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_Saccade",
+   "tier": "L1",
+   "family": "Eye",
+   "purpose": "micro gaze darts (idle)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Eye_IrisX_L",
+     "gain": 0.05
+    },
+    {
+     "to": "P_Eye_IrisX_R",
+     "gain": 0.05
+    },
+    {
+     "to": "P_Eye_IrisY_L",
+     "gain": 0.05
+    },
+    {
+     "to": "P_Eye_IrisY_R",
+     "gain": 0.05
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_PupilShift",
+   "tier": "L1",
+   "family": "Eye",
+   "purpose": "both-eye pupil micro-offset",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Eye_PupilShift_L",
+     "gain": 1
+    },
+    {
+     "to": "P_Eye_PupilShift_R",
+     "gain": 1
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_HighlightTrack",
+   "tier": "L1",
+   "family": "Eye",
+   "purpose": "catchlight tracks gaze",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Eye_HighlightShift_L",
+     "gain": 1
+    },
+    {
+     "to": "P_Eye_HighlightShift_R",
+     "gain": 1
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_Moisture",
+   "tier": "L1",
+   "family": "Eye",
+   "purpose": "overall eye shine",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Eye_Moisture_L",
+     "gain": 1
+    },
+    {
+     "to": "P_Eye_Moisture_R",
+     "gain": 1
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_WetLine",
+   "tier": "L1",
+   "family": "Eye",
+   "purpose": "moisture line",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Eye_WetLine_L",
+     "gain": 1
+    },
+    {
+     "to": "P_Eye_WetLine_R",
+     "gain": 1
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_IrisWarp",
+   "tier": "L1",
+   "family": "Eye",
+   "purpose": "keep iris circular on turn",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Eye_IrisWarp_L",
+     "gain": 1
+    },
+    {
+     "to": "P_Eye_IrisWarp_R",
+     "gain": 1
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Body_WeightShift",
+   "tier": "L1",
+   "family": "Body",
+   "purpose": "lateral weight",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Body_HipShift",
+     "gain": 1.0
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Body_Balance",
+   "tier": "L1",
+   "family": "Body",
+   "purpose": "corrective uprightness (one-way, applied last)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Body_HipShift",
+     "gain": -0.5
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Body_SpineCurve",
+   "tier": "L1",
+   "family": "Body",
+   "purpose": "spine arc",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Body_ChestExpand",
+     "gain": 0.2
+    },
+    {
+     "to": "P_Body_WaistCompress",
+     "gain": 0.2
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Mouth_Puff",
+   "tier": "L1",
+   "family": "Mouth",
+   "purpose": "cheek puff",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Cheek_Puff_L",
+     "gain": 1
+    },
+    {
+     "to": "P_Cheek_Puff_R",
+     "gain": 1
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "V_Viseme",
+   "tier": "L2",
+   "family": "Mouth",
+   "purpose": "viseme selector blends phoneme set",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Mouth_PhonemeA",
+     "gain": 1.0,
+     "select": "A"
+    },
+    {
+     "to": "P_Mouth_PhonemeI",
+     "gain": 1.0,
+     "select": "I"
+    },
+    {
+     "to": "P_Mouth_PhonemeU",
+     "gain": 1.0,
+     "select": "U"
+    },
+    {
+     "to": "P_Mouth_PhonemeE",
+     "gain": 1.0,
+     "select": "E"
+    },
+    {
+     "to": "P_Mouth_PhonemeO",
+     "gain": 1.0,
+     "select": "O"
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "ai",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.08,
    "physicsInput": false,
    "confidence": "[H]"
   }
