@@ -1,0 +1,710 @@
+{
+ "meta": {
+  "emotions": 21,
+  "allowedSurface": 173,
+  "firewall": "Phase-5 params only (asserted)",
+  "identityLock": {
+   "SSIM": 0.9996,
+   "interiorResidual": 42,
+   "verdict": "PASS"
+  }
+ },
+ "layerStack": [
+  "Reaction",
+  "Conversation",
+  "Emotion",
+  "Mood"
+ ],
+ "layerRule": "top-down per frame; Reaction overrides then decays to Mood baseline",
+ "emotionLibrary": {
+  "Neutral": {
+   "writes": {},
+   "breath": [
+    1.0,
+    1.0
+   ],
+   "arousal": 0.2,
+   "inMs": 300,
+   "recMs": 400,
+   "bodyChannels": 0
+  },
+  "Joy": {
+   "writes": {
+    "P_Mouth_Smile": 0.7,
+    "P_Eye_Squint_L": 0.3,
+    "P_Eye_Squint_R": 0.3,
+    "P_Eye_Moisture": 0.1,
+    "P_Brow_Height_L": 0.3,
+    "P_Brow_Height_R": 0.3,
+    "P_Body_ChestExpand": 0.3,
+    "P_Body_ShoulderRoll_L": -0.1,
+    "P_Body_ShoulderRoll_R": -0.1,
+    "P_Head_Tilt": 0.1,
+    "P_Hand_Form_L": 0.0,
+    "P_Hand_Form_R": 0.0
+   },
+   "breath": [
+    1.15,
+    0.9
+   ],
+   "arousal": 0.6,
+   "inMs": 250,
+   "recMs": 600,
+   "bodyChannels": 6
+  },
+  "Confidence": {
+   "writes": {
+    "P_Eye_Focus": 0.6,
+    "P_Brow_Height_L": 0.1,
+    "P_Brow_Height_R": 0.1,
+    "P_Mouth_Smile": 0.2,
+    "P_Body_ChestExpand": 0.4,
+    "P_Body_ShoulderRoll_L": -0.3,
+    "P_Body_ShoulderRoll_R": -0.3,
+    "P_Body_Posture": 1.0
+   },
+   "breath": [
+    0.9,
+    1.1
+   ],
+   "arousal": 0.4,
+   "inMs": 350,
+   "recMs": 500,
+   "bodyChannels": 4
+  },
+  "Curiosity": {
+   "writes": {
+    "P_Eye_Wide_L": 0.3,
+    "P_Eye_Wide_R": 0.3,
+    "P_Brow_Height_L": 0.5,
+    "P_Brow_Height_R": 0.2,
+    "P_Head_Tilt": 0.4,
+    "P_Head_Forward": 0.2,
+    "P_Body_ChestExpand": 0.1,
+    "P_Eye_LookX": 0.3,
+    "P_Mouth_Smile": 0.1
+   },
+   "breath": [
+    1.05,
+    1.0
+   ],
+   "arousal": 0.5,
+   "inMs": 220,
+   "recMs": 350,
+   "bodyChannels": 3
+  },
+  "Focus": {
+   "writes": {
+    "P_Eye_Focus": 1.0,
+    "P_Eye_PupilScale_L": 0.3,
+    "P_Eye_PupilScale_R": 0.3,
+    "P_Brow_Height_L": -0.2,
+    "P_Brow_Height_R": -0.2,
+    "P_Head_Forward": 0.2,
+    "P_Body_Posture": 0.5,
+    "P_Body_ShoulderRoll_L": -0.1,
+    "P_Body_ShoulderRoll_R": -0.1
+   },
+   "breath": [
+    0.85,
+    0.7
+   ],
+   "arousal": 0.3,
+   "inMs": 350,
+   "recMs": 500,
+   "bodyChannels": 4
+  },
+  "Calmness": {
+   "writes": {
+    "P_Eye_HalfBlink_L": 0.1,
+    "P_Eye_HalfBlink_R": 0.1,
+    "P_Body_ShoulderRoll_L": -0.1,
+    "P_Body_ShoulderRoll_R": -0.1,
+    "P_Body_ChestExpand": 0.2,
+    "P_Mouth_Smile": 0.05
+   },
+   "breath": [
+    0.8,
+    1.2
+   ],
+   "arousal": 0.15,
+   "inMs": 600,
+   "recMs": 700,
+   "bodyChannels": 3
+  },
+  "Excitement": {
+   "writes": {
+    "P_Eye_Wide_L": 0.4,
+    "P_Eye_Wide_R": 0.4,
+    "P_Brow_Height_L": 0.5,
+    "P_Brow_Height_R": 0.5,
+    "P_Mouth_Smile": 0.6,
+    "P_Jaw_Rotation": 0.2,
+    "P_Body_ChestExpand": 0.3,
+    "P_Body_ShoulderElev_L": 0.2,
+    "P_Body_ShoulderElev_R": 0.2,
+    "P_Head_RotX": -3
+   },
+   "breath": [
+    1.4,
+    0.8
+   ],
+   "arousal": 0.9,
+   "inMs": 200,
+   "recMs": 450,
+   "bodyChannels": 3
+  },
+  "Surprise": {
+   "writes": {
+    "P_Eye_Wide_L": 0.9,
+    "P_Eye_Wide_R": 0.9,
+    "P_Brow_Height_L": 0.8,
+    "P_Brow_Height_R": 0.8,
+    "P_Mouth_Surprised": 0.7,
+    "P_Head_Back": 0.2,
+    "P_Body_ChestExpand": 0.4,
+    "P_Body_ShoulderElev_L": 0.3,
+    "P_Body_ShoulderElev_R": 0.3
+   },
+   "breath": [
+    1.5,
+    1.2
+   ],
+   "arousal": 0.85,
+   "inMs": 120,
+   "recMs": 800,
+   "bodyChannels": 4
+  },
+  "Embarrassment": {
+   "writes": {
+    "P_Eye_LookY": -0.4,
+    "P_Eye_HalfBlink_L": 0.3,
+    "P_Eye_HalfBlink_R": 0.3,
+    "P_Brow_Height_L": 0.2,
+    "P_Brow_Height_R": 0.2,
+    "P_Mouth_Smile": 0.2,
+    "P_Cheek_Puff_L": 0.4,
+    "P_Cheek_Puff_R": 0.4,
+    "P_Head_Tilt": 0.2,
+    "P_Body_ShoulderElev_L": 0.15,
+    "P_Body_ShoulderElev_R": 0.15
+   },
+   "breath": [
+    1.1,
+    0.8
+   ],
+   "arousal": 0.5,
+   "inMs": 300,
+   "recMs": 700,
+   "bodyChannels": 3
+  },
+  "Confusion": {
+   "writes": {
+    "P_Brow_Height_L": 0.4,
+    "P_Brow_Height_R": -0.2,
+    "P_Eye_LookX": 0.2,
+    "P_Mouth_LipCorners": -0.05,
+    "P_Head_Tilt": 0.3,
+    "P_Hand_Form_R": 0.3,
+    "P_Body_ShoulderElev_L": 0.1,
+    "P_Body_ShoulderElev_R": 0.1
+   },
+   "breath": [
+    1.0,
+    1.0
+   ],
+   "arousal": 0.4,
+   "inMs": 300,
+   "recMs": 400,
+   "bodyChannels": 4
+  },
+  "Determination": {
+   "writes": {
+    "P_Eye_Focus": 0.8,
+    "P_Brow_Height_L": -0.3,
+    "P_Brow_Height_R": -0.3,
+    "P_Body_Posture": 0.7,
+    "P_Body_ChestExpand": 0.3,
+    "P_Head_Forward": 0.2,
+    "P_Hand_Form_L": 0.6,
+    "P_Hand_Form_R": 0.6
+   },
+   "breath": [
+    0.9,
+    1.2
+   ],
+   "arousal": 0.55,
+   "inMs": 300,
+   "recMs": 500,
+   "bodyChannels": 5
+  },
+  "Pride": {
+   "writes": {
+    "P_Eye_HalfBlink_L": 0.1,
+    "P_Eye_HalfBlink_R": 0.1,
+    "P_Brow_Height_L": 0.2,
+    "P_Brow_Height_R": 0.2,
+    "P_Mouth_Smile": 0.3,
+    "P_Body_ChestExpand": 0.5,
+    "P_Body_Posture": 1.0,
+    "P_Body_ShoulderRoll_L": -0.3,
+    "P_Body_ShoulderRoll_R": -0.3,
+    "P_Head_RotX": -2
+   },
+   "breath": [
+    0.85,
+    1.2
+   ],
+   "arousal": 0.4,
+   "inMs": 350,
+   "recMs": 550,
+   "bodyChannels": 4
+  },
+  "Concern": {
+   "writes": {
+    "P_Eye_Wide_L": 0.2,
+    "P_Eye_Wide_R": 0.2,
+    "P_Brow_Height_L": 0.3,
+    "P_Brow_Height_R": 0.3,
+    "P_Mouth_LipCorners": -0.15,
+    "P_Head_Forward": 0.2,
+    "P_Head_Tilt": 0.2,
+    "P_Body_ShoulderElev_L": 0.1,
+    "P_Body_ShoulderElev_R": 0.1,
+    "P_Hand_Form_R": 0.3
+   },
+   "breath": [
+    1.1,
+    0.85
+   ],
+   "arousal": 0.45,
+   "inMs": 300,
+   "recMs": 550,
+   "bodyChannels": 5
+  },
+  "Disappointment": {
+   "writes": {
+    "P_Eye_HalfBlink_L": 0.2,
+    "P_Eye_HalfBlink_R": 0.2,
+    "P_Brow_Height_L": 0.2,
+    "P_Brow_Height_R": 0.2,
+    "P_Mouth_Sad": 0.3,
+    "P_Head_RotX": 4,
+    "P_Body_ChestCompress": 0.2,
+    "P_Body_ShoulderElev_L": -0.2,
+    "P_Body_ShoulderElev_R": -0.2,
+    "P_Body_SpineCurve": -0.2
+   },
+   "breath": [
+    0.85,
+    1.1
+   ],
+   "arousal": 0.25,
+   "inMs": 500,
+   "recMs": 700,
+   "bodyChannels": 4
+  },
+  "Fear": {
+   "writes": {
+    "P_Eye_Wide_L": 0.8,
+    "P_Eye_Wide_R": 0.8,
+    "P_Eye_PupilScale_L": 0.1,
+    "P_Eye_PupilScale_R": 0.1,
+    "P_Brow_Height_L": 0.6,
+    "P_Brow_Height_R": 0.6,
+    "P_Jaw_Rotation": 0.2,
+    "P_Head_Back": 0.2,
+    "P_Body_ShoulderElev_L": 0.4,
+    "P_Body_ShoulderElev_R": 0.4,
+    "P_Hand_Form_L": 0.3,
+    "P_Hand_Form_R": 0.3
+   },
+   "breath": [
+    1.6,
+    0.7
+   ],
+   "arousal": 0.95,
+   "inMs": 150,
+   "recMs": 900,
+   "bodyChannels": 5
+  },
+  "Thinking": {
+   "writes": {
+    "P_Eye_LookX": 0.5,
+    "P_Eye_LookY": 0.5,
+    "P_Brow_Height_L": 0.3,
+    "P_Mouth_LipCorners": 0.05,
+    "P_Head_Tilt": 0.2,
+    "P_Hand_Form_R": 0.4,
+    "P_Body_ShoulderRoll_L": -0.05,
+    "P_Body_ShoulderRoll_R": -0.05
+   },
+   "breath": [
+    0.9,
+    1.0
+   ],
+   "arousal": 0.3,
+   "inMs": 300,
+   "recMs": 400,
+   "bodyChannels": 4
+  },
+  "Interest": {
+   "writes": {
+    "P_Eye_Wide_L": 0.2,
+    "P_Eye_Wide_R": 0.2,
+    "P_Brow_Height_L": 0.3,
+    "P_Brow_Height_R": 0.3,
+    "P_Mouth_Smile": 0.2,
+    "P_Head_Forward": 0.15,
+    "P_Body_ChestExpand": 0.15,
+    "P_Body_ShoulderRoll_L": -0.1,
+    "P_Body_ShoulderRoll_R": -0.1,
+    "P_Eye_LookX": 0.2
+   },
+   "breath": [
+    1.05,
+    1.0
+   ],
+   "arousal": 0.5,
+   "inMs": 250,
+   "recMs": 400,
+   "bodyChannels": 4
+  },
+  "Playfulness": {
+   "writes": {
+    "P_Eye_Wide_L": 0.3,
+    "P_Brow_Height_L": 0.3,
+    "P_Brow_Height_R": 0.1,
+    "P_Mouth_LipCorners": 0.4,
+    "P_Head_Tilt": 0.3,
+    "P_Body_ShoulderElev_L": 0.1,
+    "P_Hand_Form_R": 0.2
+   },
+   "breath": [
+    1.1,
+    0.9
+   ],
+   "arousal": 0.6,
+   "inMs": 220,
+   "recMs": 300,
+   "bodyChannels": 3
+  },
+  "Professional": {
+   "writes": {
+    "P_Eye_Focus": 0.5,
+    "P_Mouth_Smile": 0.2,
+    "P_Body_Posture": 0.8,
+    "P_Body_ChestExpand": 0.2,
+    "P_Body_ShoulderRoll_L": -0.15,
+    "P_Body_ShoulderRoll_R": -0.15
+   },
+   "breath": [
+    1.0,
+    1.0
+   ],
+   "arousal": 0.35,
+   "inMs": 300,
+   "recMs": 450,
+   "bodyChannels": 4
+  },
+  "Relaxed": {
+   "writes": {
+    "P_Eye_HalfBlink_L": 0.2,
+    "P_Eye_HalfBlink_R": 0.2,
+    "P_Mouth_Smile": 0.1,
+    "P_Head_Back": 0.15,
+    "P_Body_ShoulderElev_L": -0.2,
+    "P_Body_ShoulderElev_R": -0.2,
+    "P_Body_ChestExpand": 0.1
+   },
+   "breath": [
+    0.8,
+    1.2
+   ],
+   "arousal": 0.15,
+   "inMs": 600,
+   "recMs": 700,
+   "bodyChannels": 4
+  },
+  "Agreement": {
+   "writes": {
+    "P_Mouth_Smile": 0.3,
+    "P_Brow_Height_L": 0.2,
+    "P_Brow_Height_R": 0.2,
+    "P_Head_RotX": 3,
+    "P_Body_Posture": 0.3,
+    "P_Body_ShoulderRoll_L": -0.1,
+    "P_Body_ShoulderRoll_R": -0.1
+   },
+   "breath": [
+    1.0,
+    1.0
+   ],
+   "arousal": 0.4,
+   "inMs": 250,
+   "recMs": 350,
+   "bodyChannels": 3
+  }
+ },
+ "microExpressions": [
+  {
+   "name": "micro_smile",
+   "param": "P_Mouth_Smile",
+   "amp": 0.1,
+   "durMs": 300,
+   "cooldownMs": 4000,
+   "trigger": "positive_lull"
+  },
+  {
+   "name": "micro_frown",
+   "param": "P_Mouth_LipCorners",
+   "amp": -0.1,
+   "durMs": 250,
+   "cooldownMs": 4000,
+   "trigger": "concentration"
+  },
+  {
+   "name": "brow_raise",
+   "param": "P_Brow_Height_L",
+   "amp": 0.15,
+   "durMs": 200,
+   "cooldownMs": 3000,
+   "trigger": "new_info"
+  },
+  {
+   "name": "eye_narrow",
+   "param": "P_Eye_Squint_L",
+   "amp": 0.2,
+   "durMs": 400,
+   "cooldownMs": 5000,
+   "trigger": "scrutiny"
+  },
+  {
+   "name": "lip_compress",
+   "param": "P_Mouth_LipCorners",
+   "amp": -0.08,
+   "durMs": 200,
+   "cooldownMs": 3500,
+   "trigger": "hesitation"
+  },
+  {
+   "name": "eye_moisture",
+   "param": "P_Eye_Moisture",
+   "amp": 0.1,
+   "durMs": 600,
+   "cooldownMs": 8000,
+   "trigger": "emotional_peak"
+  },
+  {
+   "name": "micro_saccade",
+   "param": "P_Eye_Saccade",
+   "amp": 0.05,
+   "durMs": 120,
+   "cooldownMs": 900,
+   "trigger": "always"
+  }
+ ],
+ "conversationBehaviors": {
+  "Listening": {
+   "writes": {
+    "P_Eye_Focus": 0.4,
+    "P_Head_Forward": 0.1,
+    "P_Brow_Height_L": 0.1,
+    "P_Brow_Height_R": 0.1
+   },
+   "gaze": "viewer",
+   "idle": "nods"
+  },
+  "Thinking": {
+   "writes": {
+    "P_Eye_LookX": 0.5,
+    "P_Eye_LookY": 0.4,
+    "P_Brow_Height_L": 0.3,
+    "P_Head_Tilt": 0.2,
+    "P_Hand_Form_R": 0.4
+   },
+   "gaze": "up_side",
+   "idle": "slow_blink"
+  },
+  "Responding": {
+   "writes": {
+    "P_Eye_Focus": 0.5,
+    "P_Body_Posture": 0.4
+   },
+   "gaze": "viewer",
+   "idle": "speech_breath"
+  },
+  "Agreeing": {
+   "writes": {
+    "P_Mouth_Smile": 0.3,
+    "P_Brow_Height_L": 0.2,
+    "P_Brow_Height_R": 0.2,
+    "P_Head_RotX": 3
+   },
+   "gaze": "viewer",
+   "idle": "nod"
+  },
+  "Disagreeing": {
+   "writes": {
+    "P_Brow_Height_L": -0.2,
+    "P_Brow_Height_R": -0.2,
+    "P_Mouth_LipCorners": -0.1,
+    "P_Head_RotY": 4
+   },
+   "gaze": "break_return",
+   "idle": "head_shake"
+  },
+  "Explaining": {
+   "writes": {
+    "P_Mouth_Smile": 0.2,
+    "P_Brow_Height_L": 0.3,
+    "P_Body_ChestExpand": 0.3,
+    "P_Arm_Raise_R": 0.2
+   },
+   "gaze": "viewer_glance",
+   "idle": "gesture_beats"
+  },
+  "Waiting": {
+   "writes": {
+    "P_Eye_HalfBlink_L": 0.1,
+    "P_Eye_HalfBlink_R": 0.1
+   },
+   "gaze": "scan",
+   "idle": "full_idle"
+  },
+  "Greeting": {
+   "writes": {
+    "P_Mouth_Smile": 0.5,
+    "P_Brow_Height_L": 0.3,
+    "P_Brow_Height_R": 0.3,
+    "P_Arm_Raise_R": 0.4
+   },
+   "gaze": "viewer",
+   "idle": "upbeat"
+  },
+  "Farewell": {
+   "writes": {
+    "P_Mouth_Smile": 0.4,
+    "P_Head_Back": 0.1,
+    "P_Arm_Raise_R": 0.3
+   },
+   "gaze": "viewer_soften",
+   "idle": "settle"
+  }
+ },
+ "gaze": {
+  "eyeLeadMs": 100,
+  "headFollow": 0.45,
+  "rule": "eyes lead, head partial-follows"
+ },
+ "transitions": {
+  "easing": "cosine",
+  "asymmetric": "recovery slower than onset",
+  "neutralRouting": [
+   "Joy->Fear",
+   "Disappointment->Excitement",
+   "Excitement->Disappointment",
+   "Surprise->Calmness",
+   "Anger->Joy",
+   "Fear->Joy"
+  ],
+  "maxPerFrameDelta": 0.06
+ },
+ "expressionProfiles": {
+  "FriendlyGreeting": [
+   "Joy 0.5",
+   "Greeting",
+   "eye-contact",
+   "wave",
+   "upbeat breath"
+  ],
+  "FocusedWork": [
+   "Focus",
+   "Determination 0.3",
+   "gaze task",
+   "forward posture",
+   "slow breath"
+  ],
+  "Presentation": [
+   "Confidence",
+   "Professional",
+   "viewer contact",
+   "open chest",
+   "explain gestures",
+   "calm-deep breath"
+  ],
+  "Celebrating": [
+   "Excitement",
+   "Joy",
+   "wide gaze",
+   "arms up",
+   "high hair energy",
+   "quick breath"
+  ],
+  "Reflective": [
+   "Calmness",
+   "Concern 0.2",
+   "downcast-up gaze",
+   "relaxed slump",
+   "slow breath"
+  ]
+ },
+ "aiPlanner": {
+  "ExplainProject": {
+   "emotion": "Confidence",
+   "conversation": "Explaining",
+   "attention": "viewer",
+   "body": {
+    "P_Body_ChestExpand": 0.4,
+    "P_Body_Posture": 0.8
+   },
+   "smile": 0.2,
+   "breath": [
+    0.9,
+    1.1
+   ],
+   "gesture": "explaining"
+  },
+  "GreetUser": {
+   "emotion": "Joy",
+   "conversation": "Greeting",
+   "attention": "viewer",
+   "body": {
+    "P_Body_ChestExpand": 0.3
+   },
+   "smile": 0.5,
+   "breath": [
+    1.1,
+    0.9
+   ],
+   "gesture": "wave"
+  },
+  "Think": {
+   "emotion": "Thinking",
+   "conversation": "Thinking",
+   "attention": "up_side",
+   "body": {},
+   "smile": 0.05,
+   "breath": [
+    0.9,
+    1.0
+   ],
+   "gesture": "hand_chin"
+  },
+  "Celebrate": {
+   "emotion": "Excitement",
+   "conversation": "Responding",
+   "attention": "viewer",
+   "body": {
+    "P_Body_ChestExpand": 0.4
+   },
+   "smile": 0.9,
+   "breath": [
+    1.4,
+    0.8
+   ],
+   "gesture": "arms_up"
+  }
+ },
+ "physicsBudget": "emotion.arousal -> Phase-6 amplitude budget (clamp wins)"
+}

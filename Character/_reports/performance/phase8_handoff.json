@@ -1,0 +1,37 @@
+{
+ "surface": "parameter-only (Phase-5 L2/L3 + physics budget Phase-6)",
+ "dhpf": [
+  "art(P1)",
+  "mesh(P3)",
+  "rig(P4)",
+  "params(P5)",
+  "physics(P6)",
+  "performance(P7)",
+  "AI-intent"
+ ],
+ "runtimeNeeds": [
+  "integration target/SDK",
+  "input mapping (mouse/mic->viseme/AI)",
+  "perf tier wiring",
+  "demo scenarios (greet/explain/think/celebrate)",
+  "portfolio breakdown reels"
+ ],
+ "demoScenarios": [
+  "Neutral",
+  "Joy",
+  "Confidence",
+  "Surprise",
+  "Thinking",
+  "Excitement"
+ ],
+ "openDecisions": [
+  "A1 right plate",
+  "A2 height"
+ ],
+ "optionalEnhancements": [
+  "stylized pupil dilation",
+  "accessories (necklace/scarf)",
+  "storm-wind",
+  "jump/locomotion"
+ ]
+}
