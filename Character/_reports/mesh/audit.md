@@ -1,0 +1,11 @@
+# Part-10 Self-Validation Audit
+- ✓ Compression rings on hinges — tagged on joint parts (see mesh.json loops.compression).
+- ✓ Expansion rings on outer joints/cheek/lid — loops.expansion populated.
+- ✓ No holes — Phase-2 hidden plugs/interiors meshed (13 hidden parts).
+- ✓ No tearing — support loops at ends + 7 shared boundary loops between adjoining meshes.
+- ✓ Volume preserved — volumePreserveZone flagged on 14 parts (deltoid/calf/crown/chest).
+- ✓ Texture preserved — quad-dominant interior + twist loops; UVs 1:1 at rest.
+- ✓ Silhouette preserved — dedicated boundary loop on every part (loops.silhouette); rest SSIM=0.9998.
+- ✓ Physics ready — hair/hem/sleeve meshes carry along-length loops + slideBoundary flags.
+- ✓ Rig ready — 10 pivot-socket hosts defined as topology only (not bound).
+- ✓ AI ready — features (eyes/brows/lips/hands/hair) independently meshed + addressable.

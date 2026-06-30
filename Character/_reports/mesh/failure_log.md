@@ -1,0 +1,12 @@
+# Failure-Analysis Log (Part 9)
+
+Each joint driven through its design range with the arc-bend integrity probe; the clamp is the first angle that inverts a triangle, collapses volume <82%, or stretches texels >45%.
+
+- **CHR_ARM_SLEEVE_Upper_R** (SLEEVE_Upper, range 130°) → **clamp 15°**, break mode = _inversion_ (inv 3, vol 100.5%, stretch 10.3%). Fix: compression rings (inner) + expansion rings (outer) at the crease. Alt: second deformer splitting the bend across two stacked warps.
+- **CHR_MID_NECK_Hidden_Column_hidden** (NECK, range 30°) → **clamp 20°**, break mode = _inversion_ (inv 1, vol 99.2%, stretch 14.4%). Fix: compression rings (inner) + expansion rings (outer) at the crease. Alt: second deformer splitting the bend across two stacked warps.
+- **CHR_HEAD_FACE_Cheek_R_hi** (FACE_Cheek, range 30°) → **clamp 20°**, break mode = _inversion_ (inv 1, vol 97.7%, stretch 8.0%). Fix: compression rings (inner) + expansion rings (outer) at the crease. Alt: second deformer splitting the bend across two stacked warps.
+- **CHR_LEG_LEG_Upper_L** (LEG_Upper, range 90°) → **clamp 30°**, break mode = _inversion_ (inv 1, vol 98.2%, stretch 20.6%). Fix: compression rings (inner) + expansion rings (outer) at the crease. Alt: second deformer splitting the bend across two stacked warps.
+- **CHR_MID_NECK_Skin** (NECK, range 30°) → **clamp 30°**, break mode = _stretch_ (inv 0, vol 97.0%, stretch 19.8%). Fix: outer expansion rings + texel-preserving spacing. Alt: promote the far-arm/far-leg alt layer at the limit angle.
+- **CHR_HEAD_FACE_Cheek_R** (FACE_Cheek, range 30°) → **clamp 30°**, break mode = _stretch_ (inv 0, vol 95.6%, stretch 21.3%). Fix: outer expansion rings + texel-preserving spacing. Alt: promote the far-arm/far-leg alt layer at the limit angle.
+- **CHR_HEAD_FACE_Cheek_L** (FACE_Cheek, range 30°) → **clamp 30°**, break mode = _inversion_ (inv 1, vol 95.9%, stretch 21.0%). Fix: compression rings (inner) + expansion rings (outer) at the crease. Alt: second deformer splitting the bend across two stacked warps.
+- **CHR_ARM_FOREARM_L** (FOREARM, range 90°) → **clamp 30°**, break mode = _inversion_ (inv 1, vol 98.4%, stretch 21.0%). Fix: compression rings (inner) + expansion rings (outer) at the crease. Alt: second deformer splitting the bend across two stacked warps.
