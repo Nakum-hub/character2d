@@ -1,0 +1,2202 @@
+{
+ "meta": {
+  "surface": 173,
+  "firewall": "Phase-5 only (asserted)",
+  "fixedTimestep": 0.008333333333333333,
+  "identityLock": {
+   "SSIM": 0.9996,
+   "interiorResidual": 42,
+   "verdict": "PASS"
+  }
+ },
+ "master": {
+  "clock": "fixed-timestep accumulator (shares Phase-6)",
+  "globalWeight": 1.0,
+  "accessibilityGovernor": {
+   "reducedMotion": {
+    "amplitudeCap": 0.5,
+    "easingLonger": true,
+    "overshootOff": true,
+    "idleDriftReduced": true
+   },
+   "timeScale": "Master clock global (physics timestep compensated)",
+   "idleIntensity": [
+    0.0,
+    1.0
+   ],
+   "keyboardOnly": true,
+   "mobile": {
+    "autoTier": "Phase-6 T3 off",
+    "touchReplacesHover": true,
+    "fewerLayers": true
+   },
+   "governedBy": "Master layer (veto amplitude)"
+  }
+ },
+ "stateMachine": {
+  "Spawn": {
+   "entry": "load complete",
+   "exits": [
+    "Idle"
+   ],
+   "interrupt": "non-interruptible",
+   "blendMs": 400,
+   "priority": "low",
+   "physics": "settle from neutral",
+   "traceability": {
+    "intent": "state Spawn",
+    "emotionalContext": "per profile",
+    "trigger": "load complete",
+    "entryState": "load complete",
+    "exitState": "Idle",
+    "layerParticipation": [
+     "Body",
+     "Head",
+     "Face",
+     "Eye",
+     "Mouth",
+     "Physics"
+    ],
+    "parameters": [],
+    "physics": "settle from neutral",
+    "blend": "400ms eased; priority low",
+    "failureModes": "pop->pose match; interrupt->eased blend",
+    "validation": "Identity-Lock at neutral; clamp-safe"
+   }
+  },
+  "Idle": {
+   "entry": "any state end",
+   "exits": [
+    "any"
+   ],
+   "interrupt": "full",
+   "blendMs": 300,
+   "priority": "idle",
+   "physics": "full idle engine",
+   "traceability": {
+    "intent": "state Idle",
+    "emotionalContext": "per profile",
+    "trigger": "any state end",
+    "entryState": "any state end",
+    "exitState": "any",
+    "layerParticipation": [
+     "Body",
+     "Head",
+     "Face",
+     "Eye",
+     "Mouth",
+     "Physics"
+    ],
+    "parameters": [],
+    "physics": "full idle engine",
+    "blend": "300ms eased; priority idle",
+    "failureModes": "pop->pose match; interrupt->eased blend",
+    "validation": "Identity-Lock at neutral; clamp-safe"
+   }
+  },
+  "Greeting": {
+   "entry": "user arrives/focus",
+   "exits": [
+    "Conversation",
+    "Idle"
+   ],
+   "interrupt": "after peak",
+   "blendMs": 250,
+   "priority": "med",
+   "physics": "sleeve/hair follow",
+   "traceability": {
+    "intent": "state Greeting",
+    "emotionalContext": "per profile",
+    "trigger": "user arrives/focus",
+    "entryState": "user arrives/focus",
+    "exitState": "Conversation,Idle",
+    "layerParticipation": [
+     "Body",
+     "Head",
+     "Face",
+     "Eye",
+     "Mouth",
+     "Physics"
+    ],
+    "parameters": [
+     "P_Arm_Raise_R",
+     "P_Body_ChestExpand",
+     "P_Body_ShoulderRoll_L",
+     "P_Body_ShoulderRoll_R",
+     "P_Brow_Height_L",
+     "P_Brow_Height_R",
+     "P_Eye_Moisture",
+     "P_Eye_Squint_L",
+     "P_Eye_Squint_R",
+     "P_Hand_Form_L",
+     "P_Hand_Form_R",
+     "P_Head_Tilt",
+     "P_Mouth_Smile"
+    ],
+    "physics": "sleeve/hair follow",
+    "blend": "250ms eased; priority med",
+    "failureModes": "pop->pose match; interrupt->eased blend",
+    "validation": "Identity-Lock at neutral; clamp-safe"
+   }
+  },
+  "Conversation": {
+   "entry": "dialogue begins",
+   "exits": [
+    "Listening",
+    "Thinking",
+    "Presenting",
+    "Idle"
+   ],
+   "interrupt": "full",
+   "blendMs": 300,
+   "priority": "med",
+   "physics": "breathing modulated",
+   "traceability": {
+    "intent": "state Conversation",
+    "emotionalContext": "per profile",
+    "trigger": "dialogue begins",
+    "entryState": "dialogue begins",
+    "exitState": "Listening,Thinking,Presenting,Idle",
+    "layerParticipation": [
+     "Body",
+     "Head",
+     "Face",
+     "Eye",
+     "Mouth",
+     "Physics"
+    ],
+    "parameters": [
+     "P_Body_Posture",
+     "P_Eye_Focus"
+    ],
+    "physics": "breathing modulated",
+    "blend": "300ms eased; priority med",
+    "failureModes": "pop->pose match; interrupt->eased blend",
+    "validation": "Identity-Lock at neutral; clamp-safe"
+   }
+  },
+  "Listening": {
+   "entry": "user speaking",
+   "exits": [
+    "Responding",
+    "Thinking"
+   ],
+   "interrupt": "full",
+   "blendMs": 250,
+   "priority": "med",
+   "physics": "settled, nods",
+   "traceability": {
+    "intent": "state Listening",
+    "emotionalContext": "per profile",
+    "trigger": "user speaking",
+    "entryState": "user speaking",
+    "exitState": "Responding,Thinking",
+    "layerParticipation": [
+     "Body",
+     "Head",
+     "Face",
+     "Eye",
+     "Mouth",
+     "Physics"
+    ],
+    "parameters": [
+     "P_Brow_Height_L",
+     "P_Brow_Height_R",
+     "P_Eye_Focus",
+     "P_Head_Forward"
+    ],
+    "physics": "settled, nods",
+    "blend": "250ms eased; priority med",
+    "failureModes": "pop->pose match; interrupt->eased blend",
+    "validation": "Identity-Lock at neutral; clamp-safe"
+   }
+  },
+  "Thinking": {
+   "entry": "query/processing",
+   "exits": [
+    "Explaining",
+    "Responding"
+   ],
+   "interrupt": "full",
+   "blendMs": 300,
+   "priority": "med",
+   "physics": "low",
+   "traceability": {
+    "intent": "state Thinking",
+    "emotionalContext": "per profile",
+    "trigger": "query/processing",
+    "entryState": "query/processing",
+    "exitState": "Explaining,Responding",
+    "layerParticipation": [
+     "Body",
+     "Head",
+     "Face",
+     "Eye",
+     "Mouth",
+     "Physics"
+    ],
+    "parameters": [
+     "P_Body_ShoulderRoll_L",
+     "P_Body_ShoulderRoll_R",
+     "P_Brow_Height_L",
+     "P_Eye_LookX",
+     "P_Eye_LookY",
+     "P_Hand_Form_R",
+     "P_Head_Tilt",
+     "P_Mouth_LipCorners"
+    ],
+    "physics": "low",
+    "blend": "300ms eased; priority med",
+    "failureModes": "pop->pose match; interrupt->eased blend",
+    "validation": "Identity-Lock at neutral; clamp-safe"
+   }
+  },
+  "Presenting": {
+   "entry": "portfolio mode",
+   "exits": [
+    "section",
+    "Idle"
+   ],
+   "interrupt": "between sections",
+   "blendMs": 350,
+   "priority": "med-high",
+   "physics": "gesture beats",
+   "traceability": {
+    "intent": "state Presenting",
+    "emotionalContext": "per profile",
+    "trigger": "portfolio mode",
+    "entryState": "portfolio mode",
+    "exitState": "section,Idle",
+    "layerParticipation": [
+     "Body",
+     "Head",
+     "Face",
+     "Eye",
+     "Mouth",
+     "Physics"
+    ],
+    "parameters": [
+     "P_Arm_Raise_R",
+     "P_Body_ChestExpand",
+     "P_Body_Posture",
+     "P_Body_ShoulderRoll_L",
+     "P_Body_ShoulderRoll_R",
+     "P_Brow_Height_L",
+     "P_Brow_Height_R",
+     "P_Eye_Focus",
+     "P_Mouth_Smile"
+    ],
+    "physics": "gesture beats",
+    "blend": "350ms eased; priority med-high",
+    "failureModes": "pop->pose match; interrupt->eased blend",
+    "validation": "Identity-Lock at neutral; clamp-safe"
+   }
+  },
+  "Gesture": {
+   "entry": "gesture intent",
+   "exits": [
+    "prior"
+   ],
+   "interrupt": "high overlay",
+   "blendMs": 200,
+   "priority": "high",
+   "physics": "follow-through",
+   "transient": true,
+   "traceability": {
+    "intent": "state Gesture",
+    "emotionalContext": "per profile",
+    "trigger": "gesture intent",
+    "entryState": "gesture intent",
+    "exitState": "prior",
+    "layerParticipation": [
+     "Body",
+     "Head",
+     "Face",
+     "Eye",
+     "Mouth",
+     "Physics"
+    ],
+    "parameters": [],
+    "physics": "follow-through",
+    "blend": "200ms eased; priority high",
+    "failureModes": "pop->pose match; interrupt->eased blend",
+    "validation": "Identity-Lock at neutral; clamp-safe"
+   }
+  },
+  "Navigation": {
+   "entry": "section/page change",
+   "exits": [
+    "target"
+   ],
+   "interrupt": "full",
+   "blendMs": 300,
+   "priority": "med",
+   "physics": "head/eye lead, pose match",
+   "traceability": {
+    "intent": "state Navigation",
+    "emotionalContext": "per profile",
+    "trigger": "section/page change",
+    "entryState": "section/page change",
+    "exitState": "target",
+    "layerParticipation": [
+     "Body",
+     "Head",
+     "Face",
+     "Eye",
+     "Mouth",
+     "Physics"
+    ],
+    "parameters": [],
+    "physics": "head/eye lead, pose match",
+    "blend": "300ms eased; priority med",
+    "failureModes": "pop->pose match; interrupt->eased blend",
+    "validation": "Identity-Lock at neutral; clamp-safe"
+   }
+  },
+  "InteractiveMode": {
+   "entry": "hover/click",
+   "exits": [
+    "Idle",
+    "Conversation"
+   ],
+   "interrupt": "full",
+   "blendMs": 200,
+   "priority": "med-high",
+   "physics": "mouse-track dominant",
+   "traceability": {
+    "intent": "state InteractiveMode",
+    "emotionalContext": "per profile",
+    "trigger": "hover/click",
+    "entryState": "hover/click",
+    "exitState": "Idle,Conversation",
+    "layerParticipation": [
+     "Body",
+     "Head",
+     "Face",
+     "Eye",
+     "Mouth",
+     "Physics"
+    ],
+    "parameters": [],
+    "physics": "mouse-track dominant",
+    "blend": "200ms eased; priority med-high",
+    "failureModes": "pop->pose match; interrupt->eased blend",
+    "validation": "Identity-Lock at neutral; clamp-safe"
+   }
+  },
+  "Closing": {
+   "entry": "session ending",
+   "exits": [
+    "Sleep"
+   ],
+   "interrupt": "low",
+   "blendMs": 400,
+   "priority": "low",
+   "physics": "farewell wave",
+   "traceability": {
+    "intent": "state Closing",
+    "emotionalContext": "per profile",
+    "trigger": "session ending",
+    "entryState": "session ending",
+    "exitState": "Sleep",
+    "layerParticipation": [
+     "Body",
+     "Head",
+     "Face",
+     "Eye",
+     "Mouth",
+     "Physics"
+    ],
+    "parameters": [
+     "P_Body_ChestExpand",
+     "P_Body_ShoulderRoll_L",
+     "P_Body_ShoulderRoll_R",
+     "P_Brow_Height_L",
+     "P_Brow_Height_R",
+     "P_Eye_Moisture",
+     "P_Eye_Squint_L",
+     "P_Eye_Squint_R",
+     "P_Hand_Form_L",
+     "P_Hand_Form_R",
+     "P_Head_Tilt",
+     "P_Mouth_Smile"
+    ],
+    "physics": "farewell wave",
+    "blend": "400ms eased; priority low",
+    "failureModes": "pop->pose match; interrupt->eased blend",
+    "validation": "Identity-Lock at neutral; clamp-safe"
+   }
+  },
+  "Sleep": {
+   "entry": "inactivity/Closing",
+   "exits": [
+    "Idle"
+   ],
+   "interrupt": "wake on input",
+   "blendMs": 600,
+   "priority": "idle",
+   "physics": "minimal breathing",
+   "traceability": {
+    "intent": "state Sleep",
+    "emotionalContext": "per profile",
+    "trigger": "inactivity/Closing",
+    "entryState": "inactivity/Closing",
+    "exitState": "Idle",
+    "layerParticipation": [
+     "Body",
+     "Head",
+     "Face",
+     "Eye",
+     "Mouth",
+     "Physics"
+    ],
+    "parameters": [
+     "P_Body_ChestExpand",
+     "P_Body_ShoulderElev_L",
+     "P_Body_ShoulderElev_R",
+     "P_Eye_HalfBlink_L",
+     "P_Eye_HalfBlink_R",
+     "P_Head_Back",
+     "P_Mouth_Smile"
+    ],
+    "physics": "minimal breathing",
+    "blend": "600ms eased; priority idle",
+    "failureModes": "pop->pose match; interrupt->eased blend",
+    "validation": "Identity-Lock at neutral; clamp-safe"
+   }
+  }
+ },
+ "layers": [
+  {
+   "name": "Master",
+   "priority": 99,
+   "purpose": "global gain + accessibility cap"
+  },
+  {
+   "name": "AI",
+   "priority": 8,
+   "purpose": "intent targets"
+  },
+  {
+   "name": "Procedural",
+   "priority": 7,
+   "purpose": "gaze/breath/follow (exclusive while active)"
+  },
+  {
+   "name": "Gesture",
+   "priority": 6,
+   "purpose": "transient gesture overlay"
+  },
+  {
+   "name": "Eye",
+   "priority": 5,
+   "purpose": "gaze/blink/saccade"
+  },
+  {
+   "name": "Mouth",
+   "priority": 5,
+   "purpose": "speech+emotion"
+  },
+  {
+   "name": "Face",
+   "priority": 4,
+   "purpose": "brows/cheeks/tension"
+  },
+  {
+   "name": "Head",
+   "priority": 3,
+   "purpose": "head rot/tilt"
+  },
+  {
+   "name": "Body",
+   "priority": 2,
+   "purpose": "posture/torso"
+  },
+  {
+   "name": "Hair",
+   "priority": 1,
+   "purpose": "manual offsets"
+  },
+  {
+   "name": "Clothing",
+   "priority": 1,
+   "purpose": "manual cloth"
+  },
+  {
+   "name": "Accessory",
+   "priority": 1,
+   "purpose": "watch/belt"
+  },
+  {
+   "name": "Physics",
+   "priority": 0,
+   "purpose": "post follow-through"
+  }
+ ],
+ "arbitration": "per-param highest-priority active writer wins; ties weighted-avg; correctives last (Phase-5)",
+ "gestureLibrary": {
+  "Wave": {
+   "durationMs": 1800,
+   "interruptibleAfterMs": 900,
+   "curves": {
+    "P_Body_ShoulderElev_R": [
+     [
+      0,
+      0
+     ],
+     [
+      0.12,
+      -0.15
+     ],
+     [
+      0.3,
+      0.2
+     ],
+     [
+      1.4,
+      0.12
+     ],
+     [
+      1.8,
+      0
+     ]
+    ],
+    "P_Arm_Raise_R": [
+     [
+      0,
+      0
+     ],
+     [
+      0.15,
+      0.02
+     ],
+     [
+      0.45,
+      0.7
+     ],
+     [
+      1.4,
+      0.7
+     ],
+     [
+      1.8,
+      0
+     ]
+    ],
+    "P_Arm_Elbow_R": [
+     [
+      0.45,
+      0.3
+     ],
+     [
+      0.65,
+      0.6
+     ],
+     [
+      0.85,
+      0.3
+     ],
+     [
+      1.05,
+      0.6
+     ],
+     [
+      1.25,
+      0.3
+     ],
+     [
+      1.4,
+      0.4
+     ]
+    ],
+    "P_Mouth_Smile": [
+     [
+      0,
+      0
+     ],
+     [
+      0.4,
+      0.5
+     ],
+     [
+      1.4,
+      0.5
+     ],
+     [
+      1.8,
+      0.2
+     ]
+    ],
+    "P_Head_Tilt": [
+     [
+      0,
+      0
+     ],
+     [
+      0.4,
+      0.2
+     ],
+     [
+      1.4,
+      0.2
+     ],
+     [
+      1.8,
+      0
+     ]
+    ]
+   },
+   "traceability": {
+    "intent": "perform Wave",
+    "emotionalContext": "Joy",
+    "trigger": "gesture intent fired",
+    "entryState": "any",
+    "exitState": "prior state",
+    "layerParticipation": [
+     "Gesture(high transient)",
+     "Physics(follow-through)"
+    ],
+    "parameters": [
+     "P_Arm_Elbow_R",
+     "P_Arm_Raise_R",
+     "P_Body_ShoulderElev_R",
+     "P_Head_Tilt",
+     "P_Mouth_Smile"
+    ],
+    "physics": "follow-through on hair/sleeve",
+    "blend": "additive overlay; interruptible after peak",
+    "failureModes": "repetition->variants+cooldown; pop->anticipation+settle",
+    "validation": "anticipation precedes action; within clamps"
+   }
+  },
+  "Point": {
+   "durationMs": 1200,
+   "interruptibleAfterMs": 400,
+   "curves": {
+    "P_Arm_Raise_R": [
+     [
+      0,
+      0
+     ],
+     [
+      0.1,
+      -0.02
+     ],
+     [
+      0.4,
+      0.6
+     ],
+     [
+      1.0,
+      0.6
+     ],
+     [
+      1.2,
+      0.1
+     ]
+    ],
+    "P_Arm_Elbow_R": [
+     [
+      0,
+      0
+     ],
+     [
+      0.4,
+      0.2
+     ],
+     [
+      1.2,
+      0.2
+     ]
+    ],
+    "P_Head_RotY": [
+     [
+      0,
+      0
+     ],
+     [
+      0.4,
+      8
+     ],
+     [
+      1.2,
+      8
+     ]
+    ],
+    "P_Eye_LookX": [
+     [
+      0,
+      0
+     ],
+     [
+      0.3,
+      0.5
+     ],
+     [
+      1.2,
+      0.5
+     ]
+    ]
+   },
+   "traceability": {
+    "intent": "perform Point",
+    "emotionalContext": "Interest",
+    "trigger": "gesture intent fired",
+    "entryState": "any",
+    "exitState": "prior state",
+    "layerParticipation": [
+     "Gesture(high transient)",
+     "Physics(follow-through)"
+    ],
+    "parameters": [
+     "P_Arm_Elbow_R",
+     "P_Arm_Raise_R",
+     "P_Eye_LookX",
+     "P_Head_RotY"
+    ],
+    "physics": "follow-through on hair/sleeve",
+    "blend": "additive overlay; interruptible after peak",
+    "failureModes": "repetition->variants+cooldown; pop->anticipation+settle",
+    "validation": "anticipation precedes action; within clamps"
+   }
+  },
+  "ThumbsUp": {
+   "durationMs": 1000,
+   "interruptibleAfterMs": 400,
+   "curves": {
+    "P_Arm_Elbow_R": [
+     [
+      0,
+      0
+     ],
+     [
+      0.1,
+      0.2
+     ],
+     [
+      0.4,
+      0.85
+     ],
+     [
+      0.55,
+      0.78
+     ],
+     [
+      1.0,
+      0.8
+     ]
+    ],
+    "P_Arm_Raise_R": [
+     [
+      0,
+      0
+     ],
+     [
+      0.4,
+      0.3
+     ],
+     [
+      1.0,
+      0.3
+     ]
+    ],
+    "P_Mouth_Smile": [
+     [
+      0,
+      0
+     ],
+     [
+      0.4,
+      0.5
+     ],
+     [
+      1.0,
+      0.5
+     ]
+    ]
+   },
+   "traceability": {
+    "intent": "perform ThumbsUp",
+    "emotionalContext": "Joy",
+    "trigger": "gesture intent fired",
+    "entryState": "any",
+    "exitState": "prior state",
+    "layerParticipation": [
+     "Gesture(high transient)",
+     "Physics(follow-through)"
+    ],
+    "parameters": [
+     "P_Arm_Elbow_R",
+     "P_Arm_Raise_R",
+     "P_Mouth_Smile"
+    ],
+    "physics": "follow-through on hair/sleeve",
+    "blend": "additive overlay; interruptible after peak",
+    "failureModes": "repetition->variants+cooldown; pop->anticipation+settle",
+    "validation": "anticipation precedes action; within clamps"
+   }
+  },
+  "Nod": {
+   "durationMs": 600,
+   "interruptibleAfterMs": 0,
+   "curves": {
+    "P_Head_RotX": [
+     [
+      0,
+      0
+     ],
+     [
+      0.2,
+      6
+     ],
+     [
+      0.4,
+      -2
+     ],
+     [
+      0.6,
+      0
+     ]
+    ]
+   },
+   "traceability": {
+    "intent": "perform Nod",
+    "emotionalContext": "Agreement",
+    "trigger": "gesture intent fired",
+    "entryState": "any",
+    "exitState": "prior state",
+    "layerParticipation": [
+     "Gesture(high transient)",
+     "Physics(follow-through)"
+    ],
+    "parameters": [
+     "P_Head_RotX"
+    ],
+    "physics": "follow-through on hair/sleeve",
+    "blend": "additive overlay; interruptible after peak",
+    "failureModes": "repetition->variants+cooldown; pop->anticipation+settle",
+    "validation": "anticipation precedes action; within clamps"
+   }
+  },
+  "HeadShake": {
+   "durationMs": 700,
+   "interruptibleAfterMs": 0,
+   "curves": {
+    "P_Head_RotY": [
+     [
+      0,
+      0
+     ],
+     [
+      0.18,
+      -6
+     ],
+     [
+      0.36,
+      6
+     ],
+     [
+      0.54,
+      -4
+     ],
+     [
+      0.7,
+      0
+     ]
+    ],
+    "P_Brow_Height_L": [
+     [
+      0,
+      0
+     ],
+     [
+      0.3,
+      -0.2
+     ],
+     [
+      0.7,
+      0
+     ]
+    ],
+    "P_Brow_Height_R": [
+     [
+      0,
+      0
+     ],
+     [
+      0.3,
+      -0.2
+     ],
+     [
+      0.7,
+      0
+     ]
+    ]
+   },
+   "traceability": {
+    "intent": "perform HeadShake",
+    "emotionalContext": "Disagreement",
+    "trigger": "gesture intent fired",
+    "entryState": "any",
+    "exitState": "prior state",
+    "layerParticipation": [
+     "Gesture(high transient)",
+     "Physics(follow-through)"
+    ],
+    "parameters": [
+     "P_Brow_Height_L",
+     "P_Brow_Height_R",
+     "P_Head_RotY"
+    ],
+    "physics": "follow-through on hair/sleeve",
+    "blend": "additive overlay; interruptible after peak",
+    "failureModes": "repetition->variants+cooldown; pop->anticipation+settle",
+    "validation": "anticipation precedes action; within clamps"
+   }
+  },
+  "Shrug": {
+   "durationMs": 1100,
+   "interruptibleAfterMs": 500,
+   "curves": {
+    "P_Body_ShoulderElev_L": [
+     [
+      0,
+      0
+     ],
+     [
+      0.3,
+      1.0
+     ],
+     [
+      0.8,
+      1.0
+     ],
+     [
+      1.1,
+      0
+     ]
+    ],
+    "P_Body_ShoulderElev_R": [
+     [
+      0,
+      0
+     ],
+     [
+      0.3,
+      1.0
+     ],
+     [
+      0.8,
+      1.0
+     ],
+     [
+      1.1,
+      0
+     ]
+    ],
+    "P_Arm_Elbow_L": [
+     [
+      0,
+      0
+     ],
+     [
+      0.3,
+      0.3
+     ],
+     [
+      1.1,
+      0
+     ]
+    ],
+    "P_Arm_Elbow_R": [
+     [
+      0,
+      0
+     ],
+     [
+      0.3,
+      0.3
+     ],
+     [
+      1.1,
+      0
+     ]
+    ],
+    "P_Brow_Height_L": [
+     [
+      0,
+      0
+     ],
+     [
+      0.3,
+      0.3
+     ],
+     [
+      1.1,
+      0
+     ]
+    ],
+    "P_Brow_Height_R": [
+     [
+      0,
+      0
+     ],
+     [
+      0.3,
+      0.3
+     ],
+     [
+      1.1,
+      0
+     ]
+    ]
+   },
+   "traceability": {
+    "intent": "perform Shrug",
+    "emotionalContext": "Confusion",
+    "trigger": "gesture intent fired",
+    "entryState": "any",
+    "exitState": "prior state",
+    "layerParticipation": [
+     "Gesture(high transient)",
+     "Physics(follow-through)"
+    ],
+    "parameters": [
+     "P_Arm_Elbow_L",
+     "P_Arm_Elbow_R",
+     "P_Body_ShoulderElev_L",
+     "P_Body_ShoulderElev_R",
+     "P_Brow_Height_L",
+     "P_Brow_Height_R"
+    ],
+    "physics": "follow-through on hair/sleeve",
+    "blend": "additive overlay; interruptible after peak",
+    "failureModes": "repetition->variants+cooldown; pop->anticipation+settle",
+    "validation": "anticipation precedes action; within clamps"
+   }
+  },
+  "HandToChin": {
+   "durationMs": 1600,
+   "interruptibleAfterMs": 300,
+   "curves": {
+    "P_Arm_Elbow_R": [
+     [
+      0,
+      0
+     ],
+     [
+      0.5,
+      0.9
+     ],
+     [
+      1.6,
+      0.9
+     ]
+    ],
+    "P_Head_Tilt": [
+     [
+      0,
+      0
+     ],
+     [
+      0.5,
+      0.2
+     ],
+     [
+      1.6,
+      0.2
+     ]
+    ],
+    "P_Eye_LookY": [
+     [
+      0,
+      0
+     ],
+     [
+      0.5,
+      0.4
+     ],
+     [
+      1.6,
+      0.4
+     ]
+    ]
+   },
+   "traceability": {
+    "intent": "perform HandToChin",
+    "emotionalContext": "Thinking",
+    "trigger": "gesture intent fired",
+    "entryState": "any",
+    "exitState": "prior state",
+    "layerParticipation": [
+     "Gesture(high transient)",
+     "Physics(follow-through)"
+    ],
+    "parameters": [
+     "P_Arm_Elbow_R",
+     "P_Eye_LookY",
+     "P_Head_Tilt"
+    ],
+    "physics": "follow-through on hair/sleeve",
+    "blend": "additive overlay; interruptible after peak",
+    "failureModes": "repetition->variants+cooldown; pop->anticipation+settle",
+    "validation": "anticipation precedes action; within clamps"
+   }
+  },
+  "OpenPalmPresent": {
+   "durationMs": 1000,
+   "interruptibleAfterMs": 300,
+   "curves": {
+    "P_Arm_Raise_R": [
+     [
+      0,
+      0
+     ],
+     [
+      0.1,
+      -0.02
+     ],
+     [
+      0.5,
+      0.35
+     ],
+     [
+      1.0,
+      0.35
+     ]
+    ],
+    "P_Body_ChestExpand": [
+     [
+      0,
+      0
+     ],
+     [
+      0.5,
+      0.3
+     ],
+     [
+      1.0,
+      0.3
+     ]
+    ],
+    "P_Mouth_Smile": [
+     [
+      0,
+      0
+     ],
+     [
+      0.5,
+      0.2
+     ],
+     [
+      1.0,
+      0.2
+     ]
+    ]
+   },
+   "traceability": {
+    "intent": "perform OpenPalmPresent",
+    "emotionalContext": "Confidence",
+    "trigger": "gesture intent fired",
+    "entryState": "any",
+    "exitState": "prior state",
+    "layerParticipation": [
+     "Gesture(high transient)",
+     "Physics(follow-through)"
+    ],
+    "parameters": [
+     "P_Arm_Raise_R",
+     "P_Body_ChestExpand",
+     "P_Mouth_Smile"
+    ],
+    "physics": "follow-through on hair/sleeve",
+    "blend": "additive overlay; interruptible after peak",
+    "failureModes": "repetition->variants+cooldown; pop->anticipation+settle",
+    "validation": "anticipation precedes action; within clamps"
+   }
+  },
+  "Celebrate": {
+   "durationMs": 1500,
+   "interruptibleAfterMs": 800,
+   "curves": {
+    "P_Arm_Raise_L": [
+     [
+      0,
+      0
+     ],
+     [
+      0.1,
+      -0.03
+     ],
+     [
+      0.4,
+      0.9
+     ],
+     [
+      1.1,
+      0.9
+     ],
+     [
+      1.5,
+      0.2
+     ]
+    ],
+    "P_Arm_Raise_R": [
+     [
+      0,
+      0
+     ],
+     [
+      0.1,
+      -0.03
+     ],
+     [
+      0.4,
+      0.9
+     ],
+     [
+      1.1,
+      0.9
+     ],
+     [
+      1.5,
+      0.2
+     ]
+    ],
+    "P_Body_ChestExpand": [
+     [
+      0,
+      0
+     ],
+     [
+      0.4,
+      0.4
+     ],
+     [
+      1.5,
+      0.1
+     ]
+    ],
+    "P_Mouth_Smile": [
+     [
+      0,
+      0
+     ],
+     [
+      0.4,
+      0.9
+     ],
+     [
+      1.5,
+      0.4
+     ]
+    ],
+    "P_Head_RotX": [
+     [
+      0,
+      0
+     ],
+     [
+      0.4,
+      -4
+     ],
+     [
+      1.5,
+      0
+     ]
+    ]
+   },
+   "traceability": {
+    "intent": "perform Celebrate",
+    "emotionalContext": "Excitement",
+    "trigger": "gesture intent fired",
+    "entryState": "any",
+    "exitState": "prior state",
+    "layerParticipation": [
+     "Gesture(high transient)",
+     "Physics(follow-through)"
+    ],
+    "parameters": [
+     "P_Arm_Raise_L",
+     "P_Arm_Raise_R",
+     "P_Body_ChestExpand",
+     "P_Head_RotX",
+     "P_Mouth_Smile"
+    ],
+    "physics": "follow-through on hair/sleeve",
+    "blend": "additive overlay; interruptible after peak",
+    "failureModes": "repetition->variants+cooldown; pop->anticipation+settle",
+    "validation": "anticipation precedes action; within clamps"
+   }
+  },
+  "WaveGoodbye": {
+   "durationMs": 1600,
+   "interruptibleAfterMs": 1200,
+   "curves": {
+    "P_Arm_Raise_R": [
+     [
+      0,
+      0
+     ],
+     [
+      0.1,
+      0.02
+     ],
+     [
+      0.45,
+      0.6
+     ],
+     [
+      1.3,
+      0.6
+     ],
+     [
+      1.6,
+      0
+     ]
+    ],
+    "P_Arm_Elbow_R": [
+     [
+      0.45,
+      0.3
+     ],
+     [
+      0.75,
+      0.55
+     ],
+     [
+      1.05,
+      0.3
+     ],
+     [
+      1.3,
+      0.45
+     ]
+    ],
+    "P_Mouth_Smile": [
+     [
+      0,
+      0
+     ],
+     [
+      0.4,
+      0.4
+     ],
+     [
+      1.2,
+      0.4
+     ],
+     [
+      1.6,
+      0.1
+     ]
+    ]
+   },
+   "traceability": {
+    "intent": "perform WaveGoodbye",
+    "emotionalContext": "Warmth",
+    "trigger": "gesture intent fired",
+    "entryState": "any",
+    "exitState": "prior state",
+    "layerParticipation": [
+     "Gesture(high transient)",
+     "Physics(follow-through)"
+    ],
+    "parameters": [
+     "P_Arm_Elbow_R",
+     "P_Arm_Raise_R",
+     "P_Mouth_Smile"
+    ],
+    "physics": "follow-through on hair/sleeve",
+    "blend": "additive overlay; interruptible after peak",
+    "failureModes": "repetition->variants+cooldown; pop->anticipation+settle",
+    "validation": "anticipation precedes action; within clamps"
+   }
+  }
+ },
+ "conversationSets": {
+  "Listening": {
+   "loop": "varied loop",
+   "traceability": {
+    "intent": "conversation:Listening",
+    "emotionalContext": "context",
+    "trigger": "conversation state",
+    "entryState": "Conversation",
+    "exitState": "Conversation/Idle",
+    "layerParticipation": [
+     "Head",
+     "Eye",
+     "Mouth",
+     "Body"
+    ],
+    "parameters": [
+     "P_Brow_Height_L",
+     "P_Brow_Height_R",
+     "P_Eye_Focus",
+     "P_Head_Forward"
+    ],
+    "physics": "settle/idle",
+    "blend": "noise-selected variation (anti-repeat)",
+    "failureModes": "loop repeat->variation curves",
+    "validation": "multi-turn never identical"
+   }
+  },
+  "Thinking": {
+   "loop": "varied loop",
+   "traceability": {
+    "intent": "conversation:Thinking",
+    "emotionalContext": "context",
+    "trigger": "conversation state",
+    "entryState": "Conversation",
+    "exitState": "Conversation/Idle",
+    "layerParticipation": [
+     "Head",
+     "Eye",
+     "Mouth",
+     "Body"
+    ],
+    "parameters": [
+     "P_Brow_Height_L",
+     "P_Eye_LookX",
+     "P_Eye_LookY",
+     "P_Hand_Form_R",
+     "P_Head_Tilt"
+    ],
+    "physics": "settle/idle",
+    "blend": "noise-selected variation (anti-repeat)",
+    "failureModes": "loop repeat->variation curves",
+    "validation": "multi-turn never identical"
+   }
+  },
+  "Explaining": {
+   "loop": "varied loop",
+   "traceability": {
+    "intent": "conversation:Explaining",
+    "emotionalContext": "context",
+    "trigger": "conversation state",
+    "entryState": "Conversation",
+    "exitState": "Conversation/Idle",
+    "layerParticipation": [
+     "Head",
+     "Eye",
+     "Mouth",
+     "Body"
+    ],
+    "parameters": [
+     "P_Arm_Raise_R",
+     "P_Body_ChestExpand",
+     "P_Brow_Height_L",
+     "P_Mouth_Smile"
+    ],
+    "physics": "settle/idle",
+    "blend": "noise-selected variation (anti-repeat)",
+    "failureModes": "loop repeat->variation curves",
+    "validation": "multi-turn never identical"
+   }
+  },
+  "Agreeing": {
+   "loop": "one-shot",
+   "traceability": {
+    "intent": "conversation:Agreeing",
+    "emotionalContext": "context",
+    "trigger": "conversation state",
+    "entryState": "Conversation",
+    "exitState": "Conversation/Idle",
+    "layerParticipation": [
+     "Head",
+     "Eye",
+     "Mouth",
+     "Body"
+    ],
+    "parameters": [
+     "P_Brow_Height_L",
+     "P_Brow_Height_R",
+     "P_Head_RotX",
+     "P_Mouth_Smile"
+    ],
+    "physics": "settle/idle",
+    "blend": "noise-selected variation (anti-repeat)",
+    "failureModes": "loop repeat->variation curves",
+    "validation": "multi-turn never identical"
+   }
+  },
+  "Disagreeing": {
+   "loop": "one-shot",
+   "traceability": {
+    "intent": "conversation:Disagreeing",
+    "emotionalContext": "context",
+    "trigger": "conversation state",
+    "entryState": "Conversation",
+    "exitState": "Conversation/Idle",
+    "layerParticipation": [
+     "Head",
+     "Eye",
+     "Mouth",
+     "Body"
+    ],
+    "parameters": [
+     "P_Brow_Height_L",
+     "P_Brow_Height_R",
+     "P_Head_RotY",
+     "P_Mouth_LipCorners"
+    ],
+    "physics": "settle/idle",
+    "blend": "noise-selected variation (anti-repeat)",
+    "failureModes": "loop repeat->variation curves",
+    "validation": "multi-turn never identical"
+   }
+  },
+  "Presenting": {
+   "loop": "varied loop",
+   "traceability": {
+    "intent": "conversation:Presenting",
+    "emotionalContext": "context",
+    "trigger": "conversation state",
+    "entryState": "Conversation",
+    "exitState": "Conversation/Idle",
+    "layerParticipation": [
+     "Head",
+     "Eye",
+     "Mouth",
+     "Body"
+    ],
+    "parameters": [
+     "head",
+     "eyes",
+     "mouth",
+     "breathing"
+    ],
+    "physics": "settle/idle",
+    "blend": "noise-selected variation (anti-repeat)",
+    "failureModes": "loop repeat->variation curves",
+    "validation": "multi-turn never identical"
+   }
+  },
+  "Questioning": {
+   "loop": "one-shot",
+   "traceability": {
+    "intent": "conversation:Questioning",
+    "emotionalContext": "context",
+    "trigger": "conversation state",
+    "entryState": "Conversation",
+    "exitState": "Conversation/Idle",
+    "layerParticipation": [
+     "Head",
+     "Eye",
+     "Mouth",
+     "Body"
+    ],
+    "parameters": [
+     "head",
+     "eyes",
+     "mouth",
+     "breathing"
+    ],
+    "physics": "settle/idle",
+    "blend": "noise-selected variation (anti-repeat)",
+    "failureModes": "loop repeat->variation curves",
+    "validation": "multi-turn never identical"
+   }
+  },
+  "Celebrating": {
+   "loop": "one-shot",
+   "traceability": {
+    "intent": "conversation:Celebrating",
+    "emotionalContext": "context",
+    "trigger": "conversation state",
+    "entryState": "Conversation",
+    "exitState": "Conversation/Idle",
+    "layerParticipation": [
+     "Head",
+     "Eye",
+     "Mouth",
+     "Body"
+    ],
+    "parameters": [
+     "head",
+     "eyes",
+     "mouth",
+     "breathing"
+    ],
+    "physics": "settle/idle",
+    "blend": "noise-selected variation (anti-repeat)",
+    "failureModes": "loop repeat->variation curves",
+    "validation": "multi-turn never identical"
+   }
+  },
+  "Reflecting": {
+   "loop": "varied loop",
+   "traceability": {
+    "intent": "conversation:Reflecting",
+    "emotionalContext": "context",
+    "trigger": "conversation state",
+    "entryState": "Conversation",
+    "exitState": "Conversation/Idle",
+    "layerParticipation": [
+     "Head",
+     "Eye",
+     "Mouth",
+     "Body"
+    ],
+    "parameters": [
+     "head",
+     "eyes",
+     "mouth",
+     "breathing"
+    ],
+    "physics": "settle/idle",
+    "blend": "noise-selected variation (anti-repeat)",
+    "failureModes": "loop repeat->variation curves",
+    "validation": "multi-turn never identical"
+   }
+  },
+  "Encouraging": {
+   "loop": "varied loop",
+   "traceability": {
+    "intent": "conversation:Encouraging",
+    "emotionalContext": "context",
+    "trigger": "conversation state",
+    "entryState": "Conversation",
+    "exitState": "Conversation/Idle",
+    "layerParticipation": [
+     "Head",
+     "Eye",
+     "Mouth",
+     "Body"
+    ],
+    "parameters": [
+     "head",
+     "eyes",
+     "mouth",
+     "breathing"
+    ],
+    "physics": "settle/idle",
+    "blend": "noise-selected variation (anti-repeat)",
+    "failureModes": "loop repeat->variation curves",
+    "validation": "multi-turn never identical"
+   }
+  }
+ },
+ "presentationSections": {
+  "Welcome": {
+   "profile": "FriendlyGreeting",
+   "traceability": {
+    "intent": "present:Welcome",
+    "emotionalContext": "FriendlyGreeting",
+    "trigger": "section entered",
+    "entryState": "Presenting",
+    "exitState": "Navigation",
+    "layerParticipation": [
+     "Body",
+     "Face",
+     "Eye",
+     "Gesture"
+    ],
+    "parameters": [
+     "posture",
+     "gaze",
+     "smile",
+     "gesture cadence"
+    ],
+    "physics": "gesture follow-through",
+    "blend": "Navigation pose-match between sections",
+    "failureModes": "abrupt section->pose match",
+    "validation": "clear per section, identity intact"
+   }
+  },
+  "Introduce": {
+   "profile": "Confidence",
+   "traceability": {
+    "intent": "present:Introduce",
+    "emotionalContext": "Confidence",
+    "trigger": "section entered",
+    "entryState": "Presenting",
+    "exitState": "Navigation",
+    "layerParticipation": [
+     "Body",
+     "Face",
+     "Eye",
+     "Gesture"
+    ],
+    "parameters": [
+     "posture",
+     "gaze",
+     "smile",
+     "gesture cadence"
+    ],
+    "physics": "gesture follow-through",
+    "blend": "Navigation pose-match between sections",
+    "failureModes": "abrupt section->pose match",
+    "validation": "clear per section, identity intact"
+   }
+  },
+  "ProjectOverview": {
+   "profile": "Explaining",
+   "traceability": {
+    "intent": "present:ProjectOverview",
+    "emotionalContext": "Explaining",
+    "trigger": "section entered",
+    "entryState": "Presenting",
+    "exitState": "Navigation",
+    "layerParticipation": [
+     "Body",
+     "Face",
+     "Eye",
+     "Gesture"
+    ],
+    "parameters": [
+     "posture",
+     "gaze",
+     "smile",
+     "gesture cadence"
+    ],
+    "physics": "gesture follow-through",
+    "blend": "Navigation pose-match between sections",
+    "failureModes": "abrupt section->pose match",
+    "validation": "clear per section, identity intact"
+   }
+  },
+  "Skills": {
+   "profile": "Professional",
+   "traceability": {
+    "intent": "present:Skills",
+    "emotionalContext": "Professional",
+    "trigger": "section entered",
+    "entryState": "Presenting",
+    "exitState": "Navigation",
+    "layerParticipation": [
+     "Body",
+     "Face",
+     "Eye",
+     "Gesture"
+    ],
+    "parameters": [
+     "posture",
+     "gaze",
+     "smile",
+     "gesture cadence"
+    ],
+    "physics": "gesture follow-through",
+    "blend": "Navigation pose-match between sections",
+    "failureModes": "abrupt section->pose match",
+    "validation": "clear per section, identity intact"
+   }
+  },
+  "Experience": {
+   "profile": "Reflective",
+   "traceability": {
+    "intent": "present:Experience",
+    "emotionalContext": "Reflective",
+    "trigger": "section entered",
+    "entryState": "Presenting",
+    "exitState": "Navigation",
+    "layerParticipation": [
+     "Body",
+     "Face",
+     "Eye",
+     "Gesture"
+    ],
+    "parameters": [
+     "posture",
+     "gaze",
+     "smile",
+     "gesture cadence"
+    ],
+    "physics": "gesture follow-through",
+    "blend": "Navigation pose-match between sections",
+    "failureModes": "abrupt section->pose match",
+    "validation": "clear per section, identity intact"
+   }
+  },
+  "Projects": {
+   "profile": "Excitement",
+   "traceability": {
+    "intent": "present:Projects",
+    "emotionalContext": "Excitement",
+    "trigger": "section entered",
+    "entryState": "Presenting",
+    "exitState": "Navigation",
+    "layerParticipation": [
+     "Body",
+     "Face",
+     "Eye",
+     "Gesture"
+    ],
+    "parameters": [
+     "posture",
+     "gaze",
+     "smile",
+     "gesture cadence"
+    ],
+    "physics": "gesture follow-through",
+    "blend": "Navigation pose-match between sections",
+    "failureModes": "abrupt section->pose match",
+    "validation": "clear per section, identity intact"
+   }
+  },
+  "Resume": {
+   "profile": "Professional",
+   "traceability": {
+    "intent": "present:Resume",
+    "emotionalContext": "Professional",
+    "trigger": "section entered",
+    "entryState": "Presenting",
+    "exitState": "Navigation",
+    "layerParticipation": [
+     "Body",
+     "Face",
+     "Eye",
+     "Gesture"
+    ],
+    "parameters": [
+     "posture",
+     "gaze",
+     "smile",
+     "gesture cadence"
+    ],
+    "physics": "gesture follow-through",
+    "blend": "Navigation pose-match between sections",
+    "failureModes": "abrupt section->pose match",
+    "validation": "clear per section, identity intact"
+   }
+  },
+  "Contact": {
+   "profile": "Encouraging",
+   "traceability": {
+    "intent": "present:Contact",
+    "emotionalContext": "Encouraging",
+    "trigger": "section entered",
+    "entryState": "Presenting",
+    "exitState": "Navigation",
+    "layerParticipation": [
+     "Body",
+     "Face",
+     "Eye",
+     "Gesture"
+    ],
+    "parameters": [
+     "posture",
+     "gaze",
+     "smile",
+     "gesture cadence"
+    ],
+    "physics": "gesture follow-through",
+    "blend": "Navigation pose-match between sections",
+    "failureModes": "abrupt section->pose match",
+    "validation": "clear per section, identity intact"
+   }
+  },
+  "ThankYou": {
+   "profile": "Joy",
+   "traceability": {
+    "intent": "present:ThankYou",
+    "emotionalContext": "Joy",
+    "trigger": "section entered",
+    "entryState": "Presenting",
+    "exitState": "Navigation",
+    "layerParticipation": [
+     "Body",
+     "Face",
+     "Eye",
+     "Gesture"
+    ],
+    "parameters": [
+     "posture",
+     "gaze",
+     "smile",
+     "gesture cadence"
+    ],
+    "physics": "gesture follow-through",
+    "blend": "Navigation pose-match between sections",
+    "failureModes": "abrupt section->pose match",
+    "validation": "clear per section, identity intact"
+   }
+  }
+ },
+ "transitions": [
+  {
+   "name": "Idle->Greeting",
+   "blendMs": 250,
+   "poseMatch": true,
+   "note": "rise to open, eye-lead snap, match raised-arm start from rest"
+  },
+  {
+   "name": "Greeting->Conversation",
+   "blendMs": 300,
+   "poseMatch": true,
+   "note": "settle to neutral-open, hand returns"
+  },
+  {
+   "name": "Conversation->Presentation",
+   "blendMs": 350,
+   "poseMatch": true,
+   "note": "posture up, align torso"
+  },
+  {
+   "name": "Presentation->Idle",
+   "blendMs": 400,
+   "poseMatch": true,
+   "note": "relax to baseline, ease arms to rest"
+  },
+  {
+   "name": "any->Gesture",
+   "blendMs": 200,
+   "poseMatch": true,
+   "note": "additive overlay on current pose"
+  },
+  {
+   "name": "any->Sleep",
+   "blendMs": 600,
+   "poseMatch": true,
+   "note": "slump, half-lid, low energy"
+  }
+ ],
+ "blendTrees": [
+  {
+   "name": "Idle+Talking",
+   "resolve": "mouth=viseme(high) overrides idle; body/eyes idle; breathing->speech"
+  },
+  {
+   "name": "Idle+Thinking",
+   "resolve": "head/eyes=thinking; body keeps weight-shift; mouth->lip press"
+  },
+  {
+   "name": "Idle+Looking",
+   "resolve": "eyes/head=procedural gaze (owns channels); rest idle"
+  },
+  {
+   "name": "Greeting+Talking",
+   "resolve": "arm=gesture; mouth=viseme; coexist (different channels)"
+  },
+  {
+   "name": "Presentation+Pointing",
+   "resolve": "posture=presentation; arm=point overlay (transient high)"
+  },
+  {
+   "name": "Listening+Nodding",
+   "resolve": "head=nod overlay; eyes=contact; body settled"
+  },
+  {
+   "name": "Smile+EyeContact",
+   "resolve": "mouth/cheek=smile; eyes=contact; additive"
+  },
+  {
+   "name": "Thinking+HeadTilt",
+   "resolve": "single owner writes tilt; thinking eyes layered on top"
+  }
+ ],
+ "proceduralOwners": [
+  "P_Body_Breathing",
+  "P_Eye_IrisX_L",
+  "P_Eye_IrisY_L",
+  "P_Eye_LidUpper_L",
+  "P_Eye_LidUpper_R",
+  "P_Eye_LookX"
+ ],
+ "proceduralTraceability": {
+  "P_Eye_LidUpper_L": {
+   "intent": "runtime procedural",
+   "emotionalContext": "n/a",
+   "trigger": "continuous/input",
+   "entryState": "active",
+   "exitState": "yields to AI/gesture",
+   "layerParticipation": [
+    "Procedural(exclusive)"
+   ],
+   "parameters": [
+    "P_Eye_LidUpper_L"
+   ],
+   "physics": "n/a",
+   "blend": "owns channel exclusively",
+   "failureModes": "fight->exclusive ownership",
+   "validation": "mouse-track yields to directed look"
+  },
+  "P_Eye_LookX": {
+   "intent": "runtime procedural",
+   "emotionalContext": "n/a",
+   "trigger": "continuous/input",
+   "entryState": "active",
+   "exitState": "yields to AI/gesture",
+   "layerParticipation": [
+    "Procedural(exclusive)"
+   ],
+   "parameters": [
+    "P_Eye_LookX"
+   ],
+   "physics": "n/a",
+   "blend": "owns channel exclusively",
+   "failureModes": "fight->exclusive ownership",
+   "validation": "mouse-track yields to directed look"
+  },
+  "P_Eye_IrisY_L": {
+   "intent": "runtime procedural",
+   "emotionalContext": "n/a",
+   "trigger": "continuous/input",
+   "entryState": "active",
+   "exitState": "yields to AI/gesture",
+   "layerParticipation": [
+    "Procedural(exclusive)"
+   ],
+   "parameters": [
+    "P_Eye_IrisY_L"
+   ],
+   "physics": "n/a",
+   "blend": "owns channel exclusively",
+   "failureModes": "fight->exclusive ownership",
+   "validation": "mouse-track yields to directed look"
+  },
+  "P_Eye_IrisX_L": {
+   "intent": "runtime procedural",
+   "emotionalContext": "n/a",
+   "trigger": "continuous/input",
+   "entryState": "active",
+   "exitState": "yields to AI/gesture",
+   "layerParticipation": [
+    "Procedural(exclusive)"
+   ],
+   "parameters": [
+    "P_Eye_IrisX_L"
+   ],
+   "physics": "n/a",
+   "blend": "owns channel exclusively",
+   "failureModes": "fight->exclusive ownership",
+   "validation": "mouse-track yields to directed look"
+  },
+  "P_Body_Breathing": {
+   "intent": "runtime procedural",
+   "emotionalContext": "n/a",
+   "trigger": "continuous/input",
+   "entryState": "active",
+   "exitState": "yields to AI/gesture",
+   "layerParticipation": [
+    "Procedural(exclusive)"
+   ],
+   "parameters": [
+    "P_Body_Breathing"
+   ],
+   "physics": "drives chest",
+   "blend": "owns channel exclusively",
+   "failureModes": "fight->exclusive ownership",
+   "validation": "mouse-track yields to directed look"
+  },
+  "P_Eye_LidUpper_R": {
+   "intent": "runtime procedural",
+   "emotionalContext": "n/a",
+   "trigger": "continuous/input",
+   "entryState": "active",
+   "exitState": "yields to AI/gesture",
+   "layerParticipation": [
+    "Procedural(exclusive)"
+   ],
+   "parameters": [
+    "P_Eye_LidUpper_R"
+   ],
+   "physics": "n/a",
+   "blend": "owns channel exclusively",
+   "failureModes": "fight->exclusive ownership",
+   "validation": "mouse-track yields to directed look"
+  }
+ },
+ "idleTraceability": {
+  "intent": "appear alive at rest",
+  "emotionalContext": "mood baseline",
+  "trigger": "no higher state",
+  "entryState": "Idle/Sleep-wake",
+  "exitState": "any trigger",
+  "layerParticipation": [
+   "Body",
+   "Head",
+   "Eye",
+   "Face(micro)",
+   "Physics"
+  ],
+  "parameters": [
+   "breathing",
+   "weight",
+   "head drift",
+   "eye drift",
+   "blink",
+   "micros"
+  ],
+  "physics": "hair/cloth relaxation",
+  "blend": "lowest priority, interruptible",
+  "failureModes": "visible loop",
+  "validation": "5-min no repeat (Phase-6 de-sync)"
+ },
+ "cameraResponses": [
+  {
+   "event": "ZoomIn",
+   "response": "lean-in, eye-contact+, LOD up, calmer breath"
+  },
+  {
+   "event": "ZoomOut",
+   "response": "relax posture, gaze softens, secondary motion up"
+  },
+  {
+   "event": "Pan",
+   "response": "head/eyes follow viewport then return"
+  },
+  {
+   "event": "RecruiterHover",
+   "response": "InteractiveMode: brighten, eye-contact, micro-nod"
+  },
+  {
+   "event": "MousePosition",
+   "response": "procedural gaze in bounds, eyes lead"
+  },
+  {
+   "event": "ViewportResize",
+   "response": "re-center pose, pose-match ease, no pop"
+  }
+ ],
+ "aiPlannerRecipes": {
+  "ExplainProject": {
+   "state": "Presenting",
+   "profile": "Confidence+Professional",
+   "gesture": "OpenPalmPresent",
+   "attention": "viewer",
+   "breath": "calm-deep"
+  },
+  "GreetUser": {
+   "state": "Greeting",
+   "profile": "Joy",
+   "gesture": "Wave",
+   "attention": "viewer",
+   "breath": "upbeat"
+  },
+  "Think": {
+   "state": "Thinking",
+   "profile": "Thinking",
+   "gesture": "HandToChin",
+   "attention": "up_side",
+   "breath": "slow"
+  },
+  "Celebrate": {
+   "state": "Gesture",
+   "profile": "Excitement",
+   "gesture": "Celebrate",
+   "attention": "viewer",
+   "breath": "quick"
+  }
+ },
+ "accessibilityConfig": {
+  "reducedMotion": {
+   "amplitudeCap": 0.5,
+   "easingLonger": true,
+   "overshootOff": true,
+   "idleDriftReduced": true
+  },
+  "timeScale": "Master clock global (physics timestep compensated)",
+  "idleIntensity": [
+   0.0,
+   1.0
+  ],
+  "keyboardOnly": true,
+  "mobile": {
+   "autoTier": "Phase-6 T3 off",
+   "touchReplacesHover": true,
+   "fewerLayers": true
+  },
+  "governedBy": "Master layer (veto amplitude)"
+ }
+}
