@@ -1,0 +1,34 @@
+{
+ "surface": "parameter-only (Phase-5)+physics budget (Phase-6)",
+ "dhpf": [
+  "art(P1)",
+  "mesh(P3)",
+  "rig(P4)",
+  "params(P5)",
+  "physics(P6)",
+  "performance(P7)",
+  "animation(P8)",
+  "runtime(P9 next)"
+ ],
+ "runtimeNeeds": [
+  "target SDK + Live2D runtime",
+  "fixed-timestep loop integration",
+  "input pipeline (mouse/touch/keyboard/mic)",
+  "audio->viseme into Mouth layer",
+  "AI agent transport (intent in->performance out)",
+  "asset loading/LOD",
+  "state persistence (Sleep/wake)",
+  "telemetry"
+ ],
+ "optionalEnhancements": [
+  "locomotion/walk cycles",
+  "accessories",
+  "storm-wind",
+  "stylized pupil dilation",
+  "full-body jump"
+ ],
+ "openDecisions": [
+  "A1 right plate",
+  "A2 height"
+ ]
+}
