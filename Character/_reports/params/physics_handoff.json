@@ -1,0 +1,50 @@
+{
+ "physicsInputs": [
+  "P_Hair_Front_Sway",
+  "P_Hair_Side_Sway_L",
+  "P_Hair_Side_Sway_R",
+  "P_Hair_RearUpper_Sway",
+  "P_Hair_RearLower_Sway",
+  "P_Hair_Flyaway_Sway",
+  "P_Hair_Wind",
+  "P_Hair_Gravity",
+  "P_Hair_Inertia",
+  "P_Hair_SecondaryOsc",
+  "P_Hair_Damping",
+  "P_Hair_CollisionResponse",
+  "P_Cloth_Gravity",
+  "P_Cloth_Wind",
+  "P_Cloth_SleeveSwing",
+  "P_Cloth_WaistFabric",
+  "P_Cloth_PantMotion",
+  "P_Cloth_CollarMotion",
+  "P_Cloth_FabricCompress",
+  "P_Cloth_FabricStretch",
+  "P_Cloth_WrinkleIntensity"
+ ],
+ "drivers": [
+  "P_Head_RotX",
+  "P_Head_RotY",
+  "P_Head_RotZ",
+  "P_Body_RotX",
+  "P_Body_RotY",
+  "P_Body_RotZ",
+  "P_Body_Breathing",
+  "P_Arm_Raise_L",
+  "P_Arm_Raise_R"
+ ],
+ "massOrder": [
+  "flyaways<front_fringe<side<rear<hem/sleeve",
+  "crown stiff (loft-locked)",
+  "chino near-rigid"
+ ],
+ "collisionGroups": [
+  "bang<->brow/eye",
+  "side<->ear/shoulder",
+  "rear<->collar",
+  "hem<->belt",
+  "cuff<->ankle"
+ ],
+ "smoothingBoundary": "physicsInput params bypass L0 critically-damped follow (physics owns dynamics)",
+ "openCalibration": "final amplitudes await height-lock A2 (7.75 vs 8.0 HH)"
+}

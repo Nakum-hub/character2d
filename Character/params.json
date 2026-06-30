@@ -1,0 +1,4444 @@
+{
+ "meta": {
+  "total": 151,
+  "counts": {
+   "L0": 95,
+   "L1": 27,
+   "L2": 15,
+   "L3": 4,
+   "RT": 10
+  },
+  "ownedChannels": 74,
+  "identityLock": {
+   "SSIM": 0.9996,
+   "interiorResidual": 42,
+   "verdict": "PASS"
+  }
+ },
+ "blending": {
+  "priority": {
+   "idle": 0,
+   "physics": 1,
+   "expression": 2,
+   "gesture": 3,
+   "ai": 4,
+   "runtime": 5,
+   "dev": 6
+  },
+  "exclusivePairs": [
+   [
+    "P_Body_ChestCompress",
+    "P_Body_ChestExpand"
+   ],
+   [
+    "P_Neck_Compress",
+    "P_Neck_Stretch"
+   ],
+   [
+    "P_Mouth_Smile",
+    "P_Mouth_Sad"
+   ],
+   [
+    "P_Eye_Blink_L",
+    "P_Eye_Wide_L"
+   ]
+  ],
+  "physicsBypass": [
+   "P_Hair_Front_Sway",
+   "P_Hair_Side_Sway_L",
+   "P_Hair_Side_Sway_R",
+   "P_Hair_RearUpper_Sway",
+   "P_Hair_RearLower_Sway",
+   "P_Hair_Flyaway_Sway",
+   "P_Hair_Wind",
+   "P_Hair_Gravity",
+   "P_Hair_Inertia",
+   "P_Hair_SecondaryOsc",
+   "P_Hair_Damping",
+   "P_Hair_CollisionResponse",
+   "P_Cloth_Gravity",
+   "P_Cloth_Wind",
+   "P_Cloth_SleeveSwing",
+   "P_Cloth_WaistFabric",
+   "P_Cloth_PantMotion",
+   "P_Cloth_CollarMotion",
+   "P_Cloth_FabricCompress",
+   "P_Cloth_FabricStretch",
+   "P_Cloth_WrinkleIntensity"
+  ]
+ },
+ "resolver": {
+  "order": "L3->L2->L1->L0 fan-out; per-L0 blend(additive/weighted/signed-sum/max-wins/distribute) then clamp",
+  "determinism": "visited-set prevents cycles; one resolved value per L0 per frame; correctives one-way applied last",
+  "priority": {
+   "idle": 0,
+   "physics": 1,
+   "expression": 2,
+   "gesture": 3,
+   "ai": 4,
+   "runtime": 5,
+   "dev": 6
+  },
+  "smoothing": "critically-damped tau per param; physicsInput params bypass (tau=0)"
+ },
+ "parameters": [
+  {
+   "id": "P_Body_RotX",
+   "tier": "L0",
+   "family": "Body",
+   "purpose": "forward/back lean",
+   "range": [
+    -10,
+    10
+   ],
+   "default": 0,
+   "owns": "DEF_Body_Master.X",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "idle",
+   "clampedTo": [
+    -10,
+    10
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Body_RotY",
+   "tier": "L0",
+   "family": "Body",
+   "purpose": "side lean",
+   "range": [
+    -10,
+    10
+   ],
+   "default": 0,
+   "owns": "DEF_Body_Master.Y",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "idle",
+   "clampedTo": [
+    -10,
+    10
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Body_ChestTwist",
+   "tier": "L0",
+   "family": "Body",
+   "purpose": "chest twist segment",
+   "range": [
+    -12,
+    12
+   ],
+   "default": 0,
+   "owns": "DEF_Chest_Warp.twist",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -12,
+    12
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[O]"
+  },
+  {
+   "id": "P_Body_WaistTwist",
+   "tier": "L0",
+   "family": "Body",
+   "purpose": "waist twist segment",
+   "range": [
+    -9,
+    9
+   ],
+   "default": 0,
+   "owns": "DEF_Waist_Warp.twist",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -9,
+    9
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[O]"
+  },
+  {
+   "id": "P_Body_ChestCompress",
+   "tier": "L0",
+   "family": "Body",
+   "purpose": "chest narrow",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Chest_Warp.compress",
+   "writes": [],
+   "parent": null,
+   "conflicts": [
+    "P_Body_ChestExpand"
+   ],
+   "blend": "exclusive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Body_ChestExpand",
+   "tier": "L0",
+   "family": "Body",
+   "purpose": "chest broaden",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Chest_Warp.expand",
+   "writes": [],
+   "parent": null,
+   "conflicts": [
+    "P_Body_ChestCompress"
+   ],
+   "blend": "exclusive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Body_WaistCompress",
+   "tier": "L0",
+   "family": "Body",
+   "purpose": "waist narrow on bend",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Waist_Warp.compress",
+   "writes": [],
+   "parent": null,
+   "conflicts": [
+    "P_Body_WaistExpand"
+   ],
+   "blend": "exclusive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Body_WaistExpand",
+   "tier": "L0",
+   "family": "Body",
+   "purpose": "waist broaden",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Waist_Warp.expand",
+   "writes": [],
+   "parent": null,
+   "conflicts": [
+    "P_Body_WaistCompress"
+   ],
+   "blend": "exclusive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Body_Breathing",
+   "tier": "L0",
+   "family": "Body",
+   "purpose": "idle breath",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Chest_Warp.breathe",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "idle",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.0,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Body_ShoulderElev_L",
+   "tier": "L0",
+   "family": "Body",
+   "purpose": "shoulder lift/drop",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_ShoulderGirdle_L.lift",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Body_ShoulderRoll_L",
+   "tier": "L0",
+   "family": "Body",
+   "purpose": "shoulder roll",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_ShoulderGirdle_L.roll",
+   "writes": [],
+   "parent": null,
+   "conflicts": [
+    "P_Body_ShoulderCompress_L"
+   ],
+   "blend": "weighted",
+   "priority": "expression",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Body_ShoulderCompress_L",
+   "tier": "L0",
+   "family": "Body",
+   "purpose": "shrug-in",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_ShoulderGirdle_L.protraction",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Body_ShoulderElev_R",
+   "tier": "L0",
+   "family": "Body",
+   "purpose": "shoulder lift/drop",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_ShoulderGirdle_R.lift",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Body_ShoulderRoll_R",
+   "tier": "L0",
+   "family": "Body",
+   "purpose": "shoulder roll",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_ShoulderGirdle_R.roll",
+   "writes": [],
+   "parent": null,
+   "conflicts": [
+    "P_Body_ShoulderCompress_R"
+   ],
+   "blend": "weighted",
+   "priority": "expression",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Body_ShoulderCompress_R",
+   "tier": "L0",
+   "family": "Body",
+   "purpose": "shrug-in",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_ShoulderGirdle_R.protraction",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Body_HipShift",
+   "tier": "L0",
+   "family": "Body",
+   "purpose": "pelvis lateral",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Hip_Rot.shift",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "expression",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Head_RotX",
+   "tier": "L0",
+   "family": "Head",
+   "purpose": "pitch (nod)",
+   "range": [
+    -30,
+    30
+   ],
+   "default": 0,
+   "owns": "DEF_Head_Rotation.X",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -30,
+    30
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[O]"
+  },
+  {
+   "id": "P_Head_RotY",
+   "tier": "L0",
+   "family": "Head",
+   "purpose": "yaw (turn)",
+   "range": [
+    -30,
+    30
+   ],
+   "default": 0,
+   "owns": "DEF_Head_Rotation.Y",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -30,
+    30
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[O]"
+  },
+  {
+   "id": "P_Head_RotZ",
+   "tier": "L0",
+   "family": "Head",
+   "purpose": "roll (tilt)",
+   "range": [
+    -20,
+    20
+   ],
+   "default": 0,
+   "owns": "DEF_Head_Rotation.Z",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -20,
+    20
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[O]"
+  },
+  {
+   "id": "P_Head_Forward",
+   "tier": "L0",
+   "family": "Head",
+   "purpose": "head fwd on neck",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Neck_Warp.forward",
+   "writes": [],
+   "parent": null,
+   "conflicts": [
+    "P_Head_Back"
+   ],
+   "blend": "exclusive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Head_Back",
+   "tier": "L0",
+   "family": "Head",
+   "purpose": "head back on neck",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Neck_Warp.back",
+   "writes": [],
+   "parent": null,
+   "conflicts": [
+    "P_Head_Forward"
+   ],
+   "blend": "exclusive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Neck_Compress",
+   "tier": "L0",
+   "family": "Head",
+   "purpose": "shorten neck",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Neck_Warp.compress",
+   "writes": [],
+   "parent": null,
+   "conflicts": [
+    "P_Neck_Stretch"
+   ],
+   "blend": "exclusive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Neck_Stretch",
+   "tier": "L0",
+   "family": "Head",
+   "purpose": "lengthen neck (<=3%)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Neck_Warp.stretch",
+   "writes": [],
+   "parent": null,
+   "conflicts": [
+    "P_Neck_Compress"
+   ],
+   "blend": "exclusive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Jaw_Rotation",
+   "tier": "L0",
+   "family": "Head",
+   "purpose": "jaw open hinge (single owner of jaw open)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Jaw_Warp.open",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[O]"
+  },
+  {
+   "id": "P_Jaw_Translation",
+   "tier": "L0",
+   "family": "Head",
+   "purpose": "jaw slide",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Jaw_Warp.slide",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_LidUpper_L",
+   "tier": "L0",
+   "family": "Eye",
+   "purpose": "upper lid position (1=open)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 1,
+   "owns": "DEF_Eyelid_Warp_L.upper",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "max-wins",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[O]"
+  },
+  {
+   "id": "P_Eye_LidLower_L",
+   "tier": "L0",
+   "family": "Eye",
+   "purpose": "lower lid position",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Eyelid_Warp_L.lower",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "max-wins",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_IrisX_L",
+   "tier": "L0",
+   "family": "Eye",
+   "purpose": "iris/pupil/catchlight X",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Eye_Warp_Iris_L.x",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -0.8,
+    0.8
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_IrisY_L",
+   "tier": "L0",
+   "family": "Eye",
+   "purpose": "iris/pupil/catchlight Y",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Eye_Warp_Iris_L.y",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -0.8,
+    0.8
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_PupilScale_L",
+   "tier": "L0",
+   "family": "Eye",
+   "purpose": "pupil dilate/constrict",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0.5,
+   "owns": "DEF_Eye_Warp_Iris_L.pupil",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_SocketCompress_L",
+   "tier": "L0",
+   "family": "Eye",
+   "purpose": "socket squash",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Eye_Warp_Socket_L.compress",
+   "writes": [],
+   "parent": null,
+   "conflicts": [
+    "P_Eye_SocketExpand_L"
+   ],
+   "blend": "exclusive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_SocketExpand_L",
+   "tier": "L0",
+   "family": "Eye",
+   "purpose": "socket widen",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Eye_Warp_Socket_L.expand",
+   "writes": [],
+   "parent": null,
+   "conflicts": [
+    "P_Eye_SocketCompress_L"
+   ],
+   "blend": "exclusive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_LidUpper_R",
+   "tier": "L0",
+   "family": "Eye",
+   "purpose": "upper lid position (1=open)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 1,
+   "owns": "DEF_Eyelid_Warp_R.upper",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "max-wins",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[O]"
+  },
+  {
+   "id": "P_Eye_LidLower_R",
+   "tier": "L0",
+   "family": "Eye",
+   "purpose": "lower lid position",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Eyelid_Warp_R.lower",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "max-wins",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_IrisX_R",
+   "tier": "L0",
+   "family": "Eye",
+   "purpose": "iris/pupil/catchlight X",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Eye_Warp_Iris_R.x",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -0.8,
+    0.8
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_IrisY_R",
+   "tier": "L0",
+   "family": "Eye",
+   "purpose": "iris/pupil/catchlight Y",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Eye_Warp_Iris_R.y",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -0.8,
+    0.8
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_PupilScale_R",
+   "tier": "L0",
+   "family": "Eye",
+   "purpose": "pupil dilate/constrict",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0.5,
+   "owns": "DEF_Eye_Warp_Iris_R.pupil",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_SocketCompress_R",
+   "tier": "L0",
+   "family": "Eye",
+   "purpose": "socket squash",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Eye_Warp_Socket_R.compress",
+   "writes": [],
+   "parent": null,
+   "conflicts": [
+    "P_Eye_SocketExpand_R"
+   ],
+   "blend": "exclusive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_SocketExpand_R",
+   "tier": "L0",
+   "family": "Eye",
+   "purpose": "socket widen",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Eye_Warp_Socket_R.expand",
+   "writes": [],
+   "parent": null,
+   "conflicts": [
+    "P_Eye_SocketCompress_R"
+   ],
+   "blend": "exclusive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Brow_Height_L",
+   "tier": "L0",
+   "family": "Brow",
+   "purpose": "brow up/down",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Brow_Warp_L.height",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Brow_Angle_L",
+   "tier": "L0",
+   "family": "Brow",
+   "purpose": "brow angle",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Brow_Warp_L.angle",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Cheek_Raise_L",
+   "tier": "L0",
+   "family": "Cheek",
+   "purpose": "cheek raise (owns bulge)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Cheek_Warp_L.raise",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Cheek_Puff_L",
+   "tier": "L0",
+   "family": "Cheek",
+   "purpose": "cheek puff",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Cheek_Warp_L.puff",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Brow_Height_R",
+   "tier": "L0",
+   "family": "Brow",
+   "purpose": "brow up/down",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Brow_Warp_R.height",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Brow_Angle_R",
+   "tier": "L0",
+   "family": "Brow",
+   "purpose": "brow angle",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Brow_Warp_R.angle",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Cheek_Raise_R",
+   "tier": "L0",
+   "family": "Cheek",
+   "purpose": "cheek raise (owns bulge)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Cheek_Warp_R.raise",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Cheek_Puff_R",
+   "tier": "L0",
+   "family": "Cheek",
+   "purpose": "cheek puff",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Cheek_Warp_R.puff",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Mouth_UpperLip",
+   "tier": "L0",
+   "family": "Mouth",
+   "purpose": "upper lip raise",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Mouth_Warp.upper",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Mouth_LowerLip",
+   "tier": "L0",
+   "family": "Mouth",
+   "purpose": "lower lip",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Mouth_Warp.lower",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Mouth_LipCorners",
+   "tier": "L0",
+   "family": "Mouth",
+   "purpose": "corner up/down (smile/sad axis)",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Mouth_Warp.corners",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "signed-sum",
+   "priority": "expression",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Mouth_JawWidth",
+   "tier": "L0",
+   "family": "Mouth",
+   "purpose": "mouth width",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Mouth_Warp.width",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Mouth_Tongue",
+   "tier": "L0",
+   "family": "Mouth",
+   "purpose": "tongue reveal",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Mouth_Warp.tongue",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[M]"
+  },
+  {
+   "id": "P_Mouth_Teeth",
+   "tier": "L0",
+   "family": "Mouth",
+   "purpose": "teeth reveal",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Mouth_Warp.teeth",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[M]"
+  },
+  {
+   "id": "P_Mouth_Inner",
+   "tier": "L0",
+   "family": "Mouth",
+   "purpose": "inner cavity reveal",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Mouth_Warp.inner",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[M]"
+  },
+  {
+   "id": "P_Arm_Raise_L",
+   "tier": "L0",
+   "family": "Arms",
+   "purpose": "arm raise",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Arm_Rot_Shoulder_L.raise",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Arm_Elbow_L",
+   "tier": "L0",
+   "family": "Arms",
+   "purpose": "elbow bend",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Arm_Rot_Elbow_L.bend",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Arm_ForeTwist_L",
+   "tier": "L0",
+   "family": "Arms",
+   "purpose": "forearm twist",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Arm_Warp_ForeTwist_L.twist",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Arm_Wrist_L",
+   "tier": "L0",
+   "family": "Arms",
+   "purpose": "wrist bend",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Arm_Rot_Wrist_L.bend",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Hand_Finger1_L",
+   "tier": "L0",
+   "family": "Hands",
+   "purpose": "finger1 curl",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Hand_Rot_Finger1_L.curl",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Hand_Finger2_L",
+   "tier": "L0",
+   "family": "Hands",
+   "purpose": "finger2 curl",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Hand_Rot_Finger2_L.curl",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Hand_Finger3_L",
+   "tier": "L0",
+   "family": "Hands",
+   "purpose": "finger3 curl",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Hand_Rot_Finger3_L.curl",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Hand_Finger4_L",
+   "tier": "L0",
+   "family": "Hands",
+   "purpose": "finger4 curl",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Hand_Rot_Finger4_L.curl",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Arm_Raise_R",
+   "tier": "L0",
+   "family": "Arms",
+   "purpose": "arm raise",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Arm_Rot_Shoulder_R.raise",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Arm_Elbow_R",
+   "tier": "L0",
+   "family": "Arms",
+   "purpose": "elbow bend",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Arm_Rot_Elbow_R.bend",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Arm_ForeTwist_R",
+   "tier": "L0",
+   "family": "Arms",
+   "purpose": "forearm twist",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Arm_Warp_ForeTwist_R.twist",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Arm_Wrist_R",
+   "tier": "L0",
+   "family": "Arms",
+   "purpose": "wrist bend",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Arm_Rot_Wrist_R.bend",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Hand_Finger1_R",
+   "tier": "L0",
+   "family": "Hands",
+   "purpose": "finger1 curl",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Hand_Rot_Finger1_R.curl",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Hand_Finger2_R",
+   "tier": "L0",
+   "family": "Hands",
+   "purpose": "finger2 curl",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Hand_Rot_Finger2_R.curl",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Hand_Finger3_R",
+   "tier": "L0",
+   "family": "Hands",
+   "purpose": "finger3 curl",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Hand_Rot_Finger3_R.curl",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Hand_Finger4_R",
+   "tier": "L0",
+   "family": "Hands",
+   "purpose": "finger4 curl",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Hand_Rot_Finger4_R.curl",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Hair_Front_Offset",
+   "tier": "L0",
+   "family": "Hair",
+   "purpose": "front fringe manual offset",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Hair_Front_Warp.offset",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Hair_Rear_Offset",
+   "tier": "L0",
+   "family": "Hair",
+   "purpose": "rear hair offset",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Hair_Rear_Warp.offset",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Hair_Crown_Offset",
+   "tier": "L0",
+   "family": "Hair",
+   "purpose": "crown spike micro (stiff, loft-locked)",
+   "range": [
+    -0.2,
+    0.2
+   ],
+   "default": 0,
+   "owns": "DEF_Hair_Front_Warp.crown",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -0.2,
+    0.2
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[O]"
+  },
+  {
+   "id": "P_Acc_WatchCounter",
+   "tier": "L0",
+   "family": "Accessory",
+   "purpose": "watch counter-rotate (owned, driven by forearm twist)",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": "DEF_Watch_Rigid_R.counter",
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Hair_Front_Sway",
+   "tier": "L0",
+   "family": "Hair",
+   "purpose": "physics/driven input (geometry-free)",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "physics",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.0,
+   "physicsInput": true,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Hair_Side_Sway_L",
+   "tier": "L0",
+   "family": "Hair",
+   "purpose": "physics/driven input (geometry-free)",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "physics",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.0,
+   "physicsInput": true,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Hair_Side_Sway_R",
+   "tier": "L0",
+   "family": "Hair",
+   "purpose": "physics/driven input (geometry-free)",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "physics",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.0,
+   "physicsInput": true,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Hair_RearUpper_Sway",
+   "tier": "L0",
+   "family": "Hair",
+   "purpose": "physics/driven input (geometry-free)",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "physics",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.0,
+   "physicsInput": true,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Hair_RearLower_Sway",
+   "tier": "L0",
+   "family": "Hair",
+   "purpose": "physics/driven input (geometry-free)",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "physics",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.0,
+   "physicsInput": true,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Hair_Flyaway_Sway",
+   "tier": "L0",
+   "family": "Hair",
+   "purpose": "physics/driven input (geometry-free)",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "physics",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.0,
+   "physicsInput": true,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Hair_Wind",
+   "tier": "L0",
+   "family": "Hair",
+   "purpose": "physics/driven input (geometry-free)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "physics",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.0,
+   "physicsInput": true,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Hair_Gravity",
+   "tier": "L0",
+   "family": "Hair",
+   "purpose": "physics/driven input (geometry-free)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "physics",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.0,
+   "physicsInput": true,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Hair_Inertia",
+   "tier": "L0",
+   "family": "Hair",
+   "purpose": "physics/driven input (geometry-free)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "physics",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.0,
+   "physicsInput": true,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Hair_SecondaryOsc",
+   "tier": "L0",
+   "family": "Hair",
+   "purpose": "physics/driven input (geometry-free)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "physics",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.0,
+   "physicsInput": true,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Hair_Damping",
+   "tier": "L0",
+   "family": "Hair",
+   "purpose": "physics/driven input (geometry-free)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "physics",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.0,
+   "physicsInput": true,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Hair_CollisionResponse",
+   "tier": "L0",
+   "family": "Hair",
+   "purpose": "physics/driven input (geometry-free)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "physics",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.0,
+   "physicsInput": true,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Cloth_Gravity",
+   "tier": "L0",
+   "family": "Clothing",
+   "purpose": "physics/driven input (geometry-free)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "physics",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.0,
+   "physicsInput": true,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Cloth_Wind",
+   "tier": "L0",
+   "family": "Clothing",
+   "purpose": "physics/driven input (geometry-free)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "physics",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.0,
+   "physicsInput": true,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Cloth_SleeveSwing",
+   "tier": "L0",
+   "family": "Clothing",
+   "purpose": "physics/driven input (geometry-free)",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "physics",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.0,
+   "physicsInput": true,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Cloth_WaistFabric",
+   "tier": "L0",
+   "family": "Clothing",
+   "purpose": "physics/driven input (geometry-free)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "physics",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.0,
+   "physicsInput": true,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Cloth_PantMotion",
+   "tier": "L0",
+   "family": "Clothing",
+   "purpose": "physics/driven input (geometry-free)",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "physics",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.0,
+   "physicsInput": true,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Cloth_CollarMotion",
+   "tier": "L0",
+   "family": "Clothing",
+   "purpose": "physics/driven input (geometry-free)",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "physics",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.0,
+   "physicsInput": true,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Cloth_FabricCompress",
+   "tier": "L0",
+   "family": "Clothing",
+   "purpose": "physics/driven input (geometry-free)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "physics",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.0,
+   "physicsInput": true,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Cloth_FabricStretch",
+   "tier": "L0",
+   "family": "Clothing",
+   "purpose": "physics/driven input (geometry-free)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "physics",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.0,
+   "physicsInput": true,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Cloth_WrinkleIntensity",
+   "tier": "L0",
+   "family": "Clothing",
+   "purpose": "physics/driven input (geometry-free)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "physics",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.0,
+   "physicsInput": true,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Body_RotZ",
+   "tier": "L1",
+   "family": "Body",
+   "purpose": "body turn -> twist cascade (single twist owner)",
+   "range": [
+    -30,
+    30
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Body_ChestTwist",
+     "gain": 0.16000000000000003
+    },
+    {
+     "to": "P_Body_WaistTwist",
+     "gain": 0.09
+    },
+    {
+     "to": "P_Head_RotY",
+     "gain": 0.2,
+     "share": "neck-turn"
+    },
+    {
+     "to": "P_Body_ShoulderRoll_L",
+     "gain": 0.05
+    },
+    {
+     "to": "P_Body_ShoulderRoll_R",
+     "gain": 0.05
+    }
+   ],
+   "distribution": {
+    "chest": 0.4,
+    "waist": 0.3,
+    "neck": 0.2,
+    "shoulder": 0.1
+   },
+   "parent": null,
+   "conflicts": [],
+   "blend": "distribute",
+   "priority": "gesture",
+   "clampedTo": [
+    -30,
+    30
+   ],
+   "smoothingTau": 0.15,
+   "physicsInput": false,
+   "confidence": "[O]"
+  },
+  {
+   "id": "P_Head_Tilt",
+   "tier": "L1",
+   "family": "Head",
+   "purpose": "semantic roll alias -> RotZ only",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Head_RotZ",
+     "gain": 20
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Head_CounterRot",
+   "tier": "L1",
+   "family": "Head",
+   "purpose": "keep head level vs body turn (corrective, last)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Head_RotZ",
+     "gain": -1
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_Blink_L",
+   "tier": "L1",
+   "family": "Eye",
+   "purpose": "blink",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Eye_LidUpper_L",
+     "gain": -1.0
+    },
+    {
+     "to": "P_Eye_LidLower_L",
+     "gain": 0.15
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "max-wins",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_HalfBlink_L",
+   "tier": "L1",
+   "family": "Eye",
+   "purpose": "sleepy",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Eye_LidUpper_L",
+     "gain": -0.5
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "max-wins",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_Wide_L",
+   "tier": "L1",
+   "family": "Eye",
+   "purpose": "surprise widen",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Eye_LidUpper_L",
+     "gain": 0.4
+    },
+    {
+     "to": "P_Eye_SocketExpand_L",
+     "gain": 0.6
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "max-wins",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_Squint_L",
+   "tier": "L1",
+   "family": "Eye",
+   "purpose": "squint",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Eye_LidLower_L",
+     "gain": 0.6
+    },
+    {
+     "to": "P_Cheek_Raise_L",
+     "gain": 0.3
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_Blink_R",
+   "tier": "L1",
+   "family": "Eye",
+   "purpose": "blink",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Eye_LidUpper_R",
+     "gain": -1.0
+    },
+    {
+     "to": "P_Eye_LidLower_R",
+     "gain": 0.15
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "max-wins",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_HalfBlink_R",
+   "tier": "L1",
+   "family": "Eye",
+   "purpose": "sleepy",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Eye_LidUpper_R",
+     "gain": -0.5
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "max-wins",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_Wide_R",
+   "tier": "L1",
+   "family": "Eye",
+   "purpose": "surprise widen",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Eye_LidUpper_R",
+     "gain": 0.4
+    },
+    {
+     "to": "P_Eye_SocketExpand_R",
+     "gain": 0.6
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "max-wins",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_Squint_R",
+   "tier": "L1",
+   "family": "Eye",
+   "purpose": "squint",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Eye_LidLower_R",
+     "gain": 0.6
+    },
+    {
+     "to": "P_Cheek_Raise_R",
+     "gain": 0.3
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_LookX",
+   "tier": "L1",
+   "family": "Eye",
+   "purpose": "gaze X (both eyes, bounded)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Eye_IrisX_L",
+     "gain": 1
+    },
+    {
+     "to": "P_Eye_IrisX_R",
+     "gain": 1
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_LookY",
+   "tier": "L1",
+   "family": "Eye",
+   "purpose": "gaze Y (both eyes, bounded)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Eye_IrisY_L",
+     "gain": 1
+    },
+    {
+     "to": "P_Eye_IrisY_R",
+     "gain": 1
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Eye_Focus",
+   "tier": "L1",
+   "family": "Eye",
+   "purpose": "sharp gaze",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Eye_PupilScale_L",
+     "gain": -0.3
+    },
+    {
+     "to": "P_Eye_PupilScale_R",
+     "gain": -0.3
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Mouth_Smile",
+   "tier": "L1",
+   "family": "Mouth",
+   "purpose": "smile",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Mouth_LipCorners",
+     "gain": 1.0
+    },
+    {
+     "to": "P_Cheek_Raise_L",
+     "gain": 0.6
+    },
+    {
+     "to": "P_Cheek_Raise_R",
+     "gain": 0.6
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Mouth_Sad",
+   "tier": "L1",
+   "family": "Mouth",
+   "purpose": "sad",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Mouth_LipCorners",
+     "gain": -1.0
+    },
+    {
+     "to": "P_Mouth_UpperLip",
+     "gain": 0.2
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Mouth_Angry",
+   "tier": "L1",
+   "family": "Mouth",
+   "purpose": "angry",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Mouth_LipCorners",
+     "gain": -0.6
+    },
+    {
+     "to": "P_Mouth_LowerLip",
+     "gain": 0.4
+    },
+    {
+     "to": "P_Brow_Height_L",
+     "gain": -0.5
+    },
+    {
+     "to": "P_Brow_Height_R",
+     "gain": -0.5
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Mouth_Surprised",
+   "tier": "L1",
+   "family": "Mouth",
+   "purpose": "surprised",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Jaw_Rotation",
+     "gain": 0.6
+    },
+    {
+     "to": "P_Mouth_JawWidth",
+     "gain": -0.3
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Mouth_JawOpen",
+   "tier": "L1",
+   "family": "Mouth",
+   "purpose": "alias -> Jaw_Rotation (single owner)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Jaw_Rotation",
+     "gain": 1
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Mouth_PhonemeA",
+   "tier": "L1",
+   "family": "Mouth",
+   "purpose": "viseme A",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Jaw_Rotation",
+     "gain": 0.7
+    },
+    {
+     "to": "P_Mouth_JawWidth",
+     "gain": 0.2
+    },
+    {
+     "to": "P_Mouth_UpperLip",
+     "gain": 0.1
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Mouth_PhonemeI",
+   "tier": "L1",
+   "family": "Mouth",
+   "purpose": "viseme I",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Jaw_Rotation",
+     "gain": 0.2
+    },
+    {
+     "to": "P_Mouth_JawWidth",
+     "gain": 0.6
+    },
+    {
+     "to": "P_Mouth_UpperLip",
+     "gain": 0.0
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Mouth_PhonemeU",
+   "tier": "L1",
+   "family": "Mouth",
+   "purpose": "viseme U",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Jaw_Rotation",
+     "gain": 0.3
+    },
+    {
+     "to": "P_Mouth_JawWidth",
+     "gain": -0.5
+    },
+    {
+     "to": "P_Mouth_UpperLip",
+     "gain": 0.1
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Mouth_PhonemeE",
+   "tier": "L1",
+   "family": "Mouth",
+   "purpose": "viseme E",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Jaw_Rotation",
+     "gain": 0.4
+    },
+    {
+     "to": "P_Mouth_JawWidth",
+     "gain": 0.3
+    },
+    {
+     "to": "P_Mouth_UpperLip",
+     "gain": 0.1
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Mouth_PhonemeO",
+   "tier": "L1",
+   "family": "Mouth",
+   "purpose": "viseme O",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Jaw_Rotation",
+     "gain": 0.5
+    },
+    {
+     "to": "P_Mouth_JawWidth",
+     "gain": -0.2
+    },
+    {
+     "to": "P_Mouth_UpperLip",
+     "gain": 0.2
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Hand_Form_L",
+   "tier": "L1",
+   "family": "Hands",
+   "purpose": "hand pose",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Hand_Finger1_L",
+     "gain": 1
+    },
+    {
+     "to": "P_Hand_Finger2_L",
+     "gain": 1
+    },
+    {
+     "to": "P_Hand_Finger3_L",
+     "gain": 1
+    },
+    {
+     "to": "P_Hand_Finger4_L",
+     "gain": 1
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Hand_Form_R",
+   "tier": "L1",
+   "family": "Hands",
+   "purpose": "hand pose",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Hand_Finger1_R",
+     "gain": 1
+    },
+    {
+     "to": "P_Hand_Finger2_R",
+     "gain": 1
+    },
+    {
+     "to": "P_Hand_Finger3_R",
+     "gain": 1
+    },
+    {
+     "to": "P_Hand_Finger4_R",
+     "gain": 1
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "X_Happy",
+   "tier": "L2",
+   "family": "Expression",
+   "purpose": "expression Happy",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Mouth_Smile",
+     "gain": 0.7
+    },
+    {
+     "to": "P_Cheek_Raise_L",
+     "gain": 0.6
+    },
+    {
+     "to": "P_Cheek_Raise_R",
+     "gain": 0.6
+    },
+    {
+     "to": "P_Eye_Squint_L",
+     "gain": 0.3
+    },
+    {
+     "to": "P_Eye_Squint_R",
+     "gain": 0.3
+    },
+    {
+     "to": "P_Brow_Height_L",
+     "gain": 0.2
+    },
+    {
+     "to": "P_Brow_Height_R",
+     "gain": 0.2
+    },
+    {
+     "to": "P_Body_ChestExpand",
+     "gain": 0.1
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.25,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "X_Serious",
+   "tier": "L2",
+   "family": "Expression",
+   "purpose": "expression Serious",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Mouth_LipCorners",
+     "gain": -0.1
+    },
+    {
+     "to": "P_Brow_Height_L",
+     "gain": -0.3
+    },
+    {
+     "to": "P_Brow_Height_R",
+     "gain": -0.3
+    },
+    {
+     "to": "P_Eye_Focus",
+     "gain": 0.8
+    },
+    {
+     "to": "P_Body_Posture",
+     "gain": 0.7
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.25,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "X_Focused",
+   "tier": "L2",
+   "family": "Expression",
+   "purpose": "expression Focused",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Eye_Focus",
+     "gain": 1.0
+    },
+    {
+     "to": "P_Eye_PupilScale_L",
+     "gain": 0.3
+    },
+    {
+     "to": "P_Eye_PupilScale_R",
+     "gain": 0.3
+    },
+    {
+     "to": "P_Brow_Height_L",
+     "gain": -0.2
+    },
+    {
+     "to": "P_Brow_Height_R",
+     "gain": -0.2
+    },
+    {
+     "to": "P_Head_Forward",
+     "gain": 0.2
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.25,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "X_Curious",
+   "tier": "L2",
+   "family": "Expression",
+   "purpose": "expression Curious",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Head_Tilt",
+     "gain": 0.4
+    },
+    {
+     "to": "P_Brow_Height_L",
+     "gain": 0.5
+    },
+    {
+     "to": "P_Brow_Height_R",
+     "gain": 0.2
+    },
+    {
+     "to": "P_Eye_Wide_L",
+     "gain": 0.3
+    },
+    {
+     "to": "P_Eye_Wide_R",
+     "gain": 0.3
+    },
+    {
+     "to": "P_Eye_LookX",
+     "gain": 0.3
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.25,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "X_Surprised",
+   "tier": "L2",
+   "family": "Expression",
+   "purpose": "expression Surprised",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Eye_Wide_L",
+     "gain": 0.9
+    },
+    {
+     "to": "P_Eye_Wide_R",
+     "gain": 0.9
+    },
+    {
+     "to": "P_Brow_Height_L",
+     "gain": 0.8
+    },
+    {
+     "to": "P_Brow_Height_R",
+     "gain": 0.8
+    },
+    {
+     "to": "P_Mouth_Surprised",
+     "gain": 0.7
+    },
+    {
+     "to": "P_Head_Back",
+     "gain": 0.2
+    },
+    {
+     "to": "P_Body_ChestExpand",
+     "gain": 0.3
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.25,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "X_Embarrassed",
+   "tier": "L2",
+   "family": "Expression",
+   "purpose": "expression Embarrassed",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Cheek_Puff_L",
+     "gain": 0.6
+    },
+    {
+     "to": "P_Cheek_Puff_R",
+     "gain": 0.6
+    },
+    {
+     "to": "P_Eye_LookY",
+     "gain": -0.4
+    },
+    {
+     "to": "P_Eye_HalfBlink_L",
+     "gain": 0.3
+    },
+    {
+     "to": "P_Eye_HalfBlink_R",
+     "gain": 0.3
+    },
+    {
+     "to": "P_Mouth_Smile",
+     "gain": 0.2
+    },
+    {
+     "to": "P_Head_Tilt",
+     "gain": 0.2
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.25,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "X_Confident",
+   "tier": "L2",
+   "family": "Expression",
+   "purpose": "expression Confident",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Mouth_Smile",
+     "gain": 0.2
+    },
+    {
+     "to": "P_Body_ChestExpand",
+     "gain": 0.4
+    },
+    {
+     "to": "P_Body_Posture",
+     "gain": 1.0
+    },
+    {
+     "to": "P_Body_ShoulderRoll_L",
+     "gain": -0.3
+    },
+    {
+     "to": "P_Body_ShoulderRoll_R",
+     "gain": -0.3
+    },
+    {
+     "to": "P_Eye_Focus",
+     "gain": 0.6
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.25,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "X_Thinking",
+   "tier": "L2",
+   "family": "Expression",
+   "purpose": "expression Thinking",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Eye_LookX",
+     "gain": 0.5
+    },
+    {
+     "to": "P_Eye_LookY",
+     "gain": 0.5
+    },
+    {
+     "to": "P_Brow_Height_L",
+     "gain": 0.3
+    },
+    {
+     "to": "P_Mouth_LipCorners",
+     "gain": 0.1
+    },
+    {
+     "to": "P_Head_Tilt",
+     "gain": 0.2
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.25,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "G_Wave",
+   "tier": "L2",
+   "family": "Gesture",
+   "purpose": "gesture Wave (recipe; curves in animation phase)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Body_ShoulderElev_R",
+     "gain": 0.6
+    },
+    {
+     "to": "P_Arm_Raise_R",
+     "gain": 0.7
+    },
+    {
+     "to": "P_Arm_Elbow_R",
+     "gain": 0.5
+    },
+    {
+     "to": "P_Arm_ForeTwist_R",
+     "gain": 0.3
+    },
+    {
+     "to": "P_Hand_Form_R",
+     "gain": 0.0
+    },
+    {
+     "to": "P_Mouth_Smile",
+     "gain": 0.4
+    },
+    {
+     "to": "P_Eye_LookX",
+     "gain": 0.3
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "gesture",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.2,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "G_Point",
+   "tier": "L2",
+   "family": "Gesture",
+   "purpose": "gesture Point (recipe; curves in animation phase)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Arm_Raise_R",
+     "gain": 0.6
+    },
+    {
+     "to": "P_Arm_Elbow_R",
+     "gain": 0.2
+    },
+    {
+     "to": "P_Hand_Form_R",
+     "gain": 0.3
+    },
+    {
+     "to": "P_Head_RotY",
+     "gain": 10
+    },
+    {
+     "to": "P_Eye_LookX",
+     "gain": 0.5
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "gesture",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.2,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "G_ThumbsUp",
+   "tier": "L2",
+   "family": "Gesture",
+   "purpose": "gesture ThumbsUp (recipe; curves in animation phase)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Arm_Raise_R",
+     "gain": 0.3
+    },
+    {
+     "to": "P_Arm_Elbow_R",
+     "gain": 0.8
+    },
+    {
+     "to": "P_Hand_Form_R",
+     "gain": 0.5
+    },
+    {
+     "to": "P_Mouth_Smile",
+     "gain": 0.5
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "gesture",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.2,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "G_Shrug",
+   "tier": "L2",
+   "family": "Gesture",
+   "purpose": "gesture Shrug (recipe; curves in animation phase)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Body_ShoulderElev_L",
+     "gain": 1.0
+    },
+    {
+     "to": "P_Body_ShoulderElev_R",
+     "gain": 1.0
+    },
+    {
+     "to": "P_Body_ShoulderCompress_L",
+     "gain": 0.5
+    },
+    {
+     "to": "P_Body_ShoulderCompress_R",
+     "gain": 0.5
+    },
+    {
+     "to": "P_Arm_Elbow_L",
+     "gain": 0.3
+    },
+    {
+     "to": "P_Arm_Elbow_R",
+     "gain": 0.3
+    },
+    {
+     "to": "P_Brow_Height_L",
+     "gain": 0.3
+    },
+    {
+     "to": "P_Brow_Height_R",
+     "gain": 0.3
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "gesture",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.2,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "G_Celebrate",
+   "tier": "L2",
+   "family": "Gesture",
+   "purpose": "gesture Celebrate (recipe; curves in animation phase)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Arm_Raise_L",
+     "gain": 0.9
+    },
+    {
+     "to": "P_Arm_Raise_R",
+     "gain": 0.9
+    },
+    {
+     "to": "P_Body_ChestExpand",
+     "gain": 0.5
+    },
+    {
+     "to": "P_Mouth_Smile",
+     "gain": 0.9
+    },
+    {
+     "to": "P_Eye_Wide_L",
+     "gain": 0.5
+    },
+    {
+     "to": "P_Eye_Wide_R",
+     "gain": 0.5
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "gesture",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.2,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "G_CrossArms",
+   "tier": "L2",
+   "family": "Gesture",
+   "purpose": "gesture CrossArms (recipe; curves in animation phase)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Arm_Elbow_L",
+     "gain": 0.9
+    },
+    {
+     "to": "P_Arm_Elbow_R",
+     "gain": 0.9
+    },
+    {
+     "to": "P_Arm_Raise_L",
+     "gain": 0.2
+    },
+    {
+     "to": "P_Arm_Raise_R",
+     "gain": 0.2
+    },
+    {
+     "to": "P_Body_ChestCompress",
+     "gain": 0.2
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "gesture",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.2,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "G_Thinking",
+   "tier": "L2",
+   "family": "Gesture",
+   "purpose": "gesture Thinking (recipe; curves in animation phase)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Arm_Elbow_R",
+     "gain": 0.9
+    },
+    {
+     "to": "P_Hand_Form_R",
+     "gain": 0.4
+    },
+    {
+     "to": "P_Head_Tilt",
+     "gain": 0.3
+    },
+    {
+     "to": "P_Eye_LookY",
+     "gain": 0.4
+    },
+    {
+     "to": "P_Brow_Height_L",
+     "gain": 0.3
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "gesture",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.2,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "AI_Emotion",
+   "tier": "L3",
+   "family": "AI",
+   "purpose": "valence/arousal/label -> baseline tone (held)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "X_Confident",
+     "gain": 1.0,
+     "when": "label=confident"
+    },
+    {
+     "to": "X_Happy",
+     "gain": 1.0,
+     "when": "label=happy"
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "ai",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.6,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "AI_Attention",
+   "tier": "L3",
+   "family": "AI",
+   "purpose": "gaze target + focus (owns LookX/Y + HeadRotY share)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Eye_LookX",
+     "gain": 1.0
+    },
+    {
+     "to": "P_Eye_LookY",
+     "gain": 1.0
+    },
+    {
+     "to": "P_Head_RotY",
+     "gain": 0.3
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "ai",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.2,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "AI_Conversation",
+   "tier": "L3",
+   "family": "AI",
+   "purpose": "idle/listening/speaking/thinking gate (enables visemes+breath)",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Body_Breathing",
+     "gain": 1.0
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "ai",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.3,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "AI_GestureIntent",
+   "tier": "L3",
+   "family": "AI",
+   "purpose": "fire an L2 gesture at intensity",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "G_Wave",
+     "gain": 1.0,
+     "when": "gesture=wave"
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "ai",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.25,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Body_Posture",
+   "tier": "L1",
+   "family": "Body",
+   "purpose": "slouch<->upright",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Body_ChestExpand",
+     "gain": 0.4
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "additive",
+   "priority": "expression",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.12,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_RT_CameraDistance",
+   "tier": "RT",
+   "family": "Runtime",
+   "purpose": "LOD",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "runtime",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.1,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_RT_MouseTrackX",
+   "tier": "RT",
+   "family": "Runtime",
+   "purpose": "cursor->gaze X",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Eye_LookX",
+     "gain": 1
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "runtime",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.1,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_RT_MouseTrackY",
+   "tier": "RT",
+   "family": "Runtime",
+   "purpose": "cursor->gaze Y",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [
+    {
+     "to": "P_Eye_LookY",
+     "gain": 1
+    }
+   ],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "runtime",
+   "clampedTo": [
+    -1,
+    1
+   ],
+   "smoothingTau": 0.1,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_RT_WindowFocus",
+   "tier": "RT",
+   "family": "Runtime",
+   "purpose": "focus/idle",
+   "range": [
+    0,
+    1
+   ],
+   "default": 1,
+   "owns": null,
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "runtime",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.1,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_RT_IdleEnable",
+   "tier": "RT",
+   "family": "Runtime",
+   "purpose": "idle toggle",
+   "range": [
+    0,
+    1
+   ],
+   "default": 1,
+   "owns": null,
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "runtime",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.1,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_RT_PerfScale",
+   "tier": "RT",
+   "family": "Runtime",
+   "purpose": "perf cap",
+   "range": [
+    0,
+    1
+   ],
+   "default": 1,
+   "owns": null,
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "runtime",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.1,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_RT_ReduceMotion",
+   "tier": "RT",
+   "family": "Runtime",
+   "purpose": "accessibility amplitude cap",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "runtime",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.1,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_RT_NoFlash",
+   "tier": "RT",
+   "family": "Runtime",
+   "purpose": "limit fast blink/flash",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "runtime",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.1,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Dev_IsolateParam",
+   "tier": "RT",
+   "family": "Runtime",
+   "purpose": "solo a param",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "runtime",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.1,
+   "physicsInput": false,
+   "confidence": "[H]"
+  },
+  {
+   "id": "P_Dev_OverrideClamp",
+   "tier": "RT",
+   "family": "Runtime",
+   "purpose": "debug exceed limits",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "owns": null,
+   "writes": [],
+   "parent": null,
+   "conflicts": [],
+   "blend": "weighted",
+   "priority": "runtime",
+   "clampedTo": [
+    0,
+    1
+   ],
+   "smoothingTau": 0.1,
+   "physicsInput": false,
+   "confidence": "[H]"
+  }
+ ]
+}
