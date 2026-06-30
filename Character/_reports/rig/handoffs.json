@@ -1,0 +1,68 @@
+{
+ "physics": {
+  "inputs": [
+   "ParamAngleX",
+   "ParamAngleY",
+   "ParamAngleZ",
+   "ParamBodyAngleX",
+   "ParamBodyAngleY",
+   "ParamBodyAngleZ",
+   "ParamBreath",
+   "ParamArmRaiseL",
+   "ParamArmRaiseR"
+  ],
+  "pendulumGroups": [
+   "hair_front",
+   "hair_side",
+   "hair_rear",
+   "flyaways",
+   "shirt_hem",
+   "sleeve"
+  ],
+  "massOrder": [
+   "flyaways<fringe<sides<rear<hem"
+  ],
+  "stiff": [
+   "crown_spikes"
+  ],
+  "note": "constants tuned in Phase 5"
+ },
+ "expression": {
+  "isolatedParams": [
+   "ParamEyeOpenL",
+   "ParamEyeOpenR",
+   "ParamBrowLY",
+   "ParamBrowRY",
+   "ParamMouthOpenY",
+   "ParamMouthForm",
+   "ParamCheek",
+   "ParamEyeLookX",
+   "ParamEyeLookY"
+  ],
+  "reserves": [
+   "MOUTH_Interior",
+   "MOUTH_Teeth",
+   "MOUTH_Tongue"
+  ],
+  "note": "combine without collision; no presets authored"
+ },
+ "ai": {
+  "compactParamSet": [
+   "ParamAngleX",
+   "ParamAngleY",
+   "ParamAngleZ",
+   "ParamBodyAngleZ",
+   "ParamEyeLookX",
+   "ParamEyeLookY",
+   "ParamArmRaiseL",
+   "ParamArmRaiseR",
+   "ParamHandFormL",
+   "ParamHandFormR",
+   "ParamMouthOpenY",
+   "ParamMouthForm",
+   "ParamBrowLY",
+   "ParamBrowRY"
+  ],
+  "note": "high-level targets give believable gesture coverage without touching low-level deformers"
+ }
+}

@@ -253,7 +253,7 @@ def bandfolder(band,side,name):
 def chr_name(band,name,side):
     return f"CHR_{band}_{name}"
 
-def emit(name, mask=None, rgba=None, *, band, side="", state="base", vis="always",
+def emit(name, mask=None, rgba=None, *, ox=0, oy=0, band, side="", state="base", vis="always",
          occ="", depth=None, motion="", meshd="M", warp="N", rot="N", phys="N", coll="N",
          param=0, ai="low", texc="N", conf="[H]", csrc="", dep=None, alt=False, hidden=False,
          mirrored="", blend="normal", src=FRONT, bleed=6):
@@ -270,7 +270,7 @@ def emit(name, mask=None, rgba=None, *, band, side="", state="base", vis="always
             sub=src[y0:y1,x0:x1].copy(); m=mask[y0:y1,x0:x1]; sub[~m,3]=0
             sub=feather_bleed(sub,bleed); Image.fromarray(sub).save(full); w,h=x1-x0,y1-y0
     else:
-        Image.fromarray(rgba).save(full); y0=x0=0; h,w=rgba.shape[:2]
+        Image.fromarray(rgba).save(full); y0=int(oy); x0=int(ox); h,w=rgba.shape[:2]
     manifest.append(dict(id=len(manifest)+1,name=fname[:-4],band=band,side=side,state=state,
         VIS=vis,OCC=occ,DEPTH=depth if depth is not None else DEPTH.get(band,300),blendMode=blend,
         MOTION=motion,MESHd=meshd,WARP=warp,ROT=rot,PHYS=phys,COLL=coll,PARAM_est=param,AI=ai,
@@ -298,8 +298,8 @@ def inpaint_region(region_mask, hole_mask):
 def synth_fill(shape_mask,color):
     rgba=np.zeros((H,W,4),np.uint8); rgba[shape_mask,:3]=color; rgba[shape_mask,3]=255
     ys,xs=np.where(shape_mask)
-    if len(ys)==0: return np.zeros((4,4,4),np.uint8)
-    return rgba[ys.min():ys.max()+1,xs.min():xs.max()+1]
+    if len(ys)==0: return (np.zeros((4,4,4),np.uint8),0,0)
+    return (rgba[ys.min():ys.max()+1,xs.min():xs.max()+1], int(xs.min()), int(ys.min()))
 
 torso_sil=ndimage.binary_fill_holes(zb(Z["shoulder"],Z["hips"])&A)
 head_sil =ndimage.binary_fill_holes(zb(Z["head_top"],Z["neck_cut"])&A)
@@ -327,9 +327,9 @@ HIDDEN=[
  ("MOUTH_Teeth", synth_fill(zb(558,575,Z["facecx"]-45,Z["facecx"]+45),(235,232,228)),"HEAD",[664],"new"),
  ("MOUTH_Tongue", synth_fill(zb(575,595,Z["facecx"]-35,Z["facecx"]+35),(170,90,95)),"HEAD",[665],"new"),
 ]
-for name,rgba,band,depth,csrc in HIDDEN:
+for name,(rgba,ox,oy),band,depth,csrc in HIDDEN:
     rgba=feather_bleed(rgba,4)
-    emit(name,rgba=rgba,band=band,side=("R" if name.endswith("_R") else "L" if name.endswith("_L") else ""),
+    emit(name,rgba=rgba,ox=ox,oy=oy,band=band,side=("R" if name.endswith("_R") else "L" if name.endswith("_L") else ""),
          state="base",vis="hidden",hidden=True,depth=depth[0],texc="Y",conf="[H]",csrc=csrc,
          occ="continuity", motion="reveal")
 
@@ -343,8 +343,8 @@ def overlays_for(name):
     for tag,mm,blend in (("shadow",shad,"multiply"),("hi",hi,"screen")):
         if mm.sum()<200: continue
         rgba=np.zeros((H,W,4),np.uint8); rgba[mm]=FRONT[mm]
-        ys,xs=np.where(mm); rgba=rgba[ys.min():ys.max()+1,xs.min():xs.max()+1]
-        emit(name, rgba=rgba, band=META.get(name,{}).get("band","MID"),
+        ys,xs=np.where(mm); ox=int(xs.min()); oy=int(ys.min()); rgba=rgba[ys.min():ys.max()+1,xs.min():xs.max()+1]
+        emit(name, rgba=rgba, ox=ox, oy=oy, band=META.get(name,{}).get("band","MID"),
              side=META.get(name,{}).get("side",""), state=tag, vis="overlay", blend=blend,
              depth=DEPTH.get(META.get(name,{}).get("band","MID"),300)+5, conf="[H]", occ="overlay")
 for nm in ["SHIRT_Torso_Lower","SHIRT_Torso_Upper","SHIRT_Chest_Front","FACE_Forehead","FACE_Jaw",
@@ -361,7 +361,7 @@ def far_copy(near_name, depth):
     sub[~mm,3]=0; sub[:,:,:3]=(sub[:,:,:3]*0.82).astype(np.uint8)  # darker (recedes)
     sub=feather_bleed(sub,5)
     md=META.get(near_name,{})
-    emit(near_name.replace("_","Far_",1) if False else "FAR_"+near_name, rgba=sub, band="FARBODY",
+    emit("FAR_"+near_name, rgba=sub, ox=int(xs.min()), oy=int(ys.min()), band="FARBODY",
          side=md.get("side",""), state="alt", vis="conditional", depth=depth, alt=True,
          mirrored=near_name, occ="limb-cross", motion="band-swap", conf="[M]")
 for nm,dp in [("SLEEVE_L",110),("FOREARM_L",120),("HAND_L",130),("SLEEVE_R",112),("FOREARM_R",122),
@@ -374,8 +374,8 @@ rear=ndimage.binary_fill_holes(zb(Z["head_top"]-10,Z["neck_cut"]+40)&(np.array(I
 for nm,zlo,zhi,dp in [("HAIR_Rear_Upper",284,420,30),("HAIR_Rear_Middle",420,560,20),("HAIR_Rear_Lower",560,720,10),
                       ("HAIR_BehindEar_R",430,560,40),("HAIR_BehindEar_L",430,560,42),("HAIR_Inner_ShadowShell",300,700,50)]:
     msk=zb(zlo,zhi)&rear
-    rgba=synth_fill(msk, PAL["hair"]); rgba=feather_bleed(rgba,5)
-    emit(nm,rgba=rgba,band="FARHAIR",depth=dp,vis="conditional",phys="Y" if "Rear" in nm else "N",
+    rgba,ox,oy=synth_fill(msk, PAL["hair"]); rgba=feather_bleed(rgba,5)
+    emit(nm,rgba=rgba,ox=ox,oy=oy,band="FARHAIR",depth=dp,vis="conditional",phys="Y" if "Rear" in nm else "N",
          occ="behind-head",motion="reveal",conf="[H]",csrc="hair", side=("R" if nm.endswith("_R") else "L" if nm.endswith("_L") else ""))
 
 # ---------------- ACCEPTANCE TEST ----------------

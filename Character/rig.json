@@ -1,0 +1,2724 @@
+{
+ "meta": {
+  "parts": 137,
+  "deformers": 68,
+  "parameters": 30,
+  "identityLock": {
+   "SSIM": 0.9996,
+   "figurePixelDiff": 1119488,
+   "verdict": "PASS",
+   "edgeResidual": 7453,
+   "interiorResidual": 42
+  }
+ },
+ "deformers": [
+  {
+   "id": "DEF_Root",
+   "type": "warp",
+   "parent": null,
+   "pivot": null,
+   "gridRes": null,
+   "ROM": {
+    "tx": [
+     -10,
+     10
+    ],
+    "ty": [
+     -10,
+     10
+    ],
+    "scale": [
+     0.99,
+     1.01
+    ]
+   },
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Body_Master",
+   "type": "warp",
+   "parent": "DEF_Root",
+   "pivot": [
+    783,
+    1255
+   ],
+   "gridRes": null,
+   "ROM": {
+    "angleX": [
+     -10,
+     10
+    ],
+    "angleY": [
+     -10,
+     10
+    ],
+    "angleZ": [
+     -30,
+     30
+    ]
+   },
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_LowerBody",
+   "type": "warp",
+   "parent": "DEF_Body_Master",
+   "pivot": [
+    780,
+    1630
+   ],
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Hip_Rot",
+   "type": "rotation",
+   "parent": "DEF_LowerBody",
+   "pivot": [
+    780,
+    1630
+   ],
+   "gridRes": null,
+   "ROM": {
+    "deg": [
+     -20,
+     20
+    ]
+   },
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Leg_Rot_Hip_L",
+   "type": "rotation",
+   "parent": "DEF_Hip_Rot",
+   "pivot": [
+    862,
+    1645
+   ],
+   "gridRes": null,
+   "ROM": {
+    "deg": [
+     0,
+     90
+    ]
+   },
+   "clampedAt": 90,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Leg_Warp_Thigh_L",
+   "type": "warp",
+   "parent": "DEF_Leg_Rot_Hip_L",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": true,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Leg_Rot_Knee_L",
+   "type": "rotation",
+   "parent": "DEF_Leg_Warp_Thigh_L",
+   "pivot": [
+    900,
+    2060
+   ],
+   "gridRes": null,
+   "ROM": {
+    "deg": [
+     0,
+     120
+    ]
+   },
+   "clampedAt": 120,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Leg_Warp_Calf_L",
+   "type": "warp",
+   "parent": "DEF_Leg_Rot_Knee_L",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": true,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Leg_Warp_Cuff_L",
+   "type": "warp",
+   "parent": "DEF_Leg_Warp_Calf_L",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": true,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Shoe_Rigid_L",
+   "type": "rigid",
+   "parent": "DEF_Leg_Warp_Cuff_L",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": true,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Leg_Rot_Hip_R",
+   "type": "rotation",
+   "parent": "DEF_Hip_Rot",
+   "pivot": [
+    700,
+    1645
+   ],
+   "gridRes": null,
+   "ROM": {
+    "deg": [
+     0,
+     90
+    ]
+   },
+   "clampedAt": 90,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Leg_Warp_Thigh_R",
+   "type": "warp",
+   "parent": "DEF_Leg_Rot_Hip_R",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": true,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Leg_Rot_Knee_R",
+   "type": "rotation",
+   "parent": "DEF_Leg_Warp_Thigh_R",
+   "pivot": [
+    660,
+    2060
+   ],
+   "gridRes": null,
+   "ROM": {
+    "deg": [
+     0,
+     120
+    ]
+   },
+   "clampedAt": 120,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Leg_Warp_Calf_R",
+   "type": "warp",
+   "parent": "DEF_Leg_Rot_Knee_R",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": true,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Leg_Warp_Cuff_R",
+   "type": "warp",
+   "parent": "DEF_Leg_Warp_Calf_R",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": true,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Shoe_Rigid_R",
+   "type": "rigid",
+   "parent": "DEF_Leg_Warp_Cuff_R",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": true,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Waist_Warp",
+   "type": "warp",
+   "parent": "DEF_Body_Master",
+   "pivot": [
+    783,
+    1255
+   ],
+   "gridRes": null,
+   "ROM": {
+    "twistShare": 0.3
+   },
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Chest_Warp",
+   "type": "warp",
+   "parent": "DEF_Waist_Warp",
+   "pivot": [
+    783,
+    950
+   ],
+   "gridRes": null,
+   "ROM": {
+    "twistShare": 0.4,
+    "breathe": [
+     1.0,
+     1.02
+    ]
+   },
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Shirt_Torso",
+   "type": "warp",
+   "parent": "DEF_Chest_Warp",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Belt_Warp",
+   "type": "warp",
+   "parent": "DEF_Chest_Warp",
+   "pivot": [
+    783,
+    1255
+   ],
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": true,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Buckle_Rigid",
+   "type": "rigid",
+   "parent": "DEF_Belt_Warp",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": true,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_ShoulderGirdle_L",
+   "type": "rotation",
+   "parent": "DEF_Chest_Warp",
+   "pivot": [
+    965,
+    790
+   ],
+   "gridRes": null,
+   "ROM": {
+    "liftDeg": [
+     -15,
+     15
+    ]
+   },
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Arm_Rot_Shoulder_L",
+   "type": "rotation",
+   "parent": "DEF_ShoulderGirdle_L",
+   "pivot": [
+    965,
+    790
+   ],
+   "gridRes": null,
+   "ROM": {
+    "raiseDeg": [
+     0,
+     130
+    ]
+   },
+   "clampedAt": 130,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Arm_Warp_Deltoid_L",
+   "type": "warp",
+   "parent": "DEF_Arm_Rot_Shoulder_L",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": true,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Arm_Warp_Armpit_L",
+   "type": "warp",
+   "parent": "DEF_Arm_Rot_Shoulder_L",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Arm_Warp_UpperTube_L",
+   "type": "warp",
+   "parent": "DEF_Arm_Warp_Deltoid_L",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Arm_Rot_Elbow_L",
+   "type": "rotation",
+   "parent": "DEF_Arm_Warp_UpperTube_L",
+   "pivot": [
+    1045,
+    1185
+   ],
+   "gridRes": null,
+   "ROM": {
+    "deg": [
+     0,
+     130
+    ]
+   },
+   "clampedAt": 130,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Arm_Warp_ElbowComp_L",
+   "type": "warp",
+   "parent": "DEF_Arm_Rot_Elbow_L",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Arm_Warp_ForeTwist_L",
+   "type": "warp",
+   "parent": "DEF_Arm_Rot_Elbow_L",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": {
+    "twistDeg": [
+     -90,
+     90
+    ]
+   },
+   "clampedAt": 90,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Arm_Rot_Wrist_L",
+   "type": "rotation",
+   "parent": "DEF_Arm_Warp_ForeTwist_L",
+   "pivot": [
+    1044,
+    1483
+   ],
+   "gridRes": null,
+   "ROM": {
+    "deg": [
+     -60,
+     60
+    ]
+   },
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Hand_Warp_Palm_L",
+   "type": "warp",
+   "parent": "DEF_Arm_Rot_Wrist_L",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Hand_Rot_Finger1_L",
+   "type": "rotation",
+   "parent": "DEF_Hand_Warp_Palm_L",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": {
+    "deg": [
+     0,
+     90
+    ]
+   },
+   "clampedAt": 90,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Hand_Rot_Finger2_L",
+   "type": "rotation",
+   "parent": "DEF_Hand_Warp_Palm_L",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": {
+    "deg": [
+     0,
+     90
+    ]
+   },
+   "clampedAt": 90,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Hand_Rot_Finger3_L",
+   "type": "rotation",
+   "parent": "DEF_Hand_Warp_Palm_L",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": {
+    "deg": [
+     0,
+     90
+    ]
+   },
+   "clampedAt": 90,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Hand_Rot_Finger4_L",
+   "type": "rotation",
+   "parent": "DEF_Hand_Warp_Palm_L",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": {
+    "deg": [
+     0,
+     90
+    ]
+   },
+   "clampedAt": 90,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_ShoulderGirdle_R",
+   "type": "rotation",
+   "parent": "DEF_Chest_Warp",
+   "pivot": [
+    600,
+    790
+   ],
+   "gridRes": null,
+   "ROM": {
+    "liftDeg": [
+     -15,
+     15
+    ]
+   },
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Arm_Rot_Shoulder_R",
+   "type": "rotation",
+   "parent": "DEF_ShoulderGirdle_R",
+   "pivot": [
+    600,
+    790
+   ],
+   "gridRes": null,
+   "ROM": {
+    "raiseDeg": [
+     0,
+     130
+    ]
+   },
+   "clampedAt": 130,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Arm_Warp_Deltoid_R",
+   "type": "warp",
+   "parent": "DEF_Arm_Rot_Shoulder_R",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": true,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Arm_Warp_Armpit_R",
+   "type": "warp",
+   "parent": "DEF_Arm_Rot_Shoulder_R",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Arm_Warp_UpperTube_R",
+   "type": "warp",
+   "parent": "DEF_Arm_Warp_Deltoid_R",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Arm_Rot_Elbow_R",
+   "type": "rotation",
+   "parent": "DEF_Arm_Warp_UpperTube_R",
+   "pivot": [
+    515,
+    1185
+   ],
+   "gridRes": null,
+   "ROM": {
+    "deg": [
+     0,
+     130
+    ]
+   },
+   "clampedAt": 130,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Arm_Warp_ElbowComp_R",
+   "type": "warp",
+   "parent": "DEF_Arm_Rot_Elbow_R",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Arm_Warp_ForeTwist_R",
+   "type": "warp",
+   "parent": "DEF_Arm_Rot_Elbow_R",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": {
+    "twistDeg": [
+     -90,
+     90
+    ]
+   },
+   "clampedAt": 90,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Arm_Rot_Wrist_R",
+   "type": "rotation",
+   "parent": "DEF_Arm_Warp_ForeTwist_R",
+   "pivot": [
+    516,
+    1483
+   ],
+   "gridRes": null,
+   "ROM": {
+    "deg": [
+     -60,
+     60
+    ]
+   },
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Hand_Warp_Palm_R",
+   "type": "warp",
+   "parent": "DEF_Arm_Rot_Wrist_R",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Hand_Rot_Finger1_R",
+   "type": "rotation",
+   "parent": "DEF_Hand_Warp_Palm_R",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": {
+    "deg": [
+     0,
+     90
+    ]
+   },
+   "clampedAt": 90,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Hand_Rot_Finger2_R",
+   "type": "rotation",
+   "parent": "DEF_Hand_Warp_Palm_R",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": {
+    "deg": [
+     0,
+     90
+    ]
+   },
+   "clampedAt": 90,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Hand_Rot_Finger3_R",
+   "type": "rotation",
+   "parent": "DEF_Hand_Warp_Palm_R",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": {
+    "deg": [
+     0,
+     90
+    ]
+   },
+   "clampedAt": 90,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Hand_Rot_Finger4_R",
+   "type": "rotation",
+   "parent": "DEF_Hand_Warp_Palm_R",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": {
+    "deg": [
+     0,
+     90
+    ]
+   },
+   "clampedAt": 90,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Watch_Rigid_R",
+   "type": "rigid",
+   "parent": "DEF_Arm_Warp_ForeTwist_R",
+   "pivot": [
+    1052,
+    1420
+   ],
+   "gridRes": null,
+   "ROM": {
+    "counterRotate": true
+   },
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": true,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Neck_Warp",
+   "type": "warp",
+   "parent": "DEF_Chest_Warp",
+   "pivot": [
+    778,
+    642
+   ],
+   "gridRes": null,
+   "ROM": {
+    "tiltDeg": [
+     -15,
+     15
+    ],
+    "turnShare": 0.2,
+    "stretch": [
+     0.97,
+     1.03
+    ]
+   },
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Head_Rotation",
+   "type": "rotation",
+   "parent": "DEF_Neck_Warp",
+   "pivot": [
+    778,
+    648
+   ],
+   "gridRes": null,
+   "ROM": {
+    "angleX": [
+     -30,
+     30
+    ],
+    "angleY": [
+     -30,
+     30
+    ],
+    "angleZ": [
+     -20,
+     20
+    ]
+   },
+   "clampedAt": 30,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_FacePlane_Warp",
+   "type": "warp",
+   "parent": "DEF_Head_Rotation",
+   "pivot": [
+    778,
+    648
+   ],
+   "gridRes": [
+    6,
+    7
+   ],
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Eye_Warp_Socket_L",
+   "type": "warp",
+   "parent": "DEF_FacePlane_Warp",
+   "pivot": [
+    846,
+    470
+   ],
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Eye_Warp_Iris_L",
+   "type": "warp",
+   "parent": "DEF_Eye_Warp_Socket_L",
+   "pivot": [
+    846,
+    470
+   ],
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Eyelid_Warp_L",
+   "type": "warp",
+   "parent": "DEF_Eye_Warp_Socket_L",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Brow_Warp_L",
+   "type": "warp",
+   "parent": "DEF_FacePlane_Warp",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Cheek_Warp_L",
+   "type": "warp",
+   "parent": "DEF_FacePlane_Warp",
+   "pivot": [
+    852,
+    520
+   ],
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": true,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Eye_Warp_Socket_R",
+   "type": "warp",
+   "parent": "DEF_FacePlane_Warp",
+   "pivot": [
+    716,
+    470
+   ],
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Eye_Warp_Iris_R",
+   "type": "warp",
+   "parent": "DEF_Eye_Warp_Socket_R",
+   "pivot": [
+    716,
+    470
+   ],
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Eyelid_Warp_R",
+   "type": "warp",
+   "parent": "DEF_Eye_Warp_Socket_R",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Brow_Warp_R",
+   "type": "warp",
+   "parent": "DEF_FacePlane_Warp",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Cheek_Warp_R",
+   "type": "warp",
+   "parent": "DEF_FacePlane_Warp",
+   "pivot": [
+    706,
+    520
+   ],
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": true,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Nose_Rigid",
+   "type": "rigid",
+   "parent": "DEF_FacePlane_Warp",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": true,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Jaw_Warp",
+   "type": "warp",
+   "parent": "DEF_FacePlane_Warp",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Mouth_Warp",
+   "type": "warp",
+   "parent": "DEF_Jaw_Warp",
+   "pivot": [
+    778,
+    566
+   ],
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Hair_Front_Warp",
+   "type": "warp",
+   "parent": "DEF_Head_Rotation",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": true,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  },
+  {
+   "id": "DEF_Hair_Rear_Warp",
+   "type": "warp",
+   "parent": "DEF_Head_Rotation",
+   "pivot": null,
+   "gridRes": null,
+   "ROM": null,
+   "clampedAt": null,
+   "volumePreserve": false,
+   "slide": false,
+   "rigid": false,
+   "overlayOf": null
+  }
+ ],
+ "parameters": [
+  {
+   "id": "ParamAngleX",
+   "group": "Head",
+   "range": [
+    -30,
+    30
+   ],
+   "default": 0,
+   "affects": [
+    "DEF_Head_Rotation",
+    "DEF_FacePlane_Warp",
+    "DEF_Neck_Warp"
+   ],
+   "distribution": {
+    "head": 0.8,
+    "neck": 0.2
+   },
+   "keyforms": {
+    "default": 0,
+    "extremes": {
+     "-30": "yaw-left",
+     "30": "yaw-right"
+    }
+   },
+   "futureSystems": [
+    "physics_hair",
+    "ai_head",
+    "expressions"
+   ],
+   "confidence": "[O]"
+  },
+  {
+   "id": "ParamAngleY",
+   "group": "Head",
+   "range": [
+    -30,
+    30
+   ],
+   "default": 0,
+   "affects": [
+    "DEF_Head_Rotation",
+    "DEF_FacePlane_Warp",
+    "DEF_Neck_Warp"
+   ],
+   "distribution": {
+    "head": 0.8,
+    "neck": 0.2
+   },
+   "keyforms": {
+    "default": 0,
+    "extremes": {
+     "-30": "down",
+     "30": "up"
+    }
+   },
+   "futureSystems": [
+    "physics",
+    "ai"
+   ],
+   "confidence": "[O]"
+  },
+  {
+   "id": "ParamAngleZ",
+   "group": "Head",
+   "range": [
+    -20,
+    20
+   ],
+   "default": 0,
+   "affects": [
+    "DEF_Head_Rotation",
+    "DEF_Hair_Front_Warp",
+    "DEF_Neck_Warp"
+   ],
+   "distribution": {
+    "head": 0.7,
+    "neck": 0.3
+   },
+   "keyforms": {
+    "default": 0,
+    "extremes": {
+     "-20": "roll-l",
+     "20": "roll-r"
+    }
+   },
+   "futureSystems": [
+    "physics",
+    "ai"
+   ],
+   "confidence": "[O]"
+  },
+  {
+   "id": "ParamBodyAngleX",
+   "group": "Body",
+   "range": [
+    -10,
+    10
+   ],
+   "default": 0,
+   "affects": [
+    "DEF_Body_Master",
+    "DEF_Chest_Warp",
+    "DEF_Waist_Warp"
+   ],
+   "keyforms": {
+    "default": 0,
+    "extremes": {}
+   },
+   "futureSystems": [
+    "physics_sway",
+    "ai_posture"
+   ],
+   "confidence": "[H]"
+  },
+  {
+   "id": "ParamBodyAngleY",
+   "group": "Body",
+   "range": [
+    -10,
+    10
+   ],
+   "default": 0,
+   "affects": [
+    "DEF_Body_Master"
+   ],
+   "keyforms": {
+    "default": 0,
+    "extremes": {}
+   },
+   "futureSystems": [
+    "physics",
+    "ai"
+   ],
+   "confidence": "[H]"
+  },
+  {
+   "id": "ParamBodyAngleZ",
+   "group": "Body",
+   "range": [
+    -30,
+    30
+   ],
+   "default": 0,
+   "affects": [
+    "DEF_Waist_Warp",
+    "DEF_Chest_Warp",
+    "DEF_Neck_Warp",
+    "DEF_ShoulderGirdle_L",
+    "DEF_ShoulderGirdle_R"
+   ],
+   "distribution": {
+    "waist": 0.3,
+    "chest": 0.4,
+    "neck": 0.2,
+    "shoulder": 0.1
+   },
+   "keyforms": {
+    "default": 0,
+    "extremes": {
+     "-30": "turn-left",
+     "30": "turn-right"
+    }
+   },
+   "futureSystems": [
+    "pseudo3d_turn",
+    "ai"
+   ],
+   "confidence": "[O]"
+  },
+  {
+   "id": "ParamBreath",
+   "group": "Idle",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "affects": [
+    "DEF_Chest_Warp",
+    "DEF_ShoulderGirdle_L",
+    "DEF_ShoulderGirdle_R"
+   ],
+   "keyforms": {
+    "default": 0,
+    "extremes": {
+     "1": "inhale +2% scale"
+    }
+   },
+   "futureSystems": [
+    "idle_physics",
+    "ai_idle"
+   ],
+   "confidence": "[H]"
+  },
+  {
+   "id": "ParamEyeLookX",
+   "group": "Face",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "affects": [
+    "DEF_Eye_Warp_Iris_L",
+    "DEF_Eye_Warp_Iris_R"
+   ],
+   "keyforms": {
+    "default": 0,
+    "extremes": {
+     "-1": "look-l",
+     "1": "look-r"
+    }
+   },
+   "futureSystems": [
+    "ai_gaze",
+    "expressions"
+   ],
+   "confidence": "[O]"
+  },
+  {
+   "id": "ParamEyeLookY",
+   "group": "Face",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "affects": [
+    "DEF_Eye_Warp_Iris_L",
+    "DEF_Eye_Warp_Iris_R"
+   ],
+   "keyforms": {
+    "default": 0,
+    "extremes": {}
+   },
+   "futureSystems": [
+    "ai_gaze"
+   ],
+   "confidence": "[O]"
+  },
+  {
+   "id": "ParamEyeOpenL",
+   "group": "Face",
+   "range": [
+    0,
+    1
+   ],
+   "default": 1,
+   "affects": [
+    "DEF_Eyelid_Warp_L"
+   ],
+   "keyforms": {
+    "default": 1,
+    "extremes": {
+     "0": "closed"
+    }
+   },
+   "futureSystems": [
+    "auto_blink",
+    "expressions"
+   ],
+   "confidence": "[O]"
+  },
+  {
+   "id": "ParamEyeOpenR",
+   "group": "Face",
+   "range": [
+    0,
+    1
+   ],
+   "default": 1,
+   "affects": [
+    "DEF_Eyelid_Warp_R"
+   ],
+   "keyforms": {
+    "default": 1,
+    "extremes": {
+     "0": "closed"
+    }
+   },
+   "futureSystems": [
+    "auto_blink",
+    "expressions"
+   ],
+   "confidence": "[O]"
+  },
+  {
+   "id": "ParamBrowLY",
+   "group": "Face",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "affects": [
+    "DEF_Brow_Warp_L"
+   ],
+   "keyforms": {
+    "default": 0,
+    "extremes": {}
+   },
+   "futureSystems": [
+    "expressions",
+    "ai_emotion"
+   ],
+   "confidence": "[H]"
+  },
+  {
+   "id": "ParamBrowRY",
+   "group": "Face",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "affects": [
+    "DEF_Brow_Warp_R"
+   ],
+   "keyforms": {
+    "default": 0,
+    "extremes": {}
+   },
+   "futureSystems": [
+    "expressions"
+   ],
+   "confidence": "[H]"
+  },
+  {
+   "id": "ParamMouthOpenY",
+   "group": "Face",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "affects": [
+    "DEF_Mouth_Warp",
+    "DEF_Jaw_Warp"
+   ],
+   "keyforms": {
+    "default": 0,
+    "extremes": {
+     "1": "open + interior/teeth reveal"
+    }
+   },
+   "futureSystems": [
+    "lipsync",
+    "ai_speech"
+   ],
+   "confidence": "[O]"
+  },
+  {
+   "id": "ParamMouthForm",
+   "group": "Face",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "affects": [
+    "DEF_Mouth_Warp",
+    "DEF_Cheek_Warp_L",
+    "DEF_Cheek_Warp_R"
+   ],
+   "keyforms": {
+    "default": 0,
+    "extremes": {
+     "1": "smile",
+     "-1": "frown"
+    }
+   },
+   "futureSystems": [
+    "expressions"
+   ],
+   "confidence": "[H]"
+  },
+  {
+   "id": "ParamCheek",
+   "group": "Face",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "affects": [
+    "DEF_Cheek_Warp_L",
+    "DEF_Cheek_Warp_R"
+   ],
+   "keyforms": {
+    "default": 0,
+    "extremes": {
+     "1": "bulge"
+    }
+   },
+   "futureSystems": [
+    "expressions"
+   ],
+   "confidence": "[H]"
+  },
+  {
+   "id": "ParamShoulderLiftL",
+   "group": "Arms",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "affects": [
+    "DEF_ShoulderGirdle_L",
+    "DEF_Arm_Warp_Deltoid_L"
+   ],
+   "keyforms": {
+    "default": 0,
+    "extremes": {
+     "1": "shrug"
+    }
+   },
+   "futureSystems": [
+    "gestures",
+    "physics"
+   ],
+   "confidence": "[H]"
+  },
+  {
+   "id": "ParamArmRaiseL",
+   "group": "Arms",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "affects": [
+    "DEF_ShoulderGirdle_L",
+    "DEF_Arm_Rot_Shoulder_L",
+    "DEF_Arm_Warp_Deltoid_L",
+    "DEF_Arm_Warp_Armpit_L"
+   ],
+   "distribution": {
+    "girdle_first_deg": 20,
+    "arm_rest": true
+   },
+   "keyforms": {
+    "default": 0,
+    "extremes": {
+     "1": "raised (clamp 130)"
+    }
+   },
+   "futureSystems": [
+    "ai_wave_point",
+    "sleeve_physics"
+   ],
+   "confidence": "[H]"
+  },
+  {
+   "id": "ParamElbowBendL",
+   "group": "Arms",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "affects": [
+    "DEF_Arm_Rot_Elbow_L",
+    "DEF_Arm_Warp_ElbowComp_L"
+   ],
+   "keyforms": {
+    "default": 0,
+    "extremes": {
+     "1": "bent 130"
+    }
+   },
+   "futureSystems": [
+    "gestures"
+   ],
+   "confidence": "[H]"
+  },
+  {
+   "id": "ParamForearmTwistL",
+   "group": "Arms",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "affects": [
+    "DEF_Arm_Warp_ForeTwist_L"
+   ],
+   "keyforms": {
+    "default": 0,
+    "extremes": {
+     "1": "pronate"
+    }
+   },
+   "futureSystems": [
+    "gestures"
+   ],
+   "confidence": "[H]"
+  },
+  {
+   "id": "ParamHandFormL",
+   "group": "Hands",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "affects": [
+    "DEF_Hand_Warp_Palm_L",
+    "DEF_Hand_Rot_Finger1_L",
+    "DEF_Hand_Rot_Finger2_L",
+    "DEF_Hand_Rot_Finger3_L",
+    "DEF_Hand_Rot_Finger4_L"
+   ],
+   "keyforms": {
+    "default": 0,
+    "extremes": {
+     "1": "fist/point"
+    }
+   },
+   "futureSystems": [
+    "ai_gesture"
+   ],
+   "confidence": "[M]"
+  },
+  {
+   "id": "ParamShoulderLiftR",
+   "group": "Arms",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "affects": [
+    "DEF_ShoulderGirdle_R",
+    "DEF_Arm_Warp_Deltoid_R"
+   ],
+   "keyforms": {
+    "default": 0,
+    "extremes": {
+     "1": "shrug"
+    }
+   },
+   "futureSystems": [
+    "gestures",
+    "physics"
+   ],
+   "confidence": "[H]"
+  },
+  {
+   "id": "ParamArmRaiseR",
+   "group": "Arms",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "affects": [
+    "DEF_ShoulderGirdle_R",
+    "DEF_Arm_Rot_Shoulder_R",
+    "DEF_Arm_Warp_Deltoid_R",
+    "DEF_Arm_Warp_Armpit_R"
+   ],
+   "distribution": {
+    "girdle_first_deg": 20,
+    "arm_rest": true
+   },
+   "keyforms": {
+    "default": 0,
+    "extremes": {
+     "1": "raised (clamp 130)"
+    }
+   },
+   "futureSystems": [
+    "ai_wave_point",
+    "sleeve_physics"
+   ],
+   "confidence": "[H]"
+  },
+  {
+   "id": "ParamElbowBendR",
+   "group": "Arms",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "affects": [
+    "DEF_Arm_Rot_Elbow_R",
+    "DEF_Arm_Warp_ElbowComp_R"
+   ],
+   "keyforms": {
+    "default": 0,
+    "extremes": {
+     "1": "bent 130"
+    }
+   },
+   "futureSystems": [
+    "gestures"
+   ],
+   "confidence": "[H]"
+  },
+  {
+   "id": "ParamForearmTwistR",
+   "group": "Arms",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "affects": [
+    "DEF_Arm_Warp_ForeTwist_R",
+    "DEF_Watch_Rigid_R"
+   ],
+   "keyforms": {
+    "default": 0,
+    "extremes": {
+     "1": "pronate (watch counter-rotates)"
+    }
+   },
+   "futureSystems": [
+    "gestures"
+   ],
+   "confidence": "[H]"
+  },
+  {
+   "id": "ParamHandFormR",
+   "group": "Hands",
+   "range": [
+    0,
+    1
+   ],
+   "default": 0,
+   "affects": [
+    "DEF_Hand_Warp_Palm_R",
+    "DEF_Hand_Rot_Finger1_R",
+    "DEF_Hand_Rot_Finger2_R",
+    "DEF_Hand_Rot_Finger3_R",
+    "DEF_Hand_Rot_Finger4_R"
+   ],
+   "keyforms": {
+    "default": 0,
+    "extremes": {
+     "1": "fist/point"
+    }
+   },
+   "futureSystems": [
+    "ai_gesture"
+   ],
+   "confidence": "[M]"
+  },
+  {
+   "id": "ParamHairSwayFront",
+   "group": "Hair",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "affects": [
+    "DEF_Hair_Front_Warp"
+   ],
+   "keyforms": {
+    "default": 0,
+    "extremes": {}
+   },
+   "futureSystems": [
+    "physics(constants_deferred)"
+   ],
+   "confidence": "[H]",
+   "physicsDriven": true
+  },
+  {
+   "id": "ParamHairSwaySide",
+   "group": "Hair",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "affects": [
+    "DEF_Hair_Rear_Warp"
+   ],
+   "keyforms": {
+    "default": 0,
+    "extremes": {}
+   },
+   "futureSystems": [
+    "physics(constants_deferred)"
+   ],
+   "confidence": "[H]",
+   "physicsDriven": true
+  },
+  {
+   "id": "ParamHairSwayRear",
+   "group": "Hair",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "affects": [
+    "DEF_Hair_Rear_Warp"
+   ],
+   "keyforms": {
+    "default": 0,
+    "extremes": {}
+   },
+   "futureSystems": [
+    "physics(constants_deferred)"
+   ],
+   "confidence": "[H]",
+   "physicsDriven": true
+  },
+  {
+   "id": "ParamHairSwayFlyaway",
+   "group": "Hair",
+   "range": [
+    -1,
+    1
+   ],
+   "default": 0,
+   "affects": [
+    "DEF_Hair_Front_Warp"
+   ],
+   "keyforms": {
+    "default": 0,
+    "extremes": {}
+   },
+   "futureSystems": [
+    "physics(constants_deferred)"
+   ],
+   "confidence": "[H]",
+   "physicsDriven": true
+  }
+ ],
+ "bindings": [
+  {
+   "layer": "CHR_LEG_ANKLE_SockSkin",
+   "deformer": "DEF_Leg_Warp_Thigh_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_LEG_PANTS_Cuff_L",
+   "deformer": "DEF_Leg_Warp_Cuff_L",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_LEG_PANTS_Cuff_R",
+   "deformer": "DEF_Leg_Warp_Cuff_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_LEG_LEG_Upper_L",
+   "deformer": "DEF_Leg_Warp_Thigh_L",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_LEG_LEG_Upper_R",
+   "deformer": "DEF_Leg_Warp_Thigh_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_MID_SHIRT_Hem",
+   "deformer": "DEF_Shirt_Torso",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_MID_PANTS_Waistband",
+   "deformer": "DEF_Leg_Warp_Thigh_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_MID_NECK_Skin",
+   "deformer": "DEF_Neck_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_FACE_Forehead",
+   "deformer": "DEF_FacePlane_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_FACE_Temple_R",
+   "deformer": "DEF_FacePlane_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_FACE_Temple_L",
+   "deformer": "DEF_FacePlane_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_FACE_Cheek_R",
+   "deformer": "DEF_Cheek_Warp_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_FACE_Cheek_L",
+   "deformer": "DEF_Cheek_Warp_L",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_FACE_Chin",
+   "deformer": "DEF_FacePlane_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_FACE_Jaw",
+   "deformer": "DEF_FacePlane_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_BROW_R",
+   "deformer": "DEF_Brow_Warp_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_BROW_L",
+   "deformer": "DEF_Brow_Warp_L",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_MOUTH_UpperLip",
+   "deformer": "DEF_Mouth_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_MOUTH_LowerLip",
+   "deformer": "DEF_Mouth_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_MID_SHIRT_Collar_Front_Rib",
+   "deformer": "DEF_Shirt_Torso",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_MID_SHIRT_Chest_Front",
+   "deformer": "DEF_Shirt_Torso",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_MID_SHIRT_Torso_Upper",
+   "deformer": "DEF_Shirt_Torso",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_MID_SHIRT_Torso_Lower",
+   "deformer": "DEF_Shirt_Torso",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_FRONTHAIR_HAIR_Bang_Right",
+   "deformer": "DEF_Hair_Front_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_FRONTHAIR_HAIR_Bang_Center",
+   "deformer": "DEF_Hair_Front_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_FRONTHAIR_HAIR_Bang_Left",
+   "deformer": "DEF_Hair_Front_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_FRONTHAIR_HAIR_SideHair_R",
+   "deformer": "DEF_Hair_Front_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_FRONTHAIR_HAIR_SideHair_L",
+   "deformer": "DEF_Hair_Front_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_FRONTHAIR_HAIR_Crown_Spikes",
+   "deformer": "DEF_Hair_Front_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_FRONTHAIR_HAIR_Outer_Strands",
+   "deformer": "DEF_Hair_Front_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_LEG_SHOE_Laces_L",
+   "deformer": "DEF_Shoe_Rigid_L",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_LEG_SHOE_Sole_L",
+   "deformer": "DEF_Shoe_Rigid_L",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_LEG_SHOE_Upper_L",
+   "deformer": "DEF_Shoe_Rigid_L",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_ARM_HAND_Thumb_L",
+   "deformer": "DEF_Hand_Warp_Palm_L",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_ARM_HAND_Fingers_L",
+   "deformer": "DEF_Hand_Warp_Palm_L",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_ARM_HAND_Palm_L",
+   "deformer": "DEF_Hand_Warp_Palm_L",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_LEG_LEG_Knee_L",
+   "deformer": "DEF_Leg_Warp_Calf_L",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_LEG_LEG_Lower_L",
+   "deformer": "DEF_Leg_Warp_Calf_L",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_ARM_ARM_Deltoid_Cap_L",
+   "deformer": "DEF_Arm_Warp_Deltoid_L",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_ARM_SLEEVE_Upper_L",
+   "deformer": "DEF_Arm_Warp_Deltoid_L",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_ARM_SLEEVE_Lower_L",
+   "deformer": "DEF_Arm_Warp_ElbowComp_L",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_ARM_WRIST_L",
+   "deformer": "DEF_Arm_Warp_ForeTwist_L",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_ARM_FOREARM_L",
+   "deformer": "DEF_Arm_Warp_ForeTwist_L",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_LEG_SHOE_Laces_R",
+   "deformer": "DEF_Shoe_Rigid_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_LEG_SHOE_Sole_R",
+   "deformer": "DEF_Shoe_Rigid_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_LEG_SHOE_Upper_R",
+   "deformer": "DEF_Shoe_Rigid_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_ARM_HAND_Thumb_R",
+   "deformer": "DEF_Hand_Warp_Palm_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_ARM_HAND_Fingers_R",
+   "deformer": "DEF_Hand_Warp_Palm_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_ARM_HAND_Palm_R",
+   "deformer": "DEF_Hand_Warp_Palm_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_LEG_LEG_Knee_R",
+   "deformer": "DEF_Leg_Warp_Calf_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_LEG_LEG_Lower_R",
+   "deformer": "DEF_Leg_Warp_Calf_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_ARM_ARM_Deltoid_Cap_R",
+   "deformer": "DEF_Arm_Warp_Deltoid_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_ARM_SLEEVE_Upper_R",
+   "deformer": "DEF_Arm_Warp_Deltoid_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_ARM_SLEEVE_Lower_R",
+   "deformer": "DEF_Arm_Warp_ElbowComp_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_ARM_WRIST_R",
+   "deformer": "DEF_Arm_Warp_ForeTwist_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_ARM_FOREARM_R",
+   "deformer": "DEF_Arm_Warp_ForeTwist_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_EYE_Lashes_L",
+   "deformer": "DEF_Eyelid_Warp_L",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_EYE_UpperLid_L",
+   "deformer": "DEF_Eyelid_Warp_L",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_EYE_LowerLid_L",
+   "deformer": "DEF_Eyelid_Warp_L",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_EYE_Pupil_L",
+   "deformer": "DEF_Eye_Warp_Iris_L",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_EYE_Highlight_Catchlight_L",
+   "deformer": "DEF_Eye_Warp_Iris_L",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_EYE_Iris_L",
+   "deformer": "DEF_Eye_Warp_Iris_L",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_EYE_Shadow_Upper_L",
+   "deformer": "DEF_FacePlane_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_EYE_White_L",
+   "deformer": "DEF_FacePlane_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_EYE_Socket_Shadow_L",
+   "deformer": "DEF_FacePlane_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_EYE_Lashes_R",
+   "deformer": "DEF_Eyelid_Warp_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_EYE_UpperLid_R",
+   "deformer": "DEF_Eyelid_Warp_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_EYE_LowerLid_R",
+   "deformer": "DEF_Eyelid_Warp_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_EYE_Pupil_R",
+   "deformer": "DEF_Eye_Warp_Iris_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_EYE_Highlight_Catchlight_R",
+   "deformer": "DEF_Eye_Warp_Iris_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_EYE_Iris_R",
+   "deformer": "DEF_Eye_Warp_Iris_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_EYE_Shadow_Upper_R",
+   "deformer": "DEF_FacePlane_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_EYE_White_R",
+   "deformer": "DEF_FacePlane_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_EYE_Socket_Shadow_R",
+   "deformer": "DEF_FacePlane_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_NOSE_Shadow_Accent",
+   "deformer": "DEF_Nose_Rigid",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_MID_BELT_Buckle",
+   "deformer": "DEF_Buckle_Rigid",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_MID_BELT_Strap",
+   "deformer": "DEF_Belt_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_ARM_WATCH_Face",
+   "deformer": "DEF_Watch_Rigid_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_ARM_WATCH_Strap",
+   "deformer": "DEF_Watch_Rigid_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_MID_BODY_Hidden_Chest_hidden",
+   "deformer": "DEF_Body_Master",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_MID_BODY_Hidden_Ribcage_hidden",
+   "deformer": "DEF_Body_Master",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_MID_BODY_Hidden_Abdomen_hidden",
+   "deformer": "DEF_Body_Master",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_MID_BODY_Hidden_Armpit_R_hidden",
+   "deformer": "DEF_Body_Master",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_MID_BODY_Hidden_Armpit_L_hidden",
+   "deformer": "DEF_Body_Master",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_MID_NECK_Hidden_Column_hidden",
+   "deformer": "DEF_Neck_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_FARHAIR_HAIR_Root_ScalpPlug_hidden",
+   "deformer": "DEF_Hair_Rear_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_ARM_ARM_ShoulderSocket_R_hidden",
+   "deformer": "DEF_Body_Master",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_ARM_ARM_ShoulderSocket_L_hidden",
+   "deformer": "DEF_Body_Master",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_ARM_SLEEVE_Interior_R_hidden",
+   "deformer": "DEF_Body_Master",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_ARM_SLEEVE_Interior_L_hidden",
+   "deformer": "DEF_Body_Master",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_MID_SHIRT_Collar_Interior_hidden",
+   "deformer": "DEF_Shirt_Torso",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_LEG_PANTS_Hidden_LegInterior_R_hidden",
+   "deformer": "DEF_Leg_Warp_Thigh_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_LEG_PANTS_Hidden_LegInterior_L_hidden",
+   "deformer": "DEF_Leg_Warp_Thigh_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_MID_PANTS_Hidden_SeatInterior_hidden",
+   "deformer": "DEF_Leg_Warp_Thigh_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_MID_BELT_Hidden_RearStrap_hidden",
+   "deformer": "DEF_Hair_Rear_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_LEG_SHOE_Hidden_Interior_R_hidden",
+   "deformer": "DEF_Shoe_Rigid_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_LEG_SHOE_Hidden_Interior_L_hidden",
+   "deformer": "DEF_Shoe_Rigid_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_ARM_WATCH_Hidden_UnderStrapSkin_hidden",
+   "deformer": "DEF_Watch_Rigid_R",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_MOUTH_Interior_hidden",
+   "deformer": "DEF_Mouth_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_MOUTH_Teeth_hidden",
+   "deformer": "DEF_Mouth_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_MOUTH_Tongue_hidden",
+   "deformer": "DEF_Mouth_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_MID_SHIRT_Torso_Lower_shadow",
+   "deformer": "DEF_Shirt_Torso",
+   "follow": "base1:1",
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_MID_SHIRT_Torso_Upper_shadow",
+   "deformer": "DEF_Shirt_Torso",
+   "follow": "base1:1",
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_MID_SHIRT_Chest_Front_shadow",
+   "deformer": "DEF_Shirt_Torso",
+   "follow": "base1:1",
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_MID_SHIRT_Chest_Front_hi",
+   "deformer": "DEF_Shirt_Torso",
+   "follow": "base1:1",
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_FACE_Forehead_shadow",
+   "deformer": "DEF_FacePlane_Warp",
+   "follow": "base1:1",
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_FACE_Cheek_L_shadow",
+   "deformer": "DEF_Cheek_Warp_R",
+   "follow": "base1:1",
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_FACE_Cheek_R_shadow",
+   "deformer": "DEF_Cheek_Warp_R",
+   "follow": "base1:1",
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_HEAD_FACE_Cheek_R_hi",
+   "deformer": "DEF_Cheek_Warp_R",
+   "follow": "base1:1",
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_LEG_LEG_Upper_L_shadow",
+   "deformer": "DEF_Leg_Warp_Thigh_R",
+   "follow": "base1:1",
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_LEG_LEG_Upper_L_hi",
+   "deformer": "DEF_Leg_Warp_Thigh_R",
+   "follow": "base1:1",
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_LEG_LEG_Upper_R_shadow",
+   "deformer": "DEF_Leg_Warp_Thigh_R",
+   "follow": "base1:1",
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_LEG_LEG_Upper_R_hi",
+   "deformer": "DEF_Leg_Warp_Thigh_R",
+   "follow": "base1:1",
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_LEG_LEG_Lower_L_shadow",
+   "deformer": "DEF_Leg_Warp_Calf_R",
+   "follow": "base1:1",
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_LEG_LEG_Lower_L_hi",
+   "deformer": "DEF_Leg_Warp_Calf_R",
+   "follow": "base1:1",
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_LEG_LEG_Lower_R_shadow",
+   "deformer": "DEF_Leg_Warp_Calf_R",
+   "follow": "base1:1",
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_LEG_LEG_Lower_R_hi",
+   "deformer": "DEF_Leg_Warp_Calf_R",
+   "follow": "base1:1",
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_FRONTHAIR_HAIR_Outer_Strands_shadow",
+   "deformer": "DEF_Hair_Front_Warp",
+   "follow": "base1:1",
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_FRONTHAIR_HAIR_Outer_Strands_hi",
+   "deformer": "DEF_Hair_Front_Warp",
+   "follow": "base1:1",
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_ARM_SLEEVE_Lower_L_shadow",
+   "deformer": "DEF_Arm_Warp_ElbowComp_R",
+   "follow": "base1:1",
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_ARM_SLEEVE_Lower_L_hi",
+   "deformer": "DEF_Arm_Warp_ElbowComp_R",
+   "follow": "base1:1",
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_ARM_SLEEVE_Lower_R_shadow",
+   "deformer": "DEF_Arm_Warp_ElbowComp_R",
+   "follow": "base1:1",
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_ARM_SLEEVE_Lower_R_hi",
+   "deformer": "DEF_Arm_Warp_ElbowComp_R",
+   "follow": "base1:1",
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_MID_NECK_Skin_shadow",
+   "deformer": "DEF_Neck_Warp",
+   "follow": "base1:1",
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_MID_NECK_Skin_hi",
+   "deformer": "DEF_Neck_Warp",
+   "follow": "base1:1",
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_FARBODY_FAR_FOREARM_L_alt",
+   "deformer": "DEF_Arm_Warp_ForeTwist_R",
+   "follow": null,
+   "nearFarSwap": "BodyAngleZ"
+  },
+  {
+   "layer": "CHR_FARBODY_FAR_FOREARM_R_alt",
+   "deformer": "DEF_Arm_Warp_ForeTwist_R",
+   "follow": null,
+   "nearFarSwap": "BodyAngleZ"
+  },
+  {
+   "layer": "CHR_FARBODY_FAR_LEG_Upper_L_alt",
+   "deformer": "DEF_Leg_Warp_Thigh_R",
+   "follow": null,
+   "nearFarSwap": "BodyAngleZ"
+  },
+  {
+   "layer": "CHR_FARBODY_FAR_LEG_Lower_L_alt",
+   "deformer": "DEF_Leg_Warp_Calf_R",
+   "follow": null,
+   "nearFarSwap": "BodyAngleZ"
+  },
+  {
+   "layer": "CHR_FARBODY_FAR_LEG_Upper_R_alt",
+   "deformer": "DEF_Leg_Warp_Thigh_R",
+   "follow": null,
+   "nearFarSwap": "BodyAngleZ"
+  },
+  {
+   "layer": "CHR_FARBODY_FAR_LEG_Lower_R_alt",
+   "deformer": "DEF_Leg_Warp_Calf_R",
+   "follow": null,
+   "nearFarSwap": "BodyAngleZ"
+  },
+  {
+   "layer": "CHR_FARHAIR_HAIR_Rear_Upper",
+   "deformer": "DEF_Hair_Rear_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_FARHAIR_HAIR_Rear_Middle",
+   "deformer": "DEF_Hair_Rear_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_FARHAIR_HAIR_Rear_Lower",
+   "deformer": "DEF_Hair_Rear_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_FARHAIR_HAIR_BehindEar_R",
+   "deformer": "DEF_Hair_Front_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_FARHAIR_HAIR_BehindEar_L",
+   "deformer": "DEF_Hair_Front_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  },
+  {
+   "layer": "CHR_FARHAIR_HAIR_Inner_ShadowShell",
+   "deformer": "DEF_Hair_Front_Warp",
+   "follow": null,
+   "nearFarSwap": null
+  }
+ ]
+}

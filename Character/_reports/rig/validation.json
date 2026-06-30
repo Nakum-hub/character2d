@@ -1,0 +1,50 @@
+[
+ {
+  "scenario": "look_R",
+  "volume_pct": 100.0,
+  "silhouette_pct": 100.0,
+  "verdict": "PASS"
+ },
+ {
+  "scenario": "blink",
+  "volume_pct": 100.0,
+  "silhouette_pct": 100.0,
+  "verdict": "PASS"
+ },
+ {
+  "scenario": "head_tilt",
+  "volume_pct": 99.8,
+  "silhouette_pct": 99.8,
+  "verdict": "PASS"
+ },
+ {
+  "scenario": "head_turn",
+  "volume_pct": 99.9,
+  "silhouette_pct": 99.9,
+  "verdict": "PASS"
+ },
+ {
+  "scenario": "smile",
+  "volume_pct": 100.0,
+  "silhouette_pct": 100.0,
+  "verdict": "PASS"
+ },
+ {
+  "scenario": "breathe",
+  "volume_pct": 98.9,
+  "silhouette_pct": 98.9,
+  "verdict": "PASS"
+ },
+ {
+  "scenario": "body_turn",
+  "volume_pct": 94.1,
+  "silhouette_pct": 94.1,
+  "verdict": "PASS"
+ },
+ {
+  "scenario": "arm_raise_R",
+  "volume_pct": 92.5,
+  "silhouette_pct": 92.5,
+  "verdict": "PASS"
+ }
+]
