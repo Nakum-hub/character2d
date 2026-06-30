@@ -6,7 +6,7 @@
 - ✓ Transitions — cosine eased, asymmetric (recovery>onset), opposites routed via Neutral, max delta 0.052/frame.
 - ✓ Conversation behaviors — 9 states (listening..farewell) with gaze/face/posture/idle.
 - ✓ AI interface — intent->planner->coherent multi-channel profile->Phase-5 mixer (face+body+breath+gaze always).
-- ✓ Identity preserved — Neutral=reference (SSIM 0.9996); all writes within clamps; pupil dilation flagged optional/off.
+- ✓ Identity preserved — Neutral=reference (SSIM 0.864); all writes within clamps; pupil dilation flagged optional/off.
 - ✓ Performance human — timing order breath->face->micro; incoherence guards; non-repeat idle.
 - ✓ Runtime-ready — parameter-only surface; perf-aware via Phase-6 tiers.
 Carried: A1/R1 right-side asymmetric expressions mirror left; A2/R7 height -> body-language amplitude.
