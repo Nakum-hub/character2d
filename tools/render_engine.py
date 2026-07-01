@@ -97,6 +97,23 @@ def deform(name,Vc,P):
         V=aff(V,np.array(PIV["wrist_R"]),sx=1-0.25*abs(ft))
     if "WATCH" in n and ft:  # counter-rotate keeps face upright -> minimal change
         V=aff(V,np.array(PIV["watch"]),sx=1-0.05*abs(ft))
+    # --- body-posture channels (audit add-on; subtle whole-part affines, identity-safe) ---
+    isArmL=(n.endswith("_L") and any(k in n for k in ["SLEEVE","FOREARM","WRIST","HAND","Palm","Finger","Thumb","Deltoid"]))
+    lx=P.get("ParamBodyLeanX",0); ly=P.get("ParamBodyLeanY",0)
+    if (lx or ly):                                   # whole-figure lean about the hip
+        V=aff(V,np.array(PIV["hip"]),rot=math.radians(-2.2*ly), ty=-3.0*abs(lx))
+    ce=P.get("ParamChestExpand",0)
+    if ce and (isTorso or isNeck):                   # chest openness -> widen upper torso
+        V=aff(V,np.array(PIV["chest"]),sx=1+0.05*ce)
+    hf=P.get("ParamHeadFwd",0)
+    if (isHead or isNeck) and hf:                    # head forward(+)/back(-)
+        V[:,1]+=8.0*hf
+    arL=P.get("ParamArmRaiseL",0)
+    if isArmL and arL:                               # left arm raise (mirror of R)
+        V=aff(V,np.array(PIV["shoulder_L"]),rot=math.radians((20+(130-20)*arL)*0.55))
+    ftL=P.get("ParamForearmTwistL",0)
+    if n.endswith("_L") and ("FOREARM" in n or "WRIST" in n) and ftL:
+        V=aff(V,np.array(PIV["wrist_L"]),sx=1-0.25*abs(ftL))
     return V
 
 # behind-fill set: only the head scalp plug is shaped well enough to fill a reveal cleanly.

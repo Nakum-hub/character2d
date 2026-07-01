@@ -1,0 +1,57 @@
+{
+  "$schema_note": "Phase-1 CHARACTER SPEC (canonical identity lock) for character2d. Referenced by Phases 3-8. Restored to the repo and reconciled with the Phase-0 pixel validation (watch side corrected; height A2 resolved).",
+  "meta": {"name": "character2d protagonist", "spec_version": "1.1", "phase": "1 - identity lock",
+    "sources": ["assets/reference/front.png","assets/reference/back.png","assets/reference/side_left.png","assets/reference/side_right.png"],
+    "units": {"HH": "head height (crown->chin, Front plate)", "HW": "head width at cheekbones",
+              "side": "character-anatomical (never viewer)"}},
+
+  "resolved_decisions": {
+    "A2_height": {"status": "RESOLVED", "value": "7.75 HH",
+      "evidence": "Phase-0 pixel measurement: figure 2398px, head 311px -> 7.71 HH; supports the 7.75 default over 8.0. Locking 7.75 HH; body-language/gesture amplitude calibration now unblocked.",
+      "confidence": "[H]"},
+    "watch_side": {"status": "CORRECTED+LOCKED", "value": "character-LEFT wrist",
+      "evidence": "Front: watch viewer-right; Back: watch viewer-left -> a left-side item (verified via zoomed wrist crops on all 4 plates). Overrides the original blueprint's character-right.",
+      "confidence": "[O]"}
+  },
+  "open_risks": {
+    "A1_right_plate": {"status": "OPEN", "note": "No clean orthographic RIGHT profile (side_left is a right-facing profile, side_right a left-facing 3/4; plates are AI-generated and not rigidly orthographic). Right-side meshes/rig/gestures mirror the observed left and are flagged for repaint if a true right plate arrives.", "confidence": "[M]"}
+  },
+
+  "identity_lock_26": {
+    "1_face_width":  {"v": "narrow-medium ~0.66 HH cheekbone", "c": "[H]"},
+    "2_jaw":         {"v": "soft-tapered V, rounded chin, obtuse gonial angle", "c": "[O]"},
+    "3_hair_silhouette": {"v": "spiky-layered, crown loft, bangs to brow; outline sacred", "c": "[O]"},
+    "4_hair_volume": {"v": "medium-high, ~0.18 HH crown loft (loft-locked, stiff)", "c": "[O]"},
+    "5_hair_direction": {"v": "radial from rear-crown whorl; bangs forward+outward", "c": "[O]"},
+    "6_eye_size":    {"v": "medium anime ~0.20 HH tall", "c": "[O]"},
+    "7_eye_spacing": {"v": "~one eye-width gap", "c": "[O]"},
+    "8_nose":        {"v": "minimal shadow accent + small tip, near-rigid", "c": "[O]"},
+    "9_mouth":       {"v": "small, neutral, relaxed closure", "c": "[O]"},
+    "10_neck_thickness": {"v": "medium ~0.45-0.55 HW (measured; thinner than blueprint's 0.62)", "c": "[H]"},
+    "11_shoulder_width": {"v": "~2.3 HW / ~1.70 HH acromion-acromion", "c": "[H]"},
+    "12_torso_ratio": {"v": "shoulder:waist ~1.0:0.78 mild taper", "c": "[H]"},
+    "13_arm_thickness": {"v": "slim, even taper", "c": "[O]"},
+    "14_hand_size":  {"v": "~0.85 HH length", "c": "[H]"},
+    "15_leg_proportions": {"v": "long; ~50% of height from hip", "c": "[H]"},
+    "16_foot_shoe":  {"v": "sneaker ~1.05 HH long", "c": "[H]"},
+    "17_shirt_fit":  {"v": "relaxed crew tee, sleeves pushed to below elbow (bare forearms, all 4 plates), slight hem blouse", "c": "[O]"},
+    "18_pant_fit":   {"v": "slim-straight chino, single ankle cuff", "c": "[O]"},
+    "19_color_palette": {"v": "see palette block", "c": "[O]"},
+    "20_lighting":   {"v": "soft top-front key, low contrast, white bg", "c": "[O]"},
+    "21_line_style": {"v": "clean medium weight, dark warm-brown (not pure black)", "c": "[O]"},
+    "22_anime_render": {"v": "cel + soft 2-step shadow, minimal specular", "c": "[O]"},
+    "23_material_response": {"v": "matte fabric, semi-matte sneaker, low-gloss watch", "c": "[O]"},
+    "24_wrinkle_map": {"v": "elbow, sleeve-push band, waist blouse, knee, ankle cuff", "c": "[O]"},
+    "25_accessory_placement": {"v": "WATCH on character-LEFT wrist (corrected); belt at natural waist", "c": "[O]"},
+    "26_watch_position": {"v": "LEFT dorsal wrist, ~1 hand-width above wrist crease", "c": "[O]"}
+  },
+
+  "proportions_measured_px": {"figure_h": 2398, "head_h": 311, "total_HH": 7.71, "locked_HH": 7.75,
+    "shoulder_span_px": 530, "neck_width_px": 126},
+
+  "palette": {"hair": "warm brown/auburn", "skin": "light warm beige", "top": "dark olive-charcoal (not black)",
+    "chino": "tan/khaki", "belt": "dark brown/near-black", "sneakers": "cream/off-white", "watch": "black low-gloss",
+    "linework": "dark warm brown"},
+
+  "volume_preserve_zones": ["crown_loft", "deltoid_cap", "calf_belly", "chest_convexity"]
+}
