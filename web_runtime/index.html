@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>character2d — living head (Milestone 1)</title>
+<style>
+  :root{--mint:#5eead4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%;font-family:ui-monospace,Menlo,monospace;color:#cfd6e4;overflow:hidden}
+  body{background:radial-gradient(120% 120% at 50% 12%,#1b2030 0%,#0d1017 60%,#070a0e 100%)}
+  #stage{position:fixed;inset:0;display:grid;place-items:center;cursor:crosshair}
+  canvas{display:block;filter:drop-shadow(0 40px 70px rgba(0,0,0,.6))}
+  .tag{position:fixed;top:16px;left:18px;font-size:11px;color:#5b6677;letter-spacing:.14em}
+  .hint{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:12px;color:#8893a7;text-align:center}
+  .hint b{color:var(--mint)}
+  .bar{position:fixed;top:14px;right:16px;display:flex;gap:8px}
+  .bar button{font:inherit;font-size:11px;color:#cfd6e4;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);padding:7px 12px;border-radius:999px;cursor:pointer}
+  .bar button:hover{background:rgba(94,234,212,.16);border-color:var(--mint);color:#fff}
+</style></head>
+<body>
+<div class="tag">character2d · living head · M1</div>
+<div class="bar"><button onclick="character.blink()">blink</button><button onclick="character.glance()">glance</button></div>
+<div id="stage"><canvas id="c"></canvas></div>
+<div class="hint">move your cursor — he follows your gaze · breathes · blinks. <b>2.5D, seamless, on-model.</b></div>
+<script>
+// ---- model layout (built by tools/m1_build.py) ----
+const L = {"head":{"x":603,"y":282,"w":367,"h":432},"front_hair":{"x":611,"y":283,"w":330,"h":258},
+"iris":{"x":702,"y":469,"w":156,"h":41},"back_hair":{"x":600,"y":272,"w":352,"h":280},
+"body":{"x":436,"y":545,"w":695,"h":2138},
+"pivots":{"neck":[779,690],"hip":[780,1630]},
+"eyes":{"R":[722,489],"L":[837,489],"rx":34,"ry":20,"lidskin":[207,162,139]},
+"canvas":[1536,2730]};
+const ORDER=["back_hair","body","head","iris","front_hair"];
+const imgs={}; let ready=0;
+ORDER.forEach(n=>{const im=new Image(); im.onload=()=>ready++; im.src="assets/"+n+".png"; imgs[n]=im;});
+
+// ---- live parameters ----
+const S={tYaw:0,tPitch:0, yaw:0,pitch:0, vyaw:0,vpitch:0, gx:0,gy:0, breath:0, blink:0};
+let pointerActive=false,lastMove=0, blinkT=0, nextBlink=1.4, sacc=0, saccX=0,saccY=0, nextSacc=3;
+
+const cv=document.getElementById('c'), ctx=cv.getContext('2d');
+addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect();
+  S.tYaw=clamp((e.clientX-(r.left+r.width/2))/(r.width*0.5));
+  S.tPitch=clamp((e.clientY-(r.top+r.height*0.30))/(r.height*0.5));
+  pointerActive=true; lastMove=performance.now();});
+function clamp(v){return Math.max(-1,Math.min(1,v));}
+
+// ---- public API (portfolio / narrator hooks, extended in later milestones) ----
+window.character={
+  lookAt:(x,y)=>{const r=cv.getBoundingClientRect(); S.tYaw=clamp((x-(r.left+r.width/2))/(r.width*.5));
+    S.tPitch=clamp((y-(r.top+r.height*.30))/(r.height*.5)); pointerActive=true; lastMove=performance.now();},
+  blink:()=>{blinkT=0.13;}, glance:()=>{sacc=0.5; saccX=(Math.random()*2-1)*0.9; saccY=(Math.random()*2-1)*0.4;},
+  setParam:(k,v)=>{if(k in S)S[k]=v;}
+};
+
+// ---- fit ----
+let DPR=1,scale=1,ox=0,oy=0;
+function resize(){DPR=Math.min(devicePixelRatio||1,2); const W=innerWidth,H=innerHeight;
+  cv.width=W*DPR;cv.height=H*DPR;cv.style.width=W+'px';cv.style.height=H+'px';
+  const fw=470,fh=560,fx=545,fy=258;               // frame the head+shoulders
+  scale=Math.min(W/fw,H/fh)*0.94; ox=W/2-(fx+fw/2)*scale; oy=H*0.60-(fy+fh/2)*scale;}
+addEventListener('resize',resize); resize();
+
+// ---- about-pivot affine (mirrors tools/m1_verify.py Fwd) ----
+function aboutPivot(px,py,rot,sx,sy,shear,tx,ty){
+  const c=Math.cos(rot),s=Math.sin(rot);
+  const a=c*sx, b=(c*shear-s)*sy, cc=s*sx, d=(s*shear+c)*sy;   // Lin = R·Shear·Scale
+  ctx.translate(px+tx,py+ty); ctx.transform(a,cc,b,d,0,0); ctx.translate(-px,-py);
+}
+function drawPart(name,px,py,rot,sx,sy,shear,tx,ty){const p=L[name],im=imgs[name]; if(!im||!im.complete)return;
+  ctx.save(); aboutPivot(px,py,rot,sx,sy,shear,tx,ty); ctx.drawImage(im,p.x,p.y); ctx.restore();}
+function headParams(){return {rot:0.05*S.yaw+0.02*S.pitch, sx:1-0.12*Math.abs(S.yaw), sy:1+0.05*S.pitch,
+  shear:0.05*S.yaw, tx:24*S.yaw, ty:26*S.pitch+2.4*S.breath};}
+
+let t0=performance.now();
+function frame(now){const t=(now-t0)/1000, dt=1/60;
+  // idle auto-gaze
+  if(!pointerActive || now-lastMove>2600){S.tYaw=0.5*Math.sin(t*0.5); S.tPitch=0.24*Math.sin(t*0.42+1);}
+  // eyes lead, head follows with a touch of spring (secondary settle)
+  S.gx+=(S.tYaw-S.gx)*0.24; S.gy+=(S.tPitch-S.gy)*0.24;
+  const k=90,damp=15;
+  S.vyaw+=(k*(S.tYaw-S.yaw)-damp*S.vyaw)*dt; S.yaw+=S.vyaw*dt;
+  S.vpitch+=(k*(S.tPitch-S.pitch)-damp*S.vpitch)*dt; S.pitch+=S.vpitch*dt;
+  // micro life-drift
+  S.yaw+=0.015*Math.sin(t*1.3); S.pitch+=0.01*Math.sin(t*0.9+2);
+  S.breath=Math.sin(t*1.7);
+  // saccades when idle
+  nextSacc-=dt; if(nextSacc<=0 && (!pointerActive||now-lastMove>2600)){sacc=0.4; saccX=(Math.random()*2-1)*0.8; saccY=(Math.random()*2-1)*0.35; nextSacc=2+Math.random()*3;}
+  if(sacc>0){sacc-=dt; S.gx+=(saccX-S.gx)*0.5; S.gy+=(saccY-S.gy)*0.5;}
+  // natural blink schedule (triangular ~120ms, sometimes double)
+  nextBlink-=dt; if(nextBlink<=0){blinkT=0.13; nextBlink=2.2+Math.random()*3.8; if(Math.random()<0.18)nextBlink=0.22;}
+  if(blinkT>0){const ph=blinkT; S.blink=Math.max(0,Math.min(1, ph>0.065?(0.13-ph)/0.065:ph/0.065)); blinkT-=dt;} else S.blink=0;
+
+  ctx.setTransform(DPR,0,0,DPR,0,0); ctx.clearRect(0,0,cv.width,cv.height);
+  ctx.save(); ctx.translate(ox,oy); ctx.scale(scale,scale);
+  const hp=headParams(), N=L.pivots.neck, bob=2.4*S.breath;
+  // BACK HAIR (least motion)
+  drawPart("back_hair",N[0],N[1],0.05*S.yaw,1-0.10*Math.abs(S.yaw),1,0.04*S.yaw,16*S.yaw,bob*0.7);
+  // BODY (breath)
+  drawPart("body",L.pivots.hip[0],L.pivots.hip[1],0.004*Math.sin(S.breath*Math.PI),1,1+0.006*S.breath,0,0,bob);
+  // HEAD (intact, perfect)
+  drawPart("head",N[0],N[1],hp.rot,hp.sx,hp.sy,hp.shear,hp.tx,hp.ty);
+  // IRIS (head + feature parallax + gaze)
+  drawPart("iris",N[0],N[1],hp.rot,hp.sx,hp.sy,hp.shear, hp.tx+7*S.yaw+4.5*clamp(S.gx), hp.ty+4*S.pitch+3.5*clamp(S.gy));
+  // BLINK LIDS (skin, over eyes, under front hair)
+  if(S.blink>0.01){
+    ctx.save(); aboutPivot(N[0],N[1],hp.rot,hp.sx,hp.sy,hp.shear,hp.tx,hp.ty);
+    const E=L.eyes, col="rgb("+E.lidskin[0]+","+E.lidskin[1]+","+E.lidskin[2]+")";
+    [E.R,E.L].forEach(c=>{const topY=c[1]-E.ry, cover=S.blink*(2*E.ry+4);
+      ctx.fillStyle=col; ctx.beginPath(); ctx.ellipse(c[0],topY+cover/2-2,E.rx+3,cover/2+3,0,0,7); ctx.fill();
+      if(S.blink>0.6){ctx.strokeStyle="rgba(90,60,50,.8)";ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(c[0]-E.rx+3,topY+cover-2);ctx.lineTo(c[0]+E.rx-3,topY+cover-2);ctx.stroke();}});
+    ctx.restore();
+  }
+  // FRONT HAIR (most motion -> depth)
+  drawPart("front_hair",N[0],N[1],hp.rot+0.03*S.yaw,hp.sx,hp.sy,hp.shear,hp.tx+6*S.yaw,bob*0.5+26*S.pitch*0.4);
+  ctx.restore();
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script>
+</body></html>
